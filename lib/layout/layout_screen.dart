@@ -18,6 +18,7 @@ class layoutScreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = layoutCubit.get(context);
+
           return Scaffold(
             bottomNavigationBar: Container(
               decoration: BoxDecoration(

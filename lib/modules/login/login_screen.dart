@@ -48,7 +48,7 @@ class logInScreen extends StatelessWidget {
                 height: 61,
               ),
               Center(
-                child: text(
+                child: specialtext(
                   text: "مرحباََ بعودتك",
                   fsize: 28,
                   talign: TextAlign.center,

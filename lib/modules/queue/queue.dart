@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 import 'package:flutter/material.dart';
+import 'package:tabor/layout/layout_screen.dart';
 import 'package:tabor/modules/service/service.dart';
 import 'package:tabor/modules/sinup_screen/sinUpScreen.dart';
 import 'package:tabor/shared/componants/componant.dart';
@@ -32,93 +33,72 @@ class _QueuesScreenState extends State<QueuesScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisSize: MainAxisSize.min,
+        //mainAxisSize: MainAxisSize.min,
         children: [
-          AppBar2(
-              context: context,
-              screenHight: screenHight,
-              screenWidth: screenWidth,
-              text: 'السابق'),
-          Image.network(
-            'https://www.bankygate.com/UserFiles/News/2021/04/05/19740.jpg?210405152916',
-            width: screenWidth,
-            height: 192,
-            fit: BoxFit.cover,
-          ),
-          /*DefoltSvgImage(image: 'assets/images/ٌRectangle7.svg',
-          width: screenWidth,
-          hight: screenHight*0.578,
-          ),*/
           Container(
-            width: screenWidth,
-            height: 83,
-            decoration: BoxDecoration(
-              color: Color(0xfff5f5f5),
-              boxShadow: [BoxShadow(blurRadius: 4, color: Color(0xff40000000))],
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(16), topLeft: Radius.circular(16)),
-            ),
-            padding: EdgeInsets.only(right: 16, left: 16, top: 24),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    CircleAvatar(backgroundColor: Colors.green, radius: 6),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    text(
-                      text: "مفتوح",
-                    )
-                  ],
+              height: 120,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Color(0xffffffff),
+                boxShadow: [
+                  BoxShadow(blurRadius: 4, color: Color(0xff40000000))
+                ],
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(16),
+                    bottomLeft: Radius.circular(16)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 16, left: 24, bottom: 24,top: 54),
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: DefoltSvgImage(
+                            image:
+                                'assets/images/vuesax_bulk_arrow_square_right.svg'),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 3),
+                            child: Text('الفيوم-فرع الجامعة',
+                                style: const TextStyle(
+                                    color: Color(0xff161616),
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: "ReadexPro",
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 18.0),
+                                textAlign: TextAlign.right),
+                          ),                  
+                      SizedBox(
+                        width: screenWidth * 0.27,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Column(
+                                        children: [
+                                          CircleAvatar(backgroundColor: Colors.green, radius: 6),
+                                          SizedBox(
+                        height: 3,
+                                          ),
+                                          specialtext(
+                        text: "مفتوح",
+                                          )
+                                        ],
+                                      ),
+                      ),
+                    ],
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    text(
-                      text: "الفيوم - فرع الجامعة",
-                      fweight: FontWeight.w600,
-                      fsize: 21,
-                    ),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    Row(
-                      children: [
-                        Opacity(
-                          opacity: .5,
-                          child: text(
-                            text: "كم",
-                            fweight: FontWeight.w500,
-                            fsize: 16,
-                          ),
-                        ),
-                        Opacity(
-                          opacity: .5,
-                          child: text(
-                            text: "8",
-                            fweight: FontWeight.w500,
-                            fsize: 16,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Center(
-            child: Opacity(
-              opacity: .2,
-              child: Container(
-                width: screenWidth - 31,
-                height: 2,
-                decoration: BoxDecoration(color: const Color(0xff161616)),
               ),
             ),
-          ),
           SizedBox(height: 24),
           Expanded(
             child: Container(
@@ -225,7 +205,7 @@ class _QueuesScreenState extends State<QueuesScreen> {
                       padding: EdgeInsets.only(right: screenWidth * (16 / 390)),
                       child: Opacity(
                         opacity: 0.699999988079071,
-                        child: text(
+                        child: specialtext(
                           text: "طابور",
                           fweight: FontWeight.w500,
                           fsize: 21,
@@ -279,6 +259,20 @@ class _QueuesScreenState extends State<QueuesScreen> {
               ),
             ),
           ),
+          buttonCardBottom(
+            space: (16/390)*screenWidth,
+            widthCard: (158/390)*screenWidth,
+            function1: (){
+              NavigateTo(context, const Service_screen());
+
+            },
+             text1: ' حجز الان',
+              image1: 'assets/images/vuesax_bold_ticket_expired.svg',
+               function2: (){
+
+               },
+                text2: ' حجز مسبق ',
+                 image2: 'assets/images/vuesax_bold_calendar_tick.svg'),
         ],
       ),
     );

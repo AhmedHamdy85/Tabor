@@ -30,10 +30,18 @@ class HomeScreen extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Image.asset(
-                  'assets/images/user.jpg',
-                  width: screenWidth * 0.14,
-                  height: screenWidth * 0.14,
+                Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/user.jpg',
+                      width: screenWidth * 0.14,
+                      height: screenWidth * 0.14,
+                    ),
+                    IconButton(onPressed: (){
+                       
+                    },
+                 icon: Icon(Icons.menu)),
+                  ],
                 ),
                 SizedBox(
                   width: 1,

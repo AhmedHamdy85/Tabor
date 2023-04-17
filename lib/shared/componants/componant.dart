@@ -523,53 +523,50 @@ Widget TransportForm(
         required BuildContext context,
         required String TransportTool,
         required double time}) =>
-    Padding(
-      padding: const EdgeInsets.only(top: 16.0),
-      child: Container(
-        width: screenWidth - 32,
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Color(0xffffffff),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Opacity(
-              opacity: 0.7,
-              child: Radio(
-                value: 0,
-                groupValue: 1,
-                onChanged: (value) {},
-              ),
+    Container(
+      width: screenWidth - 32,
+      height: 40,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: Color(0xffffffff),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Opacity(
+            opacity: 0.7,
+            child: Radio(
+              value: 0,
+              groupValue: 1,
+              onChanged: (value) {},
             ),
-            Expanded(
-              child: Text(TransportTool,
-                  style: const TextStyle(
-                      color: const Color(0xff161616),
-                      fontWeight: FontWeight.w500,
-                      fontFamily: "ReadexPro",
-                      fontStyle: FontStyle.normal,
-                      fontSize: 16.0),
-                  textAlign: TextAlign.right),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text("$time" + " " + "دقيقة",
-                  style: const TextStyle(
-                      color: const Color(0xff161616),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "ReadexPro",
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14.0),
-                  textAlign: TextAlign.right),
-            ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: Text(TransportTool,
+                style: const TextStyle(
+                    color: const Color(0xff161616),
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "ReadexPro",
+                    fontStyle: FontStyle.normal,
+                    fontSize: 16.0),
+                textAlign: TextAlign.right),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16),
+            child: Text("$time" + " " + "دقيقة",
+                style: const TextStyle(
+                    color: const Color(0xff161616),
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "ReadexPro",
+                    fontStyle: FontStyle.normal,
+                    fontSize: 14.0),
+                textAlign: TextAlign.right),
+          ),
+        ],
       ),
     );
 
-Widget text(
+Widget specialtext(
         {required String text,
         double fsize = 14,
         FontWeight fweight = FontWeight.w400,
@@ -621,12 +618,12 @@ Widget serviceContainer({
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: text(
+                          title: specialtext(
                               text: texttitle,
                               fsize: 19,
                               talign: TextAlign.right),
                           content:
-                              text(text: textcontent, talign: TextAlign.right),
+                              specialtext(text: textcontent, talign: TextAlign.right),
                           actionsAlignment: MainAxisAlignment.end,
                         );
                       });
@@ -636,7 +633,7 @@ Widget serviceContainer({
                     width: 32,
                     hight: 32),
               ),
-              text(
+              specialtext(
                 text: tex,
                 fweight: FontWeight.w600,
                 fsize: 16,
@@ -755,3 +752,103 @@ Widget defaultMateriaButton(
         ),
       ),
     );
+     Widget BottomCard(
+      {
+        required Color? cardcolor,
+        required VoidCallback? function,
+        double widthCard=171,
+        required String text,
+        required String image,
+        required Color? fcolor,
+        double fsize = 18,
+        FontWeight fweight = FontWeight.w500,
+      }
+     )=>InkWell(
+      onTap: function,
+       child: Card
+         (
+                        shape: RoundedRectangleBorder( //<-- SEE HERE
+                        /*side: BorderSide(
+                        color: Colors.greenAccent,
+                         ),*/
+                         borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: cardcolor,
+                            border: Border.all(
+                              color: Color(0xff009c7b),
+                              width: 2
+                            ),
+                          ),
+                          width: widthCard,
+                          height: 52,
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                DefoltSvgImage(
+                                image: image,
+                                width: 24,
+                                hight: 24
+                                ),
+                                SizedBox(width: 4,),
+                                specialtext(
+                                   text:text,
+                                  fweight: fweight,
+                                   fcolor: fcolor,
+                                   fsize: fsize,
+                                   ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+     );
+Widget buttonCardBottom({
+         Color? cardcolor1=const Color(0xff009c7b),
+        required VoidCallback? function1,
+        required String text1,
+        required String image1,
+         Color? fcolor1=const Color(0xffffffff),
+         Color? cardcolor2=const Color(0xffffffff),
+        required VoidCallback? function2,
+        double widthCard=171,
+        required String text2,
+        required String image2,
+         Color? fcolor2=const Color(0xff009c7b),
+        double fsize = 18,
+        FontWeight fweight = FontWeight.w500,
+        required double space,
+})=>Card(
+            child:Directionality(
+              textDirection: TextDirection.rtl,
+              child: Padding(
+            
+                padding:  EdgeInsets.only(top: 16,bottom: 32,right: space,left: space),
+                child: Center(
+                  child: Row(
+                    children: [
+                      BottomCard(
+                        cardcolor: cardcolor1,
+                         function: function1,
+                          text: text1,
+                           image: image1,
+                            fcolor: fcolor1,
+                            widthCard: widthCard
+                            ),
+                      SizedBox(width: space,),
+                      BottomCard(
+                        cardcolor: cardcolor2,
+                         function: function2,
+                          text: text2, 
+                          image: image2,
+                           fcolor: fcolor2,
+                           widthCard: widthCard
+                           ),
+                  ],),
+                ),
+              ),
+            ),
+          );

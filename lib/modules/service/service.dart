@@ -109,7 +109,7 @@ class Service_screen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Opacity(
+                        /*Opacity(
                           opacity: 0.699999988079071,
                           child: Text("الخدمات",
                               style: const TextStyle(
@@ -137,18 +137,18 @@ class Service_screen extends StatelessWidget {
                             Service: 'شكوى '),
                         SizedBox(
                           height: 40,
-                        ),
+                        ),*/
                         Opacity(
                           opacity: 0.699999988079071,
-                          child: Text("وسيله النقل",
-                              style: const TextStyle(
-                                  color: const Color(0xff161616),
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: "ReadexPro",
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: 21.0),
-                              textAlign: TextAlign.right),
+                          child: specialtext(
+                            text: 'وسيلة النقل',
+                            fcolor: Color(0xff161616),
+                            fweight: FontWeight.w500,
+                            fsize: 21,
+                            talign: TextAlign.right
+                          ),
                         ),
+                        SizedBox(height: 16,),
                         TransportForm(
                             screenWidth: screenWidth,
                             context: context,
@@ -170,7 +170,21 @@ class Service_screen extends StatelessWidget {
                 ),
               ),
             ),
-            Center(
+            buttonCardBottom(
+            space: (16/390)*screenWidth,
+            widthCard: (158/390)*screenWidth,
+            function1: (){
+              NavigateTo(context, const Service_screen());
+
+            },
+             text1:' حجز الدور',
+              image1: 'assets/images/vuesax_bold_ticket_expired.svg',
+               function2: (){
+
+               },
+                text2: ' المطلوب',
+                 image2: 'assets/images/vuesax_bold_info_circle.svg'),
+            /*Center(
               child: MaterialButton(
                 color: Color(0xff009c7b),
                 minWidth: screenWidth - 32,
@@ -189,7 +203,7 @@ class Service_screen extends StatelessWidget {
                         fontSize: 18.0),
                     textAlign: TextAlign.center),
               ),
-            ),
+            ),*/
           ],
         ),
       ),

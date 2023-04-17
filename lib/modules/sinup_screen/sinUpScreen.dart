@@ -65,7 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   width: screenWidth - 64,
                   height: 87,
                   child: Center(
-                    child: text(
+                    child: specialtext(
                         text: "مرحباََ",
                         fsize: 28,
                         fweight: FontWeight.w500,

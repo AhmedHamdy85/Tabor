@@ -52,7 +52,7 @@ class CodeWidget extends StatelessWidget {
                 ),
                 Opacity(
                     opacity: .7,
-                    child: text(
+                    child: specialtext(
                       text: "لقد تم ارسال كود تفعيل الى الايميل الخاص بك",
                     )),
                 SizedBox(
@@ -102,7 +102,7 @@ class CodeWidget extends StatelessWidget {
                 ),
                 Opacity(
                   opacity: .7,
-                  child: text(
+                  child: specialtext(
                     text: "الم تستلم الكود ؟",
                   ),
                 ),

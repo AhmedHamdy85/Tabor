@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tabor/layout/layout_screen.dart';
+import 'package:tabor/modules/login/cubit/logic.dart';
+import 'package:tabor/modules/login/cubit/states.dart';
 import 'package:tabor/modules/phoneScreen/phone.dart';
 import 'package:tabor/modules/resiveCode/code.dart';
 import 'package:tabor/shared/componants/componant.dart';
@@ -10,7 +13,8 @@ class logInScreen extends StatelessWidget {
   logInScreen({super.key});
   TextEditingController phoneControlar = TextEditingController();
   TextEditingController passwordControlar = TextEditingController();
-  bool isCheked = false;
+  var formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -48,7 +52,7 @@ class logInScreen extends StatelessWidget {
                 height: 61,
               ),
               Center(
-                child: specialtext(
+                child: text(
                   text: "مرحباََ بعودتك",
                   fsize: 28,
                   talign: TextAlign.center,

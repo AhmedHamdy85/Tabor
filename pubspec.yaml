@@ -41,6 +41,8 @@ dependencies:
   smooth_page_indicator:
   dotted_line:
   dropdown_button2:
+  shared_preferences: 
+  dio: 
   
 
 dev_dependencies:

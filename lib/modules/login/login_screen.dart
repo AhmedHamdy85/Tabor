@@ -52,7 +52,7 @@ class logInScreen extends StatelessWidget {
                 height: 61,
               ),
               Center(
-                child: text(
+                child: specialtext(
                   text: "مرحباََ بعودتك",
                   fsize: 28,
                   talign: TextAlign.center,
@@ -95,7 +95,7 @@ class logInScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Checkbox(
-                    value: isCheked,
+                    value:LoginCubit.get(context).isChecked,
                     onChanged: (value) {},
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(2)),

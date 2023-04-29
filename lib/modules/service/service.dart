@@ -69,20 +69,11 @@ class Service_screen extends StatelessWidget {
                         ),
                         Opacity(
                           opacity: 0.5,
-                          child: Text("طابور خدمة العملاء",
-                              style: const TextStyle(
-                                  color: const Color(0xff161616),
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: "ReadexPro",
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: 14.0),
-                              textAlign: TextAlign.right),
+                          child: specialtext(text: "طابور خدمة العملاء",),
                         )
                       ],
                     ),
-                    SizedBox(
-                      width: screenWidth * 0.27,
-                    ),
+                    Spacer(),
                     CircleAvatar(
                       backgroundColor: Color(0xffbceee3),
                       child: InkWell(

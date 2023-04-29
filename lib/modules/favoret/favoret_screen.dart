@@ -15,8 +15,8 @@ class FavoretScreen extends StatelessWidget {
       children: [
         CustomAppBar(
             text: 'المفضلة',
-            screenHight: screenHight,
-            screenWidth: screenWidth),
+            screenWidth: screenWidth
+            ),
         Expanded(
           child: Container(
             width: double.infinity,

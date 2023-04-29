@@ -43,7 +43,8 @@ dependencies:
   dropdown_button2:
   shared_preferences: 
   dio: 
-  
+  toggle_switch: 
+  font_awesome_flutter:
 
 dev_dependencies:
   flutter_test:

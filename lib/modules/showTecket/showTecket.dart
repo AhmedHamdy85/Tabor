@@ -38,14 +38,10 @@ class ShowTecketScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text('التذكرة',
-                        style: const TextStyle(
-                            color: Color(0xff161616),
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "ReadexPro",
-                            fontStyle: FontStyle.normal,
-                            fontSize: 21.0),
-                        textAlign: TextAlign.right),
+                    specialtext(text:'التذكرة',
+                    fsize: 21,
+                    fweight: FontWeight.w600,
+                    ),
                     SizedBox(
                       width: screenWidth * 0.62,
                     ),
@@ -97,36 +93,22 @@ class ShowTecketScreen extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("البنك الاهلى المصرى",
-                                    style: const TextStyle(
-                                        color: const Color(0xff161616),
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: "ReadexPro",
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: 14.0),
-                                    textAlign: TextAlign.right),
+                                specialtext(text: "البنك الاهلى المصرى",
+                                fweight: FontWeight.w500,
+                                ),
                                 Padding(
                                   padding:
                                       const EdgeInsets.only(top: 8, bottom: 8),
-                                  child: Text("الفيوم - فرع الجامعة",
-                                      style: const TextStyle(
-                                          color: const Color(0xff161616),
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: "ReadexPro",
-                                          fontStyle: FontStyle.normal,
-                                          fontSize: 12.0),
-                                      textAlign: TextAlign.right),
+                                  child: specialtext(text: "الفيوم - فرع الجامعة",
+                                  fweight: FontWeight.w500,
+                                  fsize: 12
+                                  ),
                                 ),
                                 Opacity(
                                   opacity: 0.5,
-                                  child: Text("طابور خدمة العملاء",
-                                      style: const TextStyle(
-                                          color: const Color(0xff161616),
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: "ReadexPro",
-                                          fontStyle: FontStyle.normal,
-                                          fontSize: 12.0),
-                                      textAlign: TextAlign.right),
+                                  child: specialtext(text: "طابور خدمة العملاء",
+                                  fsize: 12,
+                                  ),
                                 ),
                               ],
                             ),
@@ -150,25 +132,17 @@ class ShowTecketScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 16, left: 16),
                             child: Row(
                               children: [
-                                Text("العدد فى الانتظار",
-                                    style: const TextStyle(
-                                        color: const Color(0xff161616),
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: "ReadexPro",
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: 18.0),
-                                    textAlign: TextAlign.right),
+                                specialtext(text: "العدد فى الانتظار",
+                                fweight: FontWeight.w500,
+                                fsize: 18
+                                ),
                                 SizedBox(
                                   width: screenWidth * 0.22,
                                 ),
-                                Text(" 3 ",
-                                    style: const TextStyle(
-                                        color: const Color(0xff161616),
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: "ReadexPro",
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: 18.0),
-                                    textAlign: TextAlign.right)
+                                specialtext(text: " 3 ",
+                                fweight: FontWeight.w500,
+                                fsize: 18,
+                                ),
                               ],
                             ),
                           ),
@@ -182,25 +156,13 @@ class ShowTecketScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("الوقت المتبقى",
-                                style: const TextStyle(
-                                    color: const Color(0xff161616),
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "ReadexPro",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 14.0),
-                                textAlign: TextAlign.right),
+                            specialtext(text: "الوقت المتبقى",
+                            fweight: FontWeight.w500,
+                            ),
                             SizedBox(
                               width: screenWidth * 0.38,
                             ),
-                            Text("05:00",
-                                style: const TextStyle(
-                                    color: const Color(0xff161616),
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: "ReadexPro",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 14.0),
-                                textAlign: TextAlign.right),
+                            specialtext(text: "05:00",),
                           ],
                         ),
                       ),
@@ -227,23 +189,14 @@ class ShowTecketScreen extends StatelessWidget {
                       ),
                       Opacity(
                         opacity: 0.5,
-                        child: Text("رقم الدور",
-                            style: const TextStyle(
-                                color: const Color(0xff161616),
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "ReadexPro",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 14.0),
-                            textAlign: TextAlign.right),
+                        child: specialtext(text:"رقم الدور",
+                        fweight: FontWeight.w500,
+                         ),
                       ),
-                      Text("C-002",
-                          style: const TextStyle(
-                              color: const Color(0xff161616),
-                              fontWeight: FontWeight.w500,
-                              fontFamily: "ReadexPro",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 41.0),
-                          textAlign: TextAlign.right)
+                      specialtext(text: "C-002",
+                      fsize: 41,
+                      fweight: FontWeight.w500
+                      ),
                     ],
                   ),
                 ),
@@ -272,14 +225,11 @@ class ShowTecketScreen extends StatelessWidget {
                         SizedBox(
                           width: 8,
                         ),
-                        Text("الذهاب للموقع",
-                            style: const TextStyle(
-                                color: const Color(0xff1a73e8),
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "ReadexPro",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 16.0),
-                            textAlign: TextAlign.right)
+                        specialtext(text: "الذهاب للموقع",
+                        fweight: FontWeight.w500,
+                        fsize: 16,
+                        fcolor: const Color(0xff1a73e8),
+                        ),
                       ],
                     ),
                   ),
@@ -313,14 +263,11 @@ class ShowTecketScreen extends StatelessWidget {
                             SizedBox(
                               width: 4,
                             ),
-                            Text(" الغاء التذكرة",
-                                style: const TextStyle(
-                                    color: const Color(0xffffffff),
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "ReadexPro",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 16.0),
-                                textAlign: TextAlign.right)
+                            specialtext(text: " الغاء التذكرة",
+                            fsize: 16,
+                            fweight: FontWeight.w500,
+                            fcolor: const Color(0xffffffff),
+                            ),
                           ],
                         ),
                       ),
@@ -346,14 +293,11 @@ class ShowTecketScreen extends StatelessWidget {
                           textDirection: TextDirection.rtl,
                           child: layoutScreen()));
                 },
-                child: Text("القائمة الرئسية",
-                    style: const TextStyle(
-                        color: const Color(0xffffffff),
-                        fontWeight: FontWeight.w500,
-                        fontFamily: "ReadexPro",
-                        fontStyle: FontStyle.normal,
-                        fontSize: 18.0),
-                    textAlign: TextAlign.center),
+                child: specialtext(text:"القائمة الرئسية",
+                fsize: 18,
+                fweight: FontWeight.w500,
+                fcolor:const Color(0xffffffff),
+                talign: TextAlign.center ),
               ),
             ),
           ],

@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:tabor/modules/on_bording/on_bording.dart';
+import 'package:tabor/modules/queue/queue.dart';
 import 'package:tabor/modules/tecktRelode/tecktRelode.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
@@ -21,7 +22,6 @@ class TecketScrren extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomAppBar(
-            screenHight: screenHight,
             screenWidth: screenWidth,
             text: 'التذاكر' + '    '),
         Expanded(
@@ -483,3 +483,33 @@ class ActiveTeckt extends StatelessWidget {
     );
   }
 }
+/*class MenuItems {
+  static const List<MenuItem> firstItems = [like, share, download];
+  static const List<MenuItem> secondItems = [cancel];
+
+  static const like = MenuItem(text: 'Like', icon: Icons.favorite);
+  static const share = MenuItem(text: 'Share', icon: Icons.share);
+  static const download = MenuItem(text: 'Download', icon: Icons.download);
+  static const cancel = MenuItem(text: 'Cancel', icon: Icons.cancel);
+
+  static Widget buildItem(MenuItem item) {
+    return Row(
+      children: [
+        Icon(
+          item.icon,
+          color: Colors.white,
+          size: 22,
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Text(
+          item.text,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ],
+    );
+  }
+  }*/

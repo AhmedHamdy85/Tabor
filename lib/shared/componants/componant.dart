@@ -273,11 +273,11 @@ Widget VerticalCompanyForm(
     );
 
 Widget CustomAppBar(
-        {required double screenHight,
+        { //double screenHight=120,
         required double screenWidth,
         required String text}) =>
     Container(
-      height: screenHight * 0.17,
+      height: 120,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Color(0xffffffff),
@@ -290,27 +290,21 @@ Widget CustomAppBar(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(text,
-                style: const TextStyle(
-                    color: const Color(0xff161616),
-                    fontWeight: FontWeight.w600,
-                    fontFamily: "ReadexPro",
-                    fontStyle: FontStyle.normal,
-                    fontSize: 21.0),
-                textAlign: TextAlign.right),
-            SizedBox(
-              width: screenWidth * 0.45,
+            specialtext(text: text,
+            fweight: FontWeight.w600,
+            fsize: 21,
             ),
+            Spacer(),
             DefoltIcon(
-                width: screenWidth * 0.1,
-                hight: screenWidth * 0.1,
+                width: 40,
+                hight: 40,
                 icon: Iconsax.search_normal_14),
             SizedBox(
-              width: screenWidth * 0.02,
+              width: 16,
             ),
             DefoltIcon(
-                width: screenWidth * 0.1,
-                hight: screenWidth * 0.1,
+                width: 40,
+                hight: 40,
                 icon: Iconsax.location5)
           ],
         ),
@@ -323,7 +317,7 @@ Widget AppBar2(
         required String text,
         required BuildContext context}) =>
     Container(
-      height: screenHight * 0.17,
+      height: 120,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Color(0xffffffff),
@@ -338,27 +332,22 @@ Widget AppBar2(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             DefoltIcon(
-                width: screenWidth * 0.1,
-                hight: screenWidth * 0.1,
+                width: 40,
+                hight: 40,
                 icon: Iconsax.location5),
             SizedBox(
               width: screenWidth * 0.02,
             ),
             DefoltIcon(
-                width: screenWidth * 0.1,
-                hight: screenWidth * 0.1,
+                width: 40,
+                hight: 40,
                 icon: Iconsax.search_normal_14),
-            SizedBox(
-              width: screenWidth * 0.42,
+            Spacer(),
+            specialtext(text: text,
+            fsize: 21,
+            fcolor: Color(0xff009c7b),
+            fweight: FontWeight.w600
             ),
-            Text(text,
-                style: const TextStyle(
-                    color: Color(0xff009c7b),
-                    fontWeight: FontWeight.w600,
-                    fontFamily: "ReadexPro",
-                    fontStyle: FontStyle.normal,
-                    fontSize: 21.0),
-                textAlign: TextAlign.right),
             SizedBox(
               width: 4,
             ),
@@ -852,3 +841,21 @@ Widget buttonCardBottom({
               ),
             ),
           );
+  Widget itemDropdown(
+    {
+      String? day,
+      String? time='٨ صباحاً - ٤ مساءً',
+    }
+  )=>Center(
+    child: Directionality(
+      textDirection: TextDirection.rtl,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          specialtext(text: '$day'),
+          Spacer(),
+          specialtext(text:'$time')
+        ],
+      ),
+    ),
+  );

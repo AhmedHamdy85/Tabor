@@ -1,9 +1,17 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tabor/layout/layout_screen.dart';
 import 'package:tabor/modules/login/login_screen.dart';
 import 'package:tabor/modules/on_bording/on_bording.dart';
+import 'package:tabor/shared/network/local/cashe_helper.dart';
+import 'package:tabor/shared/network/remote/dio_helper.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  CasheHelper.init();
+  DioHelper.init();
   runApp(const MyApp());
 }
 

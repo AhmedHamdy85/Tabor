@@ -23,14 +23,7 @@ class _QueuesScreenState extends State<QueuesScreen> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
     var _selectedItem;
-   /* final List<String> items = [
-      'السبت                             8 صباحا - 6 مساء',
-      'الاحد                                8 صباحا - 6 مساء',
-      'الاثنين                              8 صباحا - 6 مساء',
-      'الثلاثاء                              8 صباحا - 6 مساء',
-      'الاربعاء                             8 صباحا - 6 مساء',
-      'الخميس                          8 صباحا - 6 مساء',
-    ];*/
+
     List<String> dayItems=[
        'السبت',
       'الاحد',
@@ -219,9 +212,6 @@ class _QueuesScreenState extends State<QueuesScreen> {
                                   left: 14, right: 14, top: 18, bottom: 18),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(14),
-                                /*border: Border.all(
-                                          color: Colors.black26,
-                                        ),*/
                                 color: Color(0xffffffff),
                               ),
                               elevation: 10,
@@ -956,12 +946,4 @@ class _QueuesScreenState extends State<QueuesScreen> {
     );
   }
 }
-/*class MenuItem {
-  final String text;
-  final IconData icon;
 
-  const MenuItem({
-    required this.text,
-    required this.icon,
-  });
-}*/

@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: const Locale('ar','EG'),
       theme: ThemeData(
         scaffoldBackgroundColor: Color(0xffE9EBEB),
         primarySwatch: Colors.green,

@@ -2,30 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:tabor/layout/layout_screen.dart';
-import 'package:tabor/modules/Home/homeScreen.dart';
 import 'package:tabor/modules/requirement/requirement.dart';
-import 'package:tabor/modules/showTecket/showTecket.dart';
+import 'package:tabor/modules/service/service.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
+class FormScheduling extends StatefulWidget {
+  const FormScheduling({super.key});
+  
 
-class Service_screen extends StatefulWidget {
-   Service_screen({super.key});
   @override
-  State<Service_screen> createState() => _Service_screenState();
+  State<FormScheduling> createState() => _FormSchedulingState();
 }
 
-class _Service_screenState extends State<Service_screen> {
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController nationalIDController = TextEditingController();
+class _FormSchedulingState extends State<FormScheduling> {
   @override
   Widget build(BuildContext context) {
+    //BuildContext c=context;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
-    int carTime=15;
-    int bikeTime=17;
-    int walkTime=20;
+    TextEditingController phoneController = TextEditingController();
+    TextEditingController nationalIDController = TextEditingController();
+    TextEditingController nameController = TextEditingController();
+    String times=formattedDate;
     bool _titleColor=false;
+    //
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
       body: Directionality(
@@ -112,118 +113,60 @@ class _Service_screenState extends State<Service_screen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Opacity(
-                          opacity: 0.699999988079071,
-                          child: specialtext(
-                            text: 'وسيلة النقل',
-                            fcolor: Color(0xff161616),
+                           specialtext(
+                            text: 'الوقت و التاريخ',
+                            fcolor: Color(0xff7d7d7d),
                             fweight: FontWeight.w500,
-                            fsize: 21,
-                            talign: TextAlign.right
+                            fsize: 18,
                           ),
-                        ),
                         SizedBox(height: 16,),
-                        Container(
-                        width: screenWidth - 32,
-                        height: 152,
-                        decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.white,
+                     Container(
+                      padding:EdgeInsetsDirectional.all(16) ,
+                      width: double.infinity,
+                      height: 144,
+                      decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: Colors.white,
+                      ),
+                      child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ContainerPicker(
+                          text: formattedDate,
+                          icon: Iconsax.calendar_tick, 
+                          function: ()async{
+                           DateTime? newdate =await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2024),
+                            );
+                            if(newdate==null) return;
+                            setState(() {
+                              date=newdate;
+                            });
+                            
+                          }
                         ),
-                        child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                        Container(
-                        color: _titleColor==true ? const Color(0xffbceee3):Colors.white,
-                        child: ListTile(
-                  //selectedTileColor: _titleColor,
-                  horizontalTitleGap: 0,
-                  leading: Opacity(
-                  opacity: 0.7,
-                  child: Radio(
-                  activeColor:Color(0xff009c7b),
-                  value: 1,
-                  groupValue: selectedTransport,
-                  onChanged: (value) {
-                    setState((){});
-                    selectedTransport=value!;
-                    
-                  },
-                  ),
-                  ),
-                  title: specialtext(
-                    text: 'سيارة',
-                    fweight: FontWeight.w500,
-                    fsize: 16,
-                  ),
-                  trailing: specialtext(text: "$carTime دقيقة",),
-                  onTap: () {
-                   setState(() {
-                     _titleColor=!_titleColor;
-                   });
-                  },
-                ),
-          ),
-              ListTile(
-                //tileColor: _titleColor,
-                horizontalTitleGap: 0,
-                leading: Opacity(
-                opacity: 0.7,
-                child: Radio(
-                value: 2,
-                activeColor:Color(0xff009c7b),
-                groupValue: selectedTransport,
-                onChanged: (value) {
-                  setState((){});
-                  selectedTransport=value!;
-                  
-                },
-                ),
-                ),
-                title: specialtext(
-                  text: 'دراجة',
-                  fweight: FontWeight.w500,
-                  fsize: 16,
-                ),
-                trailing: specialtext(text: "$bikeTime دقيقة",),
-                onTap: () {
-                  setState(() {
-                  // _titleColor=Color(0xffbceee3);
-                 });
-                },
-              ),
-              ListTile(
-                //tileColor: _titleColor,
-                horizontalTitleGap: 0,
-                leading: Opacity(
-                opacity: 0.7,
-                child: Radio(
-                activeColor:Color(0xff009c7b),
-                value: 3,
-                groupValue: selectedTransport,
-                onChanged: (value) {
-                  setState((){});
-                  selectedTransport=value!;
-                  
-                },
-                ),
-                ),
-                title: specialtext(
-                  text: 'سير',
-                  fweight: FontWeight.w500,
-                  fsize: 16,
-                ),
-                trailing: specialtext(text: "$walkTime دقيقة",),
-                onTap: () {
-                  setState(() {
-                  // _titleColor=Color(0xffbceee3);
-                 });
-                },
-              ),
-             ],
-             ),
-              ),
-              const SizedBox(height: 32,),
+                        const SizedBox(height: 16,),
+                        ContainerPicker(
+                          text:  times,
+                          icon: Iconsax.clock, 
+                          function: ()async{
+                           TimeOfDay? timeselected=await showTimePicker(context: context,
+                            initialTime: TimeOfDay.now(),
+                            );
+                            if(timeselected==null) return;
+                            setState(() {
+                              times=timeselected.format(context).toString();
+                            });
+                          }
+                        ),
+                        ],
+                        ),
+                        ), 
+              const SizedBox(height: 16,),
               specialtext(text: 'المعلومات الخاصه بك',
               fweight: FontWeight.w500,
               fsize: 18,
@@ -233,7 +176,7 @@ class _Service_screenState extends State<Service_screen> {
                      Container(
                       padding:EdgeInsetsDirectional.only(start: 16,end: 16,top: 8) ,
                       width: double.infinity,
-                      height: 172,
+                      height: 250,
                       decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       color: Colors.white,
@@ -254,11 +197,27 @@ class _Service_screenState extends State<Service_screen> {
                                 return 'الرجاء ادخال رقم هاتف صحيح';
                               }
                             },
-                           width: double.infinity),
-                        const SizedBox(height: 16,),
-                        MixedText(text1: 'الرقم القومي'),
+                           width: double.infinity
+                           ),
+                            const SizedBox(height: 16,),
+                        MixedText(text1: 'الاسم'),
                         const SizedBox(height: 4,),
                         defaultFormFieldReservation(
+                          fcolor: Color(0xff161616),
+                          hintText: 'اادخل ااسمك',
+                          controller:nameController ,
+                           type: TextInputType.name,
+                           validate: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'الرجاء ادخال اسما صحيحا';
+                              }
+                            },
+                           width: double.infinity),
+                            
+                          const SizedBox(height: 16,),
+                          MixedText(text1: 'الرقم القومي'),
+                          const SizedBox(height: 4,),
+                          defaultFormFieldReservation(
                           fcolor: Color(0xff161616),
                           hintText: "ادخل الرقم القومي",
                           controller: nationalIDController ,

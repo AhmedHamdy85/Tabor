@@ -21,9 +21,7 @@ class TecketScrren extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomAppBar(
-            screenWidth: screenWidth,
-            text: 'التذاكر' + '    '),
+        CustomAppBar(screenWidth: screenWidth, text: 'التذاكر' + '    '),
         Expanded(
           child: Container(
             width: double.infinity,
@@ -96,7 +94,7 @@ class InActiveTeckt extends StatelessWidget {
         },
         child: Container(
           width: screenWidth - 40,
-          height: 88,
+          height: 90,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
@@ -168,7 +166,25 @@ class InActiveTeckt extends StatelessWidget {
                             bottomRight: Radius.circular(50))),
                   ),
                   SizedBox(
-                    height: 48,
+                    height: 50,
+                    child: LayoutBuilder(
+                      builder:
+                          (BuildContext context, BoxConstraints constraints) {
+                        return Flex(
+                            direction: Axis.vertical,
+                            children: List.generate(
+                                (5),
+                                (index) => Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 2),
+                                      child: Container(
+                                        width: 3,
+                                        height: 6,
+                                        color: Color(0xffE9EBEB),
+                                      ),
+                                    )));
+                      },
+                    ),
                   ),
                   Container(
                     width: 30,

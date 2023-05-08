@@ -6,20 +6,41 @@ import 'package:tabor/modules/Home/homeScreen.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/constants.dart';
 
-class Setting extends StatelessWidget {
+class Setting extends StatefulWidget {
    Setting({super.key});
-  TextEditingController phoneControlar = TextEditingController();
-  TextEditingController nameControlar = TextEditingController();
-  String name='نادر سيد';
-  String phoneNumber='01125229119';
+  void compare;
+  @override
+  State<Setting> createState() => _SettingState();
+
+}
+
+class _SettingState extends State<Setting> {
+   late String name;
+
+   late String phoneNumber;
+
+   late Color saveColor;
+
+  var phoneControlar = TextEditingController();
+
+  var nameControlar = TextEditingController();
+  var formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
+    name='نادر سيد';
+    phoneNumber='01125229119';
+    saveColor = Color(0xff7d7d7d);
+    nameControlar.text=name;
+    phoneControlar.text=phoneNumber;
+    
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
+        key: formkey,
         backgroundColor: Color(0xffe9ebeb),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -69,15 +90,18 @@ class Setting extends StatelessWidget {
                         Spacer(),
                         InkWell(
                           onTap: (){
-                             //NavigateTo(context, layoutScreen());
-                             Navigator.pop(context);
+      //formkey.currentState!.validate()&&
+                            if ((nameControlar.text !=name || phoneControlar.text !=phoneNumber)) {
+                              Navigator.pop(context);
+                              //saveColor=Color(0xff009c7b);
+                            } 
                           },
                           child: Positioned(
                             left: 0,
                             bottom: 0,
                             child: specialtext(
                               text: 'حفظ',
-                              fcolor: Color(0xff7d7d7d),
+                              fcolor: saveColor,
                               fsize: 18,
                               fweight: FontWeight.w500,
                               talign: TextAlign.right,
@@ -169,7 +193,7 @@ class Setting extends StatelessWidget {
                       ],
                      ),
                      SizedBox(height: 8,),
-                      defaultFormField2(
+                      defaultFormFieldSetting(
                           width: double.infinity,
                           controller: nameControlar,
                           type: TextInputType.name,
@@ -178,9 +202,15 @@ class Setting extends StatelessWidget {
                               return 'الرجاء ادخال اسم صحيح';
                             }
                           },
-                          fsize: 16,
-                          label: name,
-                          fcolor: Color(0xff161616),
+                          /*onSubmit: (value) {
+                            setState(() {
+                              if(value!=name)
+                            {
+                              // ignore: prefer_const_constructors
+                              saveColor=Color(0xff009c7b);
+                            }
+                            });
+                          },*/
                           ),
                           SizedBox(height: 16,),
                           Row(
@@ -196,7 +226,7 @@ class Setting extends StatelessWidget {
                       ],
                      ),
                      SizedBox(height: 8,),
-                     defaultFormField2(
+                     defaultFormFieldSetting(
                          width: double.infinity,
                          controller: phoneControlar,
                          type: TextInputType.phone,
@@ -205,32 +235,17 @@ class Setting extends StatelessWidget {
                              return ' الرجاء ادخال رقم الهاتف';
                            }
                          },
-                         fsize: 16,
-                         label: phoneNumber,
-                         fcolor: Color(0xff161616),
+                         //fsize: 16,
+                         //fcolor: Color(0xff161616),
                          ),
-                         SizedBox(height: (232/844)*screenHight,),
-                     InkWell(
-                      onTap: (){
+                      SizedBox(height: (232/844)*screenHight,),
+                      navigationButton(text: 'القائمة الرئيسية',
+                      function: (){
                         NavigateTo(context,Directionality(textDirection: TextDirection.rtl,
                         child: layoutScreen())
                          );
                       },
-                       child: Container(
-                        height: 52,
-                        decoration: BoxDecoration(
-                          color: Color(0xff009c7b),
-                          borderRadius: BorderRadius.all(Radius.circular(8))
-                        ),
-                        child: Center(
-                          child: specialtext(text: 'القائمة الرئيسية',
-                          fcolor: Color(0xffffffff),
-                          fsize: 18,
-                          fweight: FontWeight.w500
-                          ),
-                        ),
-                       ),
-                     ),
+                      ),
                   ],
                 ),
               ),

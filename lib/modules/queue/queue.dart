@@ -309,13 +309,13 @@ class _QueuesScreenState extends State<QueuesScreen> {
                             ),
                             items: [
                            DropdownMenuItem(
-                            value: '1',
+                            value: 1,
                             child:InkWell(
                               child: Container(
                                 width: screenWidth-64,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.all(Radius.circular(16)),
-                                  color:ServiceValue=='1'? Color(0xffd1ede7):Color(0xffffffff),
+                                  color:ServiceValue==1? Color(0xffd1ede7):Color(0xffffffff),
                                 ),
                                 child: Center(
                                   child: Directionality(
@@ -324,13 +324,13 @@ class _QueuesScreenState extends State<QueuesScreen> {
                                       children: [
                                         CircleAvatar(
                                           radius: 12,
-                                          backgroundColor:ServiceValue=='1'? Color(0xff009c7b):Color(0xff161616),
+                                          backgroundColor:ServiceValue==1? Color(0xff009c7b):Color(0xff161616),
                                           child: CircleAvatar(
                                             radius: 10,
                                             backgroundColor: Colors.white,
                                             child: CircleAvatar(
                                               radius: 8,
-                                              backgroundColor:ServiceValue=='1'? Color(0xff009c7b):Colors.white,
+                                              backgroundColor:ServiceValue==1? Color(0xff009c7b):Colors.white,
                                             ),
                                           ),
                                         ),
@@ -350,7 +350,7 @@ class _QueuesScreenState extends State<QueuesScreen> {
                               },
                             ),                           
                                  DropdownMenuItem(
-                            value: '2',
+                            value: 2,
                             child:InkWell(
                               child: Container(
                                 width: screenWidth-64,
@@ -365,13 +365,13 @@ class _QueuesScreenState extends State<QueuesScreen> {
                                       children: [
                                         CircleAvatar(
                                           radius: 12,
-                                          backgroundColor:ServiceValue==1? Color(0xff009c7b):Color(0xff161616),
+                                          backgroundColor:ServiceValue==2? Color(0xff009c7b):Color(0xff161616),
                                           child: CircleAvatar(
                                             radius: 10,
                                             backgroundColor: Colors.white,
                                             child: CircleAvatar(
                                               radius: 8,
-                                              backgroundColor:ServiceValue==1? Color(0xff009c7b):Colors.white,
+                                              backgroundColor:ServiceValue==2? Color(0xff009c7b):Colors.white,
                                             ),
                                           ),
                                         ),
@@ -397,7 +397,7 @@ class _QueuesScreenState extends State<QueuesScreen> {
                                 width: screenWidth-64,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.all(Radius.circular(16)),
-                                  color:ServiceValue=='3'? Color(0xffd1ede7):Color(0xffffffff),
+                                  color:ServiceValue==3? Color(0xffd1ede7):Color(0xffffffff),
                                 ),
                                 child: Center(
                                   child: Directionality(

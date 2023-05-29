@@ -557,7 +557,7 @@ Widget TransportForm(
         ],
       ),
     );
- Widget containerTransport({
+ /*Widget containerTransport({
   required double screenWidth,
         required BuildContext context,
         required String TransportTool,
@@ -654,7 +654,7 @@ Widget TransportForm(
               ),
         ],
       ),
-    );
+    );*/
 Widget specialtext(
         {required String text,
         double fsize = 14,
@@ -672,6 +672,7 @@ Widget specialtext(
         fontFamily: ffamily,
         fontStyle: fstyle,
       ),
+      overflow: TextOverflow.ellipsis,
       textAlign: talign,
     );
 
@@ -1162,9 +1163,11 @@ Widget MixedText({
   )
 );
 Widget ContainerPicker({
-  required String text,
+  //required String text,
+  required TextEditingController myController ,
   required IconData icon,
   required VoidCallback function,
+  required FormFieldValidator<String>? validate,
 })=>Container
 (
   height: 48,
@@ -1179,9 +1182,10 @@ Widget ContainerPicker({
   ),
   child: Row(
    children: [
-    specialtext(text: text,
-     fsize: 16,
-     fweight: FontWeight.w500
+    TextFormField(
+      readOnly: true,
+      controller: myController,
+      validator: validate,
     ),
     const Spacer(),
     InkWell(

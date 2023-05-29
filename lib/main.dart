@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      locale: const Locale('ar','EG'),
       theme: ThemeData(
         scaffoldBackgroundColor: Color(0xffE9EBEB),
         primarySwatch: Colors.green,
@@ -34,3 +33,66 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+/*
+class MyDropdownWidget extends StatefulWidget {
+  @override
+  _MyDropdownWidgetState createState() => _MyDropdownWidgetState();
+}
+
+class _MyDropdownWidgetState extends State<MyDropdownWidget> {
+   String? _selectedValue;
+   GlobalKey _dropdownKey = GlobalKey();
+  List<DropdownOption> _options = [
+    DropdownOption('option1', 'Option 1'),
+    DropdownOption('option2', 'Option 2'),
+    DropdownOption('option3', 'Option 3'),
+  ];
+  bool _isOpen = false;
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButtonHideUnderline(
+      child: DropdownButton2(
+        value: _selectedValue,
+        items: _options.map((option) {
+          return DropdownMenuItem(
+            value: option.value,
+            child: Container(
+              color: _selectedValue == option.value ? Colors.green : null,
+              width: 150,
+              child: RadioListTile(
+                title: Text(option.label),
+                value: option.value,
+                groupValue: _selectedValue,
+                onChanged: (value) {
+                  setState(() {
+                    _selectedValue = value ;
+                  });
+                },
+                activeColor: Colors.green, // Set the background color of selected RadioListTile
+                toggleable: true, // Allow selecting and deselecting the currently selected option
+              ),
+            ),
+            onTap: () {
+              setState(() {
+                _selectedValue = option.value;
+              // Manually set the selected value when the item is tapped
+              });
+            },
+          );
+        }).toList(),
+        onChanged: (value) {
+          setState(() {
+            _selectedValue = value ;
+          });
+        },
+      ),
+    );
+  }
+}
+class DropdownOption {
+  final String value;
+  final String label;
+
+  DropdownOption(this.value, this.label);
+}
+ */

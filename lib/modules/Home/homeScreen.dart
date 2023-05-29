@@ -6,14 +6,9 @@ import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;

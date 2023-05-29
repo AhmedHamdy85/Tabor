@@ -5,24 +5,16 @@ import 'package:tabor/layout/layout_screen.dart';
 import 'package:tabor/modules/Home/homeScreen.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/constants.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
-class Setting extends StatefulWidget {
+class Setting extends StatelessWidget {
    Setting({super.key});
   void compare;
   @override
-  State<Setting> createState() => _SettingState();
-
-}
-
-class _SettingState extends State<Setting> {
-   late String name;
-
-   late String phoneNumber;
-
-   late Color saveColor;
-
+  late String name;
+  late String phoneNumber;
+  late Color saveColor;
   var phoneControlar = TextEditingController();
-
   var nameControlar = TextEditingController();
   var formkey = GlobalKey<FormState>();
 
@@ -35,8 +27,7 @@ class _SettingState extends State<Setting> {
     saveColor = Color(0xff7d7d7d);
     nameControlar.text=name;
     phoneControlar.text=phoneNumber;
-    
-
+   // bool isTextGreen = (nameController.text != name || phoneController.text != phoneNumber);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -90,10 +81,8 @@ class _SettingState extends State<Setting> {
                         Spacer(),
                         InkWell(
                           onTap: (){
-      //formkey.currentState!.validate()&&
                             if ((nameControlar.text !=name || phoneControlar.text !=phoneNumber)) {
                               Navigator.pop(context);
-                              //saveColor=Color(0xff009c7b);
                             } 
                           },
                           child: Positioned(
@@ -101,7 +90,7 @@ class _SettingState extends State<Setting> {
                             bottom: 0,
                             child: specialtext(
                               text: 'حفظ',
-                              fcolor: saveColor,
+                              fcolor: (nameControlar.text !=name || phoneControlar.text !=phoneNumber)?Color(0xff009c7b):Color(0xff7d7d7d),
                               fsize: 18,
                               fweight: FontWeight.w500,
                               talign: TextAlign.right,
@@ -202,15 +191,6 @@ class _SettingState extends State<Setting> {
                               return 'الرجاء ادخال اسم صحيح';
                             }
                           },
-                          /*onSubmit: (value) {
-                            setState(() {
-                              if(value!=name)
-                            {
-                              // ignore: prefer_const_constructors
-                              saveColor=Color(0xff009c7b);
-                            }
-                            });
-                          },*/
                           ),
                           SizedBox(height: 16,),
                           Row(
@@ -241,7 +221,7 @@ class _SettingState extends State<Setting> {
                       SizedBox(height: (232/844)*screenHight,),
                       navigationButton(text: 'القائمة الرئيسية',
                       function: (){
-                        NavigateTo(context,Directionality(textDirection: TextDirection.rtl,
+                        NavigateTo(context,const Directionality(textDirection: TextDirection.rtl,
                         child: layoutScreen())
                          );
                       },

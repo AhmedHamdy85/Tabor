@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:tabor/layout/cubit/logic.dart';
@@ -10,8 +8,6 @@ import 'package:tabor/layout/drawer/setting.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
-import 'package:toggle_switch/toggle_switch.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class layoutScreen extends StatelessWidget {
   const layoutScreen({super.key});
@@ -27,7 +23,6 @@ class layoutScreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = layoutCubit.get(context);
-
           return Scaffold(
             key: scaffoldKey,
             drawer: Container(
@@ -70,9 +65,6 @@ class layoutScreen extends StatelessWidget {
                                   ),
                                   fit: BoxFit.fill)),
                         ),
-                        /* CircleAvatar(
-              backgroundImage: AssetImage('assets/images/unknown.png'),
-                      ),*/
                       ),
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -88,33 +80,37 @@ class layoutScreen extends StatelessWidget {
                     height: 10,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: ListTile(
-                      //tileColor: Colors.black,
-                      selectedColor: Colors.grey,
-                      //mouseCursor:Colors.grey ,
-                      horizontalTitleGap: 0,
-                      leading: Container(
-                        width: 24,
-                        height: 24,
-                        child: DefoltSvgImage(
-                            image:
-                                'assets/images/vuesax_outline_notification.svg'),
+                    padding: const EdgeInsets.only(left: 8,bottom: 8),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                        color: cubit.notificationsNumber>0? Color(0xffe9ebeb):null,
                       ),
-                      title: specialtext(
-                        text: 'الاشعارات',
-                      ),
-                      trailing: CircleAvatar(
-                        radius: 10,
-                        backgroundColor: Color(0xff009c7b),
-                        child: specialtext(
-                          text: '1',
-                          fcolor: Color(0xffe9ebeb),
+                      child: ListTile(
+                        selectedColor: Colors.grey,
+                        horizontalTitleGap: 0,
+                        leading: Container(
+                          width: 24,
+                          height: 24,
+                          child: DefoltSvgImage(
+                              image:
+                                  'assets/images/vuesax_outline_notification.svg'),
                         ),
+                        title: specialtext(
+                          text: 'الاشعارات',
+                        ),
+                        trailing: CircleAvatar(
+                          radius: 10,
+                          backgroundColor: cubit.notificationsNumber>0?Color(0xff009c7b):Colors.white,
+                          child: specialtext(
+                            text: '${cubit.notificationsNumber}',
+                            fcolor: Color(0xffe9ebeb),
+                          ),
+                        ),
+                        onTap: () {
+                          NavigateTo(context, Notifications());
+                        },
                       ),
-                      onTap: () {
-                        NavigateTo(context, Notifications());
-                      },
                     ),
                   ),
                   Padding(
@@ -241,65 +237,89 @@ class layoutScreen extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  /*Container(
-              padding: EdgeInsets.all(4),
-              width:(242/390)*screenwidth ,
-              height: (40/844)*screenheight,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(16))
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-              padding: EdgeInsets.all(4),
-              width:(117/390)*screenwidth ,
-              height: (32/844)*screenheight,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(16)
-                ),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-
-                  ],
-                ),
-              ),
-              ),
-                ],
-              ),
-            ),*/
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: ToggleSwitch(
-                      minWidth: (117 / 390) * screenwidth,
-                      minHeight: 32.0,
-                      initialLabelIndex: 0,
-                      cornerRadius: 16.0,
-                      activeFgColor: Colors.white,
-                      inactiveBgColor: Colors.grey,
-                      inactiveFgColor: Colors.white,
-                      totalSwitches: 2,
-                      icons: [
-                        FontAwesomeIcons.lightbulb,
-                        FontAwesomeIcons.solidLightbulb,
-                        /*Iconsax.moon,
-               Iconsax.sun_11,*/
-                      ],
-                      //labels: [],
-                      iconSize: 22.5,
-                      activeBgColors: [
-                        [Colors.black45, Colors.black26],
-                        [Colors.yellow, Colors.orange]
-                      ],
-                      animate:
-                          true, // with just animate set to true, default curve = Curves.easeIn
-                      curve: Curves
-                          .bounceInOut, // animate must be set to true when using custom curve
-                      onToggle: (index) {
-                        print('switched to: $index');
-                      },
+                    padding:  EdgeInsets.symmetric(horizontal: (25/390)*screenwidth),
+                    child: Container(
+                      width: (242 / 390) * screenwidth,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        color: cubit.darktMode?Colors.black:Color(0xffe9e9e9),
+                      ),
+                      child: Row(
+                        children: [
+                          InkWell(
+                            onTap: ()
+                            {
+                              cubit.toggleDarkMode();
+                            },
+                            child: Container(
+                              width: (117 / 390) * screenwidth,
+                              height: 32,
+                              decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(16)),
+                              color: cubit.darktMode?Colors.black:Color(0xffe9e9e9),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  specialtext(text: 'Dark',
+                                  fcolor: cubit.darktMode?Colors.orange:Color(0xff8c8c8c),
+                                  fsize: 16,
+                                  ffamily: 'Roboto-Medium',
+                                  fweight: FontWeight.w500,
+                                  talign: TextAlign.center
+                                  ),
+                                  const SizedBox(width: 10,),
+                                  Icon(
+                                    Iconsax.moon5,
+                                    size: 25,
+                                    color: cubit.darktMode?Colors.orange:Color(0xff8c8c8c),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: (){
+                              cubit.toggleLightMode();
+                            },
+                            child: Container(
+                              width: (117 / 390) * screenwidth,
+                              height: 32,
+                              decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(16)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(0xff40000000),
+                                  blurRadius: 4
+                                ),
+                              ],
+                              color: cubit.lightMode?Color(0xffffffff):Colors.black,
+                              //Color(0xffffffff),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  specialtext(text: 'Light',
+                                  fcolor: cubit.lightMode?Color(0xff3e3e3e):Color(0xff8c8c8c),
+                                  fsize: 16,
+                                  ffamily: 'Roboto-Medium',
+                                  fweight: FontWeight.w500,
+                                  talign: TextAlign.center
+                                  ),
+                                  const SizedBox(width: 10,),
+                                  Icon(
+                                    Iconsax.sun_15,
+                                    size: 22.5,
+                                    color: cubit.lightMode?Color(0xff3e3e3e):Color(0xff8c8c8c),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

@@ -31,6 +31,9 @@ class _QueuesScreenState extends State<QueuesScreen> {
       'الاربعاء',
       'الخميس',
     ];
+    bool s1=false;
+    bool s2=false;
+     bool s3=false;
     String? selectedValue;
     int? ServiceValue;
     double bottomLeft;
@@ -131,35 +134,9 @@ class _QueuesScreenState extends State<QueuesScreen> {
                                   textAlign: TextAlign.right,
                                 ),
                                 Spacer(),
-                                /* DefoltSvgImage(image: 'assets/images/vuesax_bold_arrow_down.svg',
-                                width: 40,
-                                hight: 40
-                                ),*/
                               ],
                             ),
                             items: [
-                              /*  ...MenuItems.firstItems.map(
-                        (item) =>
-                        DropdownMenuItem<MenuItem>(
-                          value: item,
-                          child: MenuItems.buildItem(item),
-                        ),
-              ),
-              const DropdownMenuItem<Divider>(enabled: false, child: Divider()),
-              ...MenuItems.secondItems.map(
-                        (item) =>
-                        DropdownMenuItem<MenuItem>(
-                          value: item,
-                          child: MenuItems.buildItem(item),
-                        ),
-              ),*/
-                              /* DropdownMenuItem(child:items.first ),
-                           DropdownMenuItem(child:items.first ),
-                           DropdownMenuItem(child: items.elementAt(1)),
-                           DropdownMenuItem(child: items.elementAt(2)),
-                           DropdownMenuItem(child: items.elementAt(3)),
-                           DropdownMenuItem(child: items.elementAt(4)),
-                           DropdownMenuItem(child: items.elementAt(5))*/
                               DropdownMenuItem(
                                 child: itemDropdown(day: dayItems.elementAt(0)),
                                 enabled: false,
@@ -185,24 +162,6 @@ class _QueuesScreenState extends State<QueuesScreen> {
                                 enabled: false,
                               ),
                             ],
-                            /*items: items
-                                .map((item) => DropdownMenuItem<String>(
-                                      value: item,
-                                      child: Text(
-                                        item,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          color: Color(0xff161616),
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: "ReadexPro",
-                                          fontStyle: FontStyle.normal,
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.end,
-                                      ),
-                                    )
-                                    )
-                                .toList(),*/
                             value: selectedValue,
                             onChanged: (value) {
                               setState(() {
@@ -285,16 +244,9 @@ class _QueuesScreenState extends State<QueuesScreen> {
                             isExpanded: true,
                             hint: Row(
                               children: [
-                                Text(
-                                  'خدمة العملاء',
-                                  style: TextStyle(
-                                      color: const Color(0xff161616),
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: "ReadexPro",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 16.0),
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.right,
+                                specialtext(text: 'خدمة العملاء',
+                                fsize: 16,
+                                fweight: FontWeight.w700
                                 ),
                                 Spacer(),
                                 /* Icon(Icons.check,
@@ -310,127 +262,93 @@ class _QueuesScreenState extends State<QueuesScreen> {
                             items: [
                            DropdownMenuItem(
                             value: 1,
-                            child:InkWell(
-                              child: Container(
-                                width: screenWidth-64,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                                  color:ServiceValue==1? Color(0xffd1ede7):Color(0xffffffff),
-                                ),
-                                child: Center(
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 12,
-                                          backgroundColor:ServiceValue==1? Color(0xff009c7b):Color(0xff161616),
-                                          child: CircleAvatar(
-                                            radius: 10,
-                                            backgroundColor: Colors.white,
-                                            child: CircleAvatar(
-                                              radius: 8,
-                                              backgroundColor:ServiceValue==1? Color(0xff009c7b):Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 16,),
-                                        specialtext(text: 'فتح /غلق حساب')
-                                      ],
-                                    ),
+                            child:Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: InkWell(
+                                onTap: (){
+                                  setState(() {
+                                    // ServiceValue=value;
+                                     s1=true;
+                                     s2=false;
+                                     s3=false;
+                                   });
+                                },
+                                child: RadioListTile(
+                                  value: 1,
+                                  title: specialtext(text: 'فتح /غلق حساب',
+                                  fsize: 16,
+                                  fweight: FontWeight.w500
                                   ),
-                                ),
+                                  groupValue: ServiceValue,
+                                  onChanged: (value){
+                                   setState(() {
+                                     ServiceValue=value;
+                                     s1=true;
+                                     s2=false;
+                                     s3=false;
+                                   });
+                                  },
+                                  toggleable: true,
+                                  selected:s1,
+                                  activeColor:Color(0xff009c7b)  ,
+                                  //tileColor: Color(0xff009c7b),
+                                  selectedTileColor:Color(0xffbceee3) ,
+                                  ),
                               ),
-                            ) ,
-                            //value: 'survice1',
-                            onTap: (){
-                                ServiceValue=1;
-                                setState(() {   
-                                });
-                              },
-                            ),                           
-                                 DropdownMenuItem(
+                            ),
+                            ),
+                            DropdownMenuItem(
                             value: 2,
-                            child:InkWell(
-                              child: Container(
-                                width: screenWidth-64,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                                  color:ServiceValue==2? Color(0xffd1ede7):Color(0xffffffff),
+                            child:Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: RadioListTile(
+                                value: 2,
+                                title: specialtext(text: 'فتح /غلق حساب',
+                                fsize: 16,
+                                fweight: FontWeight.w500
                                 ),
-                                child: Center(
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 12,
-                                          backgroundColor:ServiceValue==2? Color(0xff009c7b):Color(0xff161616),
-                                          child: CircleAvatar(
-                                            radius: 10,
-                                            backgroundColor: Colors.white,
-                                            child: CircleAvatar(
-                                              radius: 8,
-                                              backgroundColor:ServiceValue==2? Color(0xff009c7b):Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 16,),
-                                        specialtext(text: 'شكوى')
-                                      ],
-                                    ),
-                                  ),
+                                groupValue: ServiceValue,
+                                onChanged: (value){
+                                 setState(() {
+                                   ServiceValue=value;
+                                   s1=false;
+                                   s2=true;
+                                   s3=false;
+                                 });
+                                },
+                                 selected:s2,
+                                activeColor:Color(0xff009c7b)  ,
+                                //tileColor: Color(0xff009c7b),
+                                selectedTileColor:Color(0xffbceee3) ,
                                 ),
-                              ),
-                            ) ,
-                            //value: 'survice1',
-                            onTap: (){
-                                ServiceValue=2;
-                                setState(() {   
-                                });
-                              },
-                            ),    
-                               DropdownMenuItem(
+                            ),
+                            ),
+                            DropdownMenuItem(
                             value: 3,
-                            child:InkWell(
-                              child: Container(
-                                width: screenWidth-64,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                                  color:ServiceValue==3? Color(0xffd1ede7):Color(0xffffffff),
+                            child:Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: RadioListTile(
+                                value: 3,
+                                title: specialtext(text: 'فتح /غلق حساب',
+                                fsize: 16,
+                                fweight: FontWeight.w500
                                 ),
-                                child: Center(
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 12,
-                                          backgroundColor:ServiceValue==3? Color(0xff009c7b):Color(0xff161616),
-                                          child: CircleAvatar(
-                                            radius: 10,
-                                            backgroundColor: Colors.white,
-                                            child: CircleAvatar(
-                                              radius: 8,
-                                              backgroundColor:ServiceValue==3? Color(0xff009c7b):Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 16,),
-                                        specialtext(text: 'خدمات اخري')
-                                      ],
-                                    ),
-                                  ),
+                                groupValue: ServiceValue,
+                                onChanged: (value){
+                                 setState(() {
+                                   ServiceValue=value;
+                                   s1=false;
+                                   s2=false;
+                                   s3=true;
+                                 });
+                                },
+                                 selected:s3,
+                                activeColor:Color(0xff009c7b)  ,
+                               // tileColor: Color(0xff009c7b),
+                                selectedTileColor:Color(0xffbceee3) ,
                                 ),
-                              ),
-                            ) ,
-                            //value: 'survice1',
-                            onTap: (){
-                                ServiceValue=3;
-                                setState(() {   
-                                });
-                              },
-                            ),          
+                            ),
+                            ),      
                             ],
                             value: ServiceValue,
                             onChanged: (value) {
@@ -486,500 +404,7 @@ class _QueuesScreenState extends State<QueuesScreen> {
                         ),
                       ),
                     ),
-                    /* Padding(
-                      padding: EdgeInsets.only(right: screenWidth * (16 / 390)),
-                      child: Opacity(
-                        opacity: 0.699999988079071,
-                        child: specialtext(
-                          text: "طابور",
-                          fweight: FontWeight.w500,
-                          fsize: 21,
-                        ),
-                      ),
-                    ),*/
                     SizedBox(height: 16),
-                    /*Center(
-                      child: Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton2(
-                            isExpanded: true,
-                            hint: Row(
-                              children: [
-                                Text(
-                                  'استقبال',
-                                  style: TextStyle(
-                                      color: const Color(0xff161616),
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: "ReadexPro",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 16.0),
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.right,
-                                ),
-                                Spacer(),
-                                /* Icon(Icons.check,
-                                color: Color(0xff1cc500),
-                                size: 24,
-                                ),*/
-                                /* DefoltSvgImage(image: 'assets/images/vuesax_bold_arrow_down.svg',
-                                width: 40,
-                                hight: 40
-                                ),*/
-                              ],
-                            ),
-                            items: [
-                              DropdownMenuItem(
-                                value: '1',
-                                child: InkWell(
-                                  child: Container(
-                                    width: screenWidth - 64,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(16)),
-                                      color: ServiceValue == '1'
-                                          ? Color(0xffd1ede7)
-                                          : Color(0xffffffff),
-                                    ),
-                                    child: Center(
-                                      child: Directionality(
-                                        textDirection: TextDirection.rtl,
-                                        child: Row(
-                                          children: [
-                                            CircleAvatar(
-                                              radius: 12,
-                                              backgroundColor:
-                                                  ServiceValue == '1'
-                                                      ? Color(0xff009c7b)
-                                                      : Color(0xff161616),
-                                              child: CircleAvatar(
-                                                radius: 10,
-                                                backgroundColor: Colors.white,
-                                                child: CircleAvatar(
-                                                  radius: 8,
-                                                  backgroundColor:
-                                                      ServiceValue == '1'
-                                                          ? Color(0xff009c7b)
-                                                          : Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 16,
-                                            ),
-                                            specialtext(text: 'فتح /غلق حساب')
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                //value: 'survice1',
-                                onTap: () {
-                                  ServiceValue = '1';
-                                  setState(() {});
-                                },
-                              ),
-                              DropdownMenuItem(
-                                value: '2',
-                                child: InkWell(
-                                  child: Container(
-                                    width: screenWidth - 64,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(16)),
-                                      color: ServiceValue == '2'
-                                          ? Color(0xffd1ede7)
-                                          : Color(0xffffffff),
-                                    ),
-                                    child: Center(
-                                      child: Directionality(
-                                        textDirection: TextDirection.rtl,
-                                        child: Row(
-                                          children: [
-                                            CircleAvatar(
-                                              radius: 12,
-                                              backgroundColor:
-                                                  ServiceValue == '1'
-                                                      ? Color(0xff009c7b)
-                                                      : Color(0xff161616),
-                                              child: CircleAvatar(
-                                                radius: 10,
-                                                backgroundColor: Colors.white,
-                                                child: CircleAvatar(
-                                                  radius: 8,
-                                                  backgroundColor:
-                                                      ServiceValue == '1'
-                                                          ? Color(0xff009c7b)
-                                                          : Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 16,
-                                            ),
-                                            specialtext(text: 'شكوى')
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                //value: 'survice1',
-                                onTap: () {
-                                  ServiceValue = '2';
-                                  setState(() {});
-                                },
-                              ),
-                              DropdownMenuItem(
-                                value: '3',
-                                child: InkWell(
-                                  child: Container(
-                                    width: screenWidth - 64,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(16)),
-                                      color: ServiceValue == '3'
-                                          ? Color(0xffd1ede7)
-                                          : Color(0xffffffff),
-                                    ),
-                                    child: Center(
-                                      child: Directionality(
-                                        textDirection: TextDirection.rtl,
-                                        child: Row(
-                                          children: [
-                                            CircleAvatar(
-                                              radius: 12,
-                                              backgroundColor:
-                                                  ServiceValue == '3'
-                                                      ? Color(0xff009c7b)
-                                                      : Color(0xff161616),
-                                              child: CircleAvatar(
-                                                radius: 10,
-                                                backgroundColor: Colors.white,
-                                                child: CircleAvatar(
-                                                  radius: 8,
-                                                  backgroundColor:
-                                                      ServiceValue == '3'
-                                                          ? Color(0xff009c7b)
-                                                          : Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 16,
-                                            ),
-                                            specialtext(text: 'خدمات اخري')
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                //value: 'survice1',
-                                onTap: () {
-                                  ServiceValue = '3';
-                                  setState(() {});
-                                },
-                              ),
-                            ],
-                            value: ServiceValue,
-                            onChanged: (value) {
-                              setState(() {
-                                ServiceValue = value as String;
-                              });
-                            },
-                            buttonStyleData: ButtonStyleData(
-                              height: 60,
-                              width: screenWidth - 32,
-                              padding: const EdgeInsets.only(
-                                  left: 14, right: 14, top: 18, bottom: 18),
-                              decoration: BoxDecoration(
-                                borderRadius: // BorderRadius.only(topLeft: Radius.circular(16),topRight: Radius.circular(16)) ,
-                                    BorderRadius.circular(16),
-                                color: Color(0xffffffff),
-                              ),
-                              elevation: 10,
-                            ),
-                            iconStyleData: IconStyleData(
-                              icon: Icon(
-                                Icons.arrow_drop_down,
-                              ),
-                              iconEnabledColor: Color(0xff161616),
-                              iconDisabledColor: Color(0xff161616),
-                              openMenuIcon: Icon(
-                                Icons.arrow_drop_up,
-                                color: Color(0xff009c7b),
-                              ),
-                            ),
-                            dropdownStyleData: DropdownStyleData(
-                              maxHeight: 300,
-                              width: screenWidth - 32,
-                              //padding: EdgeInsets.only(left: 16, right: 16),
-                              direction: DropdownDirection.textDirection,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(16),
-                                  bottomRight: Radius.circular(16),
-                                ),
-                                color: Color(0xffffffff),
-                              ),
-                              elevation: 0,
-                              scrollbarTheme: ScrollbarThemeData(
-                                radius: const Radius.circular(40),
-                              ),
-                            ),
-                            menuItemStyleData: MenuItemStyleData(
-                              height: 40,
-                              padding: EdgeInsets.only(left: 8, right: 8),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    Center(
-                      child: Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton2(
-                            isExpanded: true,
-                            hint: Row(
-                              children: [
-                                Text(
-                                  'حوالات',
-                                  style: TextStyle(
-                                      color: const Color(0xff161616),
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: "ReadexPro",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 16.0),
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.right,
-                                ),
-                                Spacer(),
-                                /* Icon(Icons.check,
-                                color: Color(0xff1cc500),
-                                size: 24,
-                                ),*/
-                                /* DefoltSvgImage(image: 'assets/images/vuesax_bold_arrow_down.svg',
-                                width: 40,
-                                hight: 40
-                                ),*/
-                              ],
-                            ),
-                            items: [
-                           DropdownMenuItem(
-                            value: '1',
-                            child:InkWell(
-                              child: Container(
-                                width: screenWidth-64,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                                  color:ServiceValue=='1'? Color(0xffd1ede7):Color(0xffffffff),
-                                ),
-                                child: Center(
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 12,
-                                          backgroundColor:ServiceValue=='1'? Color(0xff009c7b):Color(0xff161616),
-                                          child: CircleAvatar(
-                                            radius: 10,
-                                            backgroundColor: Colors.white,
-                                            child: CircleAvatar(
-                                              radius: 8,
-                                              backgroundColor:ServiceValue=='1'? Color(0xff009c7b):Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 16,),
-                                        specialtext(text: 'فتح /غلق حساب')
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ) ,
-                            //value: 'survice1',
-                            onTap: (){
-                                ServiceValue='1';
-                                setState(() {   
-                                });
-                              },
-                            ),                           
-                                 DropdownMenuItem(
-                            value: '2',
-                            child:InkWell(
-                              child: Container(
-                                width: screenWidth-64,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                                  color:ServiceValue=='2'? Color(0xffd1ede7):Color(0xffffffff),
-                                ),
-                                child: Center(
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 12,
-                                          backgroundColor:ServiceValue=='1'? Color(0xff009c7b):Color(0xff161616),
-                                          child: CircleAvatar(
-                                            radius: 10,
-                                            backgroundColor: Colors.white,
-                                            child: CircleAvatar(
-                                              radius: 8,
-                                              backgroundColor:ServiceValue=='1'? Color(0xff009c7b):Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 16,),
-                                        specialtext(text: 'شكوى')
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ) ,
-                            //value: 'survice1',
-                            onTap: (){
-                                ServiceValue='2';
-                                setState(() {   
-                                });
-                              },
-                            ),    
-                               DropdownMenuItem(
-                            value: '3',
-                            child:InkWell(
-                              child: Container(
-                                width: screenWidth-64,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                                  color:ServiceValue=='3'? Color(0xffd1ede7):Color(0xffffffff),
-                                ),
-                                child: Center(
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 12,
-                                          backgroundColor:ServiceValue=='3'? Color(0xff009c7b):Color(0xff161616),
-                                          child: CircleAvatar(
-                                            radius: 10,
-                                            backgroundColor: Colors.white,
-                                            child: CircleAvatar(
-                                              radius: 8,
-                                              backgroundColor:ServiceValue=='3'? Color(0xff009c7b):Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 16,),
-                                        specialtext(text: 'خدمات اخري')
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ) ,
-                            //value: 'survice1',
-                            onTap: (){
-                                ServiceValue='3';
-                                setState(() {   
-                                });
-                              },
-                            ),          
-                            ],
-                            value: ServiceValue,
-                            onChanged: (value) {
-                              setState(() {
-                                ServiceValue = value as String;
-                              });
-                            },
-                            buttonStyleData: ButtonStyleData(
-                              height: 60,
-                              width: screenWidth - 32,
-                              padding: const EdgeInsets.only(
-                                  left: 14, right: 14, top: 18, bottom: 18),
-                              decoration: BoxDecoration(
-                                borderRadius: // BorderRadius.only(topLeft: Radius.circular(16),topRight: Radius.circular(16)) ,
-                                    BorderRadius.circular(16),
-                                color: Color(0xffffffff),
-                              ),
-                              elevation: 10,
-                            ),
-                            iconStyleData: IconStyleData(
-                              icon: Icon(
-                                Icons.arrow_drop_down,
-                              ),
-                              iconEnabledColor: Color(0xff161616),
-                              iconDisabledColor: Color(0xff161616),
-                              openMenuIcon: Icon(
-                                Icons.arrow_drop_up,
-                                color: Color(0xff009c7b),
-                              ),
-                            ),
-                            dropdownStyleData: DropdownStyleData(
-                              maxHeight: 300,
-                              width: screenWidth - 32,
-                              //padding: EdgeInsets.only(left: 16, right: 16),
-                              direction: DropdownDirection.textDirection,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(16),
-                                  bottomRight: Radius.circular(16),
-                                ),
-                                color: Color(0xffffffff),
-                              ),
-                              elevation: 0,
-                              scrollbarTheme: ScrollbarThemeData(
-                                radius: const Radius.circular(40),
-                              ),
-                            ),
-                            menuItemStyleData: MenuItemStyleData(
-                              height: 40,
-                              padding: EdgeInsets.only(left: 8, right: 8),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                   /* SizedBox(height: 16),
-                    DropdownButton(
-                    value: _selectedItem,
-                    items: [
-                    DropdownMenuItem(
-                    child: Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Text('Option 1'),
-                      ),
-                    value: 'option1',
-                    ),
-                    DropdownMenuItem(
-      child: Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: Text('Option 2'),
-      ),
-      value: 'option2',
-    ),
-  ],
-  onChanged: (value) {
-    setState(() {
-      _selectedItem = value;
-    });
-  },
-)*/*/
                   ],
                 ),
               ),
@@ -994,6 +419,7 @@ class _QueuesScreenState extends State<QueuesScreen> {
              text1: ' حجز الان',
               image1: 'assets/images/vuesax_bold_ticket_expired.svg',
                function2: (){
+                 NavigateTo(context,  FormScheduling());
                },
                 text2: ' حجز مسبق ',
                  image2: 'assets/images/vuesax_bold_calendar_tick.svg'),

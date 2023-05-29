@@ -8,7 +8,6 @@ import 'package:tabor/shared/componants/constants.dart';
 
 class Notifications extends StatelessWidget {
   const Notifications({super.key});
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;

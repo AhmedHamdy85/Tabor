@@ -8,6 +8,8 @@ import 'package:tabor/modules/login/cubit/states.dart';
 import 'package:tabor/modules/phoneScreen/phone.dart';
 import 'package:tabor/modules/resiveCode/code.dart';
 import 'package:tabor/shared/componants/componant.dart';
+import 'package:tabor/shared/componants/constants.dart';
+import 'package:tabor/shared/network/local/cashe_helper.dart';
 
 class logInScreen extends StatelessWidget {
   logInScreen({super.key});
@@ -22,7 +24,26 @@ class logInScreen extends StatelessWidget {
       child: BlocProvider(
         create: (BuildContext context) => LoginCubit(),
         child: BlocConsumer<LoginCubit, LoginStates>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if (state is LogInSuccesState) {
+              showToast(
+                  text: 'تم تسجيل الدخول بنجاح', state: toastStates.SUCCESS);
+              CasheHelper.saveData(key: 'token', value: state.loginModel.token)
+                  .then((value) {
+                token = state.loginModel.token;
+                NavigateAndFinsh(
+                    context,
+                    const Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: layoutScreen()));
+              });
+            } else if (state is LogInErrorState) {
+              showToast(
+                  text:
+                      'لم نتمكن من تسجيل الدخول الرجاء التاكد من البيانات المدخلة',
+                  state: toastStates.ERROR);
+            }
+          },
           builder: (context, state) {
             var loginCubit = LoginCubit.get(context);
             return Scaffold(
@@ -73,17 +94,34 @@ class logInScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(right: 32, left: 32),
                         child: defaultFormField2(
-                            width: double.infinity,
-                            controller: phoneControlar,
-                            type: TextInputType.phone,
-                            validate: (value) {
-                              if (value == null || value.isEmpty) {
-                                return ' الرجاء ادخال رقم الهاتف';
-                              }
-                            },
-                            label: '  رقم الهاتف',
-                            fcolor: Color(0xff161616),
-                            isPassword: loginCubit.isPassword),
+                          width: double.infinity,
+                          controller: phoneControlar,
+                          type: TextInputType.phone,
+                          validate: (value) {
+                            if (value == null || value.isEmpty) {
+                              showToast(
+                                  text: 'الرجاء ادخال رقم الهاتف',
+                                  state: toastStates.ERROR);
+                              return '';
+                            }
+                            if (value.length != 11) {
+                              showToast(
+                                  text: 'يجب ان يحتوى رقم الهاتف على 11 رقم',
+                                  state: toastStates.WARNING);
+                              return '';
+                            }
+                            if (!value.startsWith('01')) {
+                              showToast(
+                                  text: ' يجب ان يبدا الرقم ب 01 ',
+                                  state: toastStates.WARNING);
+                              return '';
+                            } else {
+                              return null;
+                            }
+                          },
+                          label: '  رقم الهاتف',
+                          fcolor: Color(0xff161616),
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
@@ -100,8 +138,12 @@ class logInScreen extends StatelessWidget {
                             }),
                             validate: (value) {
                               if (value == null || value.isEmpty) {
-                                return ' الرجاء ادخال كلمة المرور';
+                                showToast(
+                                    text: ' الرجاء ادخال كلمة المرور',
+                                    state: toastStates.ERROR);
+                                return '';
                               }
+                              return null;
                             },
                             label: ' كلمة المرور',
                             fcolor: const Color(0xff161616),
@@ -156,11 +198,9 @@ class logInScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8)),
                           onPressed: () {
                             if (formkey.currentState!.validate()) {
-                              NavigateAndFinsh(
-                                  context,
-                                  const Directionality(
-                                      textDirection: TextDirection.rtl,
-                                      child: layoutScreen()));
+                              loginCubit.userLogin(
+                                  phoneNumber: phoneControlar.text,
+                                  password: passwordControlar.text);
                             }
                           },
                           child: const Text(" تسجيل الدخول",

@@ -35,6 +35,7 @@ dependencies:
   dropdown_button2: null
   flutter:
     sdk: flutter
+  bloc:  
   flutter_bloc: 
   flutter_svg: 
   font_awesome_flutter: 
@@ -43,6 +44,7 @@ dependencies:
   shared_preferences: 
   smooth_page_indicator: 
   toggle_switch: 
+  fluttertoast: 
 
 dev_dependencies:
 

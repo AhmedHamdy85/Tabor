@@ -7,6 +7,10 @@ class CasheHelper {
     sharedPreferences = await SharedPreferences.getInstance();
   }
 
+  static dynamic getData({required String Key}) {
+    return sharedPreferences.get(Key);
+  }
+
   static Future<bool> saveData({
     required String key,
     required dynamic value,

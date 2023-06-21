@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tabor/modules/branshes/branshes.dart';
 import 'package:tabor/modules/queue/queue.dart';
 import 'package:tabor/modules/service/service.dart';
@@ -291,22 +292,17 @@ Widget CustomAppBar(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            specialtext(text: text,
-            fweight: FontWeight.w600,
-            fsize: 21,
+            specialtext(
+              text: text,
+              fweight: FontWeight.w600,
+              fsize: 21,
             ),
             Spacer(),
-            DefoltIcon(
-                width: 40,
-                hight: 40,
-                icon: Iconsax.search_normal_14),
+            DefoltIcon(width: 40, hight: 40, icon: Iconsax.search_normal_14),
             SizedBox(
               width: 16,
             ),
-            DefoltIcon(
-                width: 40,
-                hight: 40,
-                icon: Iconsax.location5)
+            DefoltIcon(width: 40, hight: 40, icon: Iconsax.location5)
           ],
         ),
       ),
@@ -332,23 +328,17 @@ Widget AppBar2(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            DefoltIcon(
-                width: 40,
-                hight: 40,
-                icon: Iconsax.location5),
+            DefoltIcon(width: 40, hight: 40, icon: Iconsax.location5),
             SizedBox(
               width: screenWidth * 0.02,
             ),
-            DefoltIcon(
-                width: 40,
-                hight: 40,
-                icon: Iconsax.search_normal_14),
+            DefoltIcon(width: 40, hight: 40, icon: Iconsax.search_normal_14),
             Spacer(),
-            specialtext(text: text,
-            fsize: 21,
-            fcolor: Color(0xff009c7b),
-            fweight: FontWeight.w600
-            ),
+            specialtext(
+                text: text,
+                fsize: 21,
+                fcolor: Color(0xff009c7b),
+                fweight: FontWeight.w600),
             SizedBox(
               width: 4,
             ),
@@ -507,14 +497,16 @@ Widget SirviceForm({
         ),
       ),
     );
+
 enum SingingCharacter { one, jefferson }
-Widget TransportForm(
-        {required double screenWidth,
-        required BuildContext context,
-        required String TransportTool,
-        required double time,
-        required Color containerColor,
-        }) =>
+
+Widget TransportForm({
+  required double screenWidth,
+  required BuildContext context,
+  required String TransportTool,
+  required double time,
+  required Color containerColor,
+}) =>
     Container(
       width: screenWidth - 32,
       height: 40,
@@ -557,7 +549,7 @@ Widget TransportForm(
         ],
       ),
     );
- /*Widget containerTransport({
+/*Widget containerTransport({
   required double screenWidth,
         required BuildContext context,
         required String TransportTool,
@@ -712,8 +704,8 @@ Widget serviceContainer({
                               text: texttitle,
                               fsize: 19,
                               talign: TextAlign.right),
-                          content:
-                              specialtext(text: textcontent, talign: TextAlign.right),
+                          content: specialtext(
+                              text: textcontent, talign: TextAlign.right),
                           actionsAlignment: MainAxisAlignment.end,
                         );
                       });
@@ -733,27 +725,26 @@ Widget serviceContainer({
         ),
       ),
     );
-    Widget defaultFormFieldReservation({
-  required TextEditingController controller,
-  required TextInputType type,
-  required FormFieldValidator<String>? validate,
-  ValueChanged<String>? onSubmit,
-  Function? onChanged,
-  //required String label,
-  IconData? prefix,
-  IconData? suffix,
-  GestureTapCallback? onTap,
-  bool isPassword = false,
-  VoidCallback? suffixPressed,
-  double Radiu = 8,
-  double fsize = 16,
-  FontWeight fweight = FontWeight.w500,
-  Color? fcolor = const Color(0xff009c7b),
-  String ffamily = "ReadexPro",
-  FontStyle fstyle = FontStyle.normal,
-  required double width,
-  String? hintText
-}) =>
+Widget defaultFormFieldReservation(
+        {required TextEditingController controller,
+        required TextInputType type,
+        required FormFieldValidator<String>? validate,
+        ValueChanged<String>? onSubmit,
+        Function? onChanged,
+        //required String label,
+        IconData? prefix,
+        IconData? suffix,
+        GestureTapCallback? onTap,
+        bool isPassword = false,
+        VoidCallback? suffixPressed,
+        double Radiu = 8,
+        double fsize = 16,
+        FontWeight fweight = FontWeight.w500,
+        Color? fcolor = const Color(0xff009c7b),
+        String ffamily = "ReadexPro",
+        FontStyle fstyle = FontStyle.normal,
+        required double width,
+        String? hintText}) =>
     Container(
       height: 40,
       child: TextFormField(
@@ -765,16 +756,14 @@ Widget serviceContainer({
           print(s);
         },
         style: TextStyle(
-         color:  const Color(0xff161616),
-         fontWeight: FontWeight.w500,
-        fontStyle:  FontStyle.normal,
-        fontSize: 16.0
-        ),
+            color: const Color(0xff161616),
+            fontWeight: FontWeight.w500,
+            fontStyle: FontStyle.normal,
+            fontSize: 16.0),
         onTap: onTap,
         onChanged: onSubmit,
         validator: validate,
         obscureText: isPassword,
-        
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: TextStyle(
@@ -787,11 +776,9 @@ Widget serviceContainer({
               ? IconButton(onPressed: suffixPressed, icon: Icon(suffix))
               : null,
           border: OutlineInputBorder(
-            borderSide: const BorderSide(color: Color(0xffd8d8d8),
-            width: 2
-            ),
+            borderSide: const BorderSide(color: Color(0xffd8d8d8), width: 2),
             borderRadius: BorderRadius.all(Radius.circular(Radiu)),
-            //borderSide: BorderSide(color: Colors.red),           
+            //borderSide: BorderSide(color: Colors.red),
           ),
           filled: true,
           fillColor: Color(0xffffffff),
@@ -829,23 +816,21 @@ Widget defaultFormFieldSetting({
           print(s);
         },
         style: TextStyle(
-         color:  const Color(0xff161616),
-         fontWeight: FontWeight.w500,
-        fontStyle:  FontStyle.normal,
-        fontSize: 16.0
-        ),
+            color: const Color(0xff161616),
+            fontWeight: FontWeight.w500,
+            fontStyle: FontStyle.normal,
+            fontSize: 16.0),
         onTap: onTap,
         onChanged: onSubmit,
         validator: validate,
         obscureText: isPassword,
-        
         decoration: InputDecoration(
           suffixIcon: suffix != Null
               ? IconButton(onPressed: suffixPressed, icon: Icon(suffix))
               : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(Radiu)),
-            //borderSide: BorderSide(color: Colors.red),           
+            //borderSide: BorderSide(color: Colors.red),
           ),
           filled: true,
           fillColor: Color(0xffffffff),
@@ -960,257 +945,267 @@ Widget defaultMateriaButton(
         ),
       ),
     );
-     Widget BottomCard(
-      {
-        required Color? cardcolor,
-        required VoidCallback? function,
-        double widthCard=171,
-        required String text,
-        required String image,
-        required Color? fcolor,
-        double fsize = 18,
-        FontWeight fweight = FontWeight.w500,
-      }
-     )=>InkWell(
+Widget BottomCard({
+  required Color? cardcolor,
+  required VoidCallback? function,
+  double widthCard = 171,
+  required String text,
+  required String image,
+  required Color? fcolor,
+  double fsize = 18,
+  FontWeight fweight = FontWeight.w500,
+}) =>
+    InkWell(
       onTap: function,
-       child: Card
-         (
-                        shape: RoundedRectangleBorder( //<-- SEE HERE
-                        /*side: BorderSide(
+      child: Card(
+        shape: RoundedRectangleBorder(
+          //<-- SEE HERE
+          /*side: BorderSide(
                         color: Colors.greenAccent,
                          ),*/
-                         borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: cardcolor,
-                            border: Border.all(
-                              color: Color(0xff009c7b),
-                              width: 2
-                            ),
-                          ),
-                          width: widthCard,
-                          height: 52,
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                DefoltSvgImage(
-                                image: image,
-                                width: 24,
-                                hight: 24
-                                ),
-                                SizedBox(width: 4,),
-                                specialtext(
-                                   text:text,
-                                  fweight: fweight,
-                                   fcolor: fcolor,
-                                   fsize: fsize,
-                                   ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-     );
-Widget buttonCardBottom({
-         Color? cardcolor1=const Color(0xff009c7b),
-        required VoidCallback? function1,
-        required String text1,
-        required String image1,
-         Color? fcolor1=const Color(0xffffffff),
-         Color? cardcolor2=const Color(0xffffffff),
-        required VoidCallback? function2,
-        double widthCard=171,
-        required String text2,
-        required String image2,
-         Color? fcolor2=const Color(0xff009c7b),
-        double fsize = 18,
-        FontWeight fweight = FontWeight.w500,
-        required double space,
-})=>Card(
-            child:Directionality(
-              textDirection: TextDirection.rtl,
-              child: Padding(
-            
-                padding:  EdgeInsets.only(top: 16,bottom: 32,right: space,left: space),
-                child: Center(
-                  child: Row(
-                    children: [
-                      BottomCard(
-                        cardcolor: cardcolor1,
-                         function: function1,
-                          text: text1,
-                           image: image1,
-                            fcolor: fcolor1,
-                            widthCard: widthCard
-                            ),
-                      SizedBox(width: space,),
-                      BottomCard(
-                        cardcolor: cardcolor2,
-                         function: function2,
-                          text: text2, 
-                          image: image2,
-                           fcolor: fcolor2,
-                           widthCard: widthCard
-                           ),
-                  ],),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: cardcolor,
+            border: Border.all(color: Color(0xff009c7b), width: 2),
+          ),
+          width: widthCard,
+          height: 52,
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                DefoltSvgImage(image: image, width: 24, hight: 24),
+                SizedBox(
+                  width: 4,
                 ),
-              ),
+                specialtext(
+                  text: text,
+                  fweight: fweight,
+                  fcolor: fcolor,
+                  fsize: fsize,
+                ),
+              ],
             ),
-          );
-  Widget itemDropdown(
-    {
-      String? day,
-      String? time='٨ صباحاً - ٤ مساءً',
-    }
-  )=>Center(
-    child: Directionality(
-      textDirection: TextDirection.rtl,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          specialtext(text: '$day'),
-          Spacer(),
-          specialtext(text:'$time')
-        ],
+          ),
+        ),
       ),
-    ),
-  );
-  Widget richRequireText({
-    required String tex1,
-    required String tex2,
-  })=>
-   RichText(
-    text:  TextSpan(
-      children:<TextSpan> [
-            TextSpan(text: tex1,
-             style: TextStyle(
-             color:Color(0xff161616),
-             fontWeight: FontWeight.w400,
-             fontFamily: "ReadexPro",
-             fontStyle:  FontStyle.normal,
-             fontSize: 14.0
-              ),
+    );
+Widget buttonCardBottom({
+  Color? cardcolor1 = const Color(0xff009c7b),
+  required VoidCallback? function1,
+  required String text1,
+  required String image1,
+  Color? fcolor1 = const Color(0xffffffff),
+  Color? cardcolor2 = const Color(0xffffffff),
+  required VoidCallback? function2,
+  double widthCard = 171,
+  required String text2,
+  required String image2,
+  Color? fcolor2 = const Color(0xff009c7b),
+  double fsize = 18,
+  FontWeight fweight = FontWeight.w500,
+  required double space,
+}) =>
+    Card(
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Padding(
+          padding:
+              EdgeInsets.only(top: 16, bottom: 32, right: space, left: space),
+          child: Center(
+            child: Row(
+              children: [
+                BottomCard(
+                    cardcolor: cardcolor1,
+                    function: function1,
+                    text: text1,
+                    image: image1,
+                    fcolor: fcolor1,
+                    widthCard: widthCard),
+                SizedBox(
+                  width: space,
                 ),
-             TextSpan(text:tex2,
-             style: TextStyle(
-             color:  const Color(0xff7d7d7d),
-             fontWeight: FontWeight.w400,
-             fontFamily: "ReadexPro",
-             fontStyle:  FontStyle.normal,
-             fontSize: 12.0
-              ),
-              ),
-               ]
-              ),
-              );
-Widget navigationButton({
-  required String text,
-  double height=52,
-  double width=double.infinity,
-  VoidCallback? function
-}
-)=> InkWell(
-             onTap: function,
-             /*(){
+                BottomCard(
+                    cardcolor: cardcolor2,
+                    function: function2,
+                    text: text2,
+                    image: image2,
+                    fcolor: fcolor2,
+                    widthCard: widthCard),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+Widget itemDropdown({
+  String? day,
+  String? time = '٨ صباحاً - ٤ مساءً',
+}) =>
+    Center(
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            specialtext(text: '$day'),
+            Spacer(),
+            specialtext(text: '$time')
+          ],
+        ),
+      ),
+    );
+Widget richRequireText({
+  required String tex1,
+  required String tex2,
+}) =>
+    RichText(
+      text: TextSpan(children: <TextSpan>[
+        TextSpan(
+          text: tex1,
+          style: TextStyle(
+              color: Color(0xff161616),
+              fontWeight: FontWeight.w400,
+              fontFamily: "ReadexPro",
+              fontStyle: FontStyle.normal,
+              fontSize: 14.0),
+        ),
+        TextSpan(
+          text: tex2,
+          style: TextStyle(
+              color: const Color(0xff7d7d7d),
+              fontWeight: FontWeight.w400,
+              fontFamily: "ReadexPro",
+              fontStyle: FontStyle.normal,
+              fontSize: 12.0),
+        ),
+      ]),
+    );
+Widget navigationButton(
+        {required String text,
+        double height = 52,
+        double width = double.infinity,
+        VoidCallback? function}) =>
+    InkWell(
+        onTap: function,
+        /*(){
                       /*  NavigateTo(context,Directionality(textDirection: TextDirection.rtl,
                         child: layoutScreen())
                          );*/
                   },*/
-                   child: Container(
-                     height: height,
-                     width: width,
-                        decoration: BoxDecoration(
-                          color: Color(0xff009c7b),
-                          borderRadius: BorderRadius.all(Radius.circular(8))
-                        ),
-                        child: Center(
-                          child: specialtext(text: text,
-                          fcolor: Color(0xffffffff),
-                          fsize: 18,
-                          fweight: FontWeight.w500
-                          ),
-                ),
-  )
-);
+        child: Container(
+          height: height,
+          width: width,
+          decoration: BoxDecoration(
+              color: Color(0xff009c7b),
+              borderRadius: BorderRadius.all(Radius.circular(8))),
+          child: Center(
+            child: specialtext(
+                text: text,
+                fcolor: Color(0xffffffff),
+                fsize: 18,
+                fweight: FontWeight.w500),
+          ),
+        ));
 Widget MixedText({
   required String text1,
-   String text2="*",
-})=>RichText(
-  text: TextSpan(
-    children: [
+  String text2 = "*",
+}) =>
+    RichText(
+        text: TextSpan(children: [
       TextSpan(
-    style: const TextStyle(
-    color:  const Color(0xff7d7d7d),
-    fontWeight: FontWeight.w400,
-    fontFamily: "ReadexPro",
-    fontStyle:  FontStyle.normal,
-    fontSize: 14.0
-),
-    text: text1),
+          style: const TextStyle(
+              color: const Color(0xff7d7d7d),
+              fontWeight: FontWeight.w400,
+              fontFamily: "ReadexPro",
+              fontStyle: FontStyle.normal,
+              fontSize: 14.0),
+          text: text1),
       TextSpan(
-    style: const TextStyle(
-    color:  const Color(0xffe11a1a),
-    fontWeight: FontWeight.w500,
-    fontFamily: "ReadexPro",
-    fontStyle:  FontStyle.normal,
-    fontSize: 18.0
-),
-    text: text2)
-    ]
-  )
-);
+          style: const TextStyle(
+              color: const Color(0xffe11a1a),
+              fontWeight: FontWeight.w500,
+              fontFamily: "ReadexPro",
+              fontStyle: FontStyle.normal,
+              fontSize: 18.0),
+          text: text2)
+    ]));
 Widget ContainerPicker({
   //required String text,
-  required TextEditingController myController ,
+  required TextEditingController myController,
   required IconData icon,
   required VoidCallback function,
   required FormFieldValidator<String>? validate,
-})=>Container
-(
-  height: 48,
-  width: double.infinity,
-  padding: EdgeInsetsDirectional.only(start: 16),
-  decoration: BoxDecoration(
-   color: Color(0xffffffff),
-   borderRadius: BorderRadius.all(Radius.circular(8)),
-   border: Border.all(
-   color:const Color(0xffd8d8d8)
-   ),
-  ),
-  child: Row(
-   children: [
-    TextFormField(
-      readOnly: true,
-      controller: myController,
-      validator: validate,
-    ),
-    const Spacer(),
-    InkWell(
-      onTap:function ,
-      child: Container(
-       alignment: Alignment.center,
-       height: 48,
-       width: 56,
-       decoration: BoxDecoration(
-        color: Color(0xff009c7b),
-        borderRadius: BorderRadius.only(
-         topLeft: Radius.circular(8),
-         bottomLeft: Radius.circular(8)
-        ),
-        border: Border.all(
-         color:const Color(0xff009c7b)
-        ),
-       ),
-       child: Icon(
-        icon,
-        size: 24,
-        color:Color(0xffffffff) ,
+}) =>
+    Container(
+      height: 48,
+      width: double.infinity,
+      padding: EdgeInsetsDirectional.only(start: 16),
+      decoration: BoxDecoration(
+        color: Color(0xffffffff),
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+        border: Border.all(color: const Color(0xffd8d8d8)),
       ),
-       ),
-    ),
-  ],
- ),
-);
+      child: Row(
+        children: [
+          TextFormField(
+            readOnly: true,
+            controller: myController,
+            validator: validate,
+          ),
+          const Spacer(),
+          InkWell(
+            onTap: function,
+            child: Container(
+              alignment: Alignment.center,
+              height: 48,
+              width: 56,
+              decoration: BoxDecoration(
+                color: Color(0xff009c7b),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    bottomLeft: Radius.circular(8)),
+                border: Border.all(color: const Color(0xff009c7b)),
+              ),
+              child: Icon(
+                icon,
+                size: 24,
+                color: Color(0xffffffff),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+void showToast({required String text, required toastStates state}) =>
+    Fluttertoast.showToast(
+      msg: text,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 5,
+      backgroundColor: choseToastColor(state),
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+
+enum toastStates { SUCCESS, ERROR, WARNING }
+
+Color choseToastColor(toastStates state) {
+  late Color color;
+  switch (state) {
+    case toastStates.SUCCESS:
+      color = Colors.green;
+      break;
+    case toastStates.WARNING:
+      color = Colors.amber;
+      break;
+    case toastStates.ERROR:
+      color = Colors.red;
+      break;
+  }
+  return color;
+}

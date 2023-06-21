@@ -7,16 +7,28 @@ import 'package:tabor/modules/on_bording/on_bording.dart';
 import 'package:tabor/shared/network/local/cashe_helper.dart';
 import 'package:tabor/shared/network/remote/dio_helper.dart';
 
+import 'shared/componants/constants.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  CasheHelper.init();
+  await CasheHelper.init();
   DioHelper.init();
-  runApp(const MyApp());
+  token = CasheHelper.getData(Key: 'token');
+  Widget widget;
+  if (token != null) {
+    widget = const layoutScreen();
+  } else {
+    widget = const onBoardingScreen();
+  }
+  runApp(MyApp(
+    startWidget: widget,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final Widget startWidget;
+  const MyApp({super.key, required this.startWidget});
 
   // This widget is the root of your application.
   @override
@@ -28,8 +40,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'ReadexPro',
       ),
       debugShowCheckedModeBanner: false,
-      home: Directionality(
-          textDirection: TextDirection.rtl, child: onBoardingScreen()),
+      home:
+          Directionality(textDirection: TextDirection.rtl, child: startWidget),
     );
   }
 }

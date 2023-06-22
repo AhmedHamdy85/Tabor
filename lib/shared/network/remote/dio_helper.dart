@@ -4,7 +4,7 @@ class DioHelper {
   static late Dio dio;
   static init() {
     dio = Dio(BaseOptions(
-      baseUrl: 'https://web-production-fab36.up.railway.app',
+      baseUrl: 'https://web-production-5757.up.railway.app',
       receiveDataWhenStatusError: true,
     ));
   }

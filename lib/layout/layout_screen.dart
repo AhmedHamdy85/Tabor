@@ -18,7 +18,7 @@ class layoutScreen extends StatelessWidget {
     double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
     return BlocProvider(
-      create: (BuildContext context) => layoutCubit(),
+      create: (BuildContext context) => layoutCubit()..getAllBanks(),
       child: BlocConsumer<layoutCubit, layoutStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -80,11 +80,13 @@ class layoutScreen extends StatelessWidget {
                     height: 10,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8,bottom: 8),
+                    padding: const EdgeInsets.only(left: 8, bottom: 8),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(16)),
-                        color: cubit.notificationsNumber>0? Color(0xffe9ebeb):null,
+                        color: cubit.notificationsNumber > 0
+                            ? Color(0xffe9ebeb)
+                            : null,
                       ),
                       child: ListTile(
                         selectedColor: Colors.grey,
@@ -101,7 +103,9 @@ class layoutScreen extends StatelessWidget {
                         ),
                         trailing: CircleAvatar(
                           radius: 10,
-                          backgroundColor: cubit.notificationsNumber>0?Color(0xff009c7b):Colors.white,
+                          backgroundColor: cubit.notificationsNumber > 0
+                              ? Color(0xff009c7b)
+                              : Colors.white,
                           child: specialtext(
                             text: '${cubit.notificationsNumber}',
                             fcolor: Color(0xffe9ebeb),
@@ -238,81 +242,99 @@ class layoutScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: (25/390)*screenwidth),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: (25 / 390) * screenwidth),
                     child: Container(
                       width: (242 / 390) * screenwidth,
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
-                        color: cubit.darktMode?Colors.black:Color(0xffe9e9e9),
+                        color:
+                            cubit.darktMode ? Colors.black : Color(0xffe9e9e9),
                       ),
                       child: Row(
                         children: [
                           InkWell(
-                            onTap: ()
-                            {
+                            onTap: () {
                               cubit.toggleDarkMode();
                             },
                             child: Container(
                               width: (117 / 390) * screenwidth,
                               height: 32,
                               decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(16)),
-                              color: cubit.darktMode?Colors.black:Color(0xffe9e9e9),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(16)),
+                                color: cubit.darktMode
+                                    ? Colors.black
+                                    : Color(0xffe9e9e9),
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  specialtext(text: 'Dark',
-                                  fcolor: cubit.darktMode?Colors.orange:Color(0xff8c8c8c),
-                                  fsize: 16,
-                                  ffamily: 'Roboto-Medium',
-                                  fweight: FontWeight.w500,
-                                  talign: TextAlign.center
+                                  specialtext(
+                                      text: 'Dark',
+                                      fcolor: cubit.darktMode
+                                          ? Colors.orange
+                                          : Color(0xff8c8c8c),
+                                      fsize: 16,
+                                      ffamily: 'Roboto-Medium',
+                                      fweight: FontWeight.w500,
+                                      talign: TextAlign.center),
+                                  const SizedBox(
+                                    width: 10,
                                   ),
-                                  const SizedBox(width: 10,),
                                   Icon(
                                     Iconsax.moon5,
                                     size: 25,
-                                    color: cubit.darktMode?Colors.orange:Color(0xff8c8c8c),
+                                    color: cubit.darktMode
+                                        ? Colors.orange
+                                        : Color(0xff8c8c8c),
                                   ),
                                 ],
                               ),
                             ),
                           ),
                           InkWell(
-                            onTap: (){
+                            onTap: () {
                               cubit.toggleLightMode();
                             },
                             child: Container(
                               width: (117 / 390) * screenwidth,
                               height: 32,
                               decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(16)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0xff40000000),
-                                  blurRadius: 4
-                                ),
-                              ],
-                              color: cubit.lightMode?Color(0xffffffff):Colors.black,
-                              //Color(0xffffffff),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(16)),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Color(0xff40000000),
+                                      blurRadius: 4),
+                                ],
+                                color: cubit.lightMode
+                                    ? Color(0xffffffff)
+                                    : Colors.black,
+                                //Color(0xffffffff),
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  specialtext(text: 'Light',
-                                  fcolor: cubit.lightMode?Color(0xff3e3e3e):Color(0xff8c8c8c),
-                                  fsize: 16,
-                                  ffamily: 'Roboto-Medium',
-                                  fweight: FontWeight.w500,
-                                  talign: TextAlign.center
+                                  specialtext(
+                                      text: 'Light',
+                                      fcolor: cubit.lightMode
+                                          ? Color(0xff3e3e3e)
+                                          : Color(0xff8c8c8c),
+                                      fsize: 16,
+                                      ffamily: 'Roboto-Medium',
+                                      fweight: FontWeight.w500,
+                                      talign: TextAlign.center),
+                                  const SizedBox(
+                                    width: 10,
                                   ),
-                                  const SizedBox(width: 10,),
                                   Icon(
                                     Iconsax.sun_15,
                                     size: 22.5,
-                                    color: cubit.lightMode?Color(0xff3e3e3e):Color(0xff8c8c8c),
+                                    color: cubit.lightMode
+                                        ? Color(0xff3e3e3e)
+                                        : Color(0xff8c8c8c),
                                   ),
                                 ],
                               ),

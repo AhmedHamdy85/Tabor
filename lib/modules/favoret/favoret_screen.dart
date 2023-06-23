@@ -19,12 +19,11 @@ class FavoretScreen extends StatelessWidget {
           child: Container(
             width: double.infinity,
             child: ListView.builder(
-              itemBuilder: (context, index) => VerticalCompanyForm(
-                  model: layoutCubit.get(context).bankModel[index],
-                  context: context,
-                  Iconopacity: 0.9,
-                  screenWidth: screenWidth),
-              itemCount: layoutCubit.get(context).bankModel.length,
+              itemBuilder: (context, index) => FavoretIteam(
+                  model: layoutCubit.get(context).favoretModel[index],
+                  screenWidth: screenWidth,
+                  context: context),
+              itemCount: layoutCubit.get(context).favoretModel.length,
             ),
           ),
         )

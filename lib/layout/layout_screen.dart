@@ -18,7 +18,9 @@ class layoutScreen extends StatelessWidget {
     double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
     return BlocProvider(
-      create: (BuildContext context) => layoutCubit()..getAllBanks(),
+      create: (BuildContext context) => layoutCubit()
+        ..getAllBanks()
+        ..getFavoretBanks(),
       child: BlocConsumer<layoutCubit, layoutStates>(
         listener: (context, state) {},
         builder: (context, state) {

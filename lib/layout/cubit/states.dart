@@ -17,3 +17,9 @@ class GetAllBanksLoadingState extends layoutStates {}
 class GetAllBanksSuccesState extends layoutStates {}
 
 class GetAllBanksErorrState extends layoutStates {}
+
+class GetFavoretBanksLoadingState extends layoutStates {}
+
+class GetFavoretBanksSuccesState extends layoutStates {}
+
+class GetFavoretBanksErorrState extends layoutStates {}

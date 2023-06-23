@@ -9,6 +9,8 @@ import 'package:tabor/modules/service/service.dart';
 import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 
+import '../../model/favoret_model/favoret_model.dart';
+
 Widget DefoltButon({
   double width = double.infinity,
   required double fontsize,
@@ -203,7 +205,7 @@ Widget VerticalCompanyForm(
       padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
       child: InkWell(
         onTap: () {
-          NavigateTo(context, BranshesScreen());
+          NavigateTo(context, const BranshesScreen());
         },
         child: Container(
           width: double.infinity,
@@ -262,7 +264,87 @@ Widget VerticalCompanyForm(
                     opacity: Iconopacity,
                     child: Icon(
                       Iconsax.heart5,
-                      color: model.favorite != null ? Colors.black : Colors.red,
+                      color: model.favorite != null ? Colors.red : Colors.black,
+                      size: 32,
+                    ),
+                  ))
+            ],
+          ),
+        ),
+      ),
+    );
+
+//custom favoret iteam
+
+Widget FavoretIteam(
+        {required FavoretModel model,
+        required double screenWidth,
+        double Iconopacity = 1,
+        required BuildContext context}) =>
+    Padding(
+      padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
+      child: InkWell(
+        onTap: () {
+          NavigateTo(context, const BranshesScreen());
+        },
+        child: Container(
+          width: double.infinity,
+          height: 80,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: Colors.white,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                    color: Color(0xffffffff),
+                    boxShadow: [
+                      BoxShadow(blurRadius: 4, color: Color(0xff40000000))
+                    ]),
+                child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Image(
+                        image: NetworkImage(model.image ??
+                            'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'))),
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('${model.name}',
+                      style: const TextStyle(
+                          color: const Color(0xff161616),
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "ReadexPro",
+                          fontStyle: FontStyle.normal,
+                          fontSize: 16.0),
+                      textAlign: TextAlign.right),
+                  Text("${model.branchs!.length}" + ' ' + 'فرع',
+                      style: const TextStyle(
+                          color: const Color(0xff161616),
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "ReadexPro",
+                          fontStyle: FontStyle.normal,
+                          fontSize: 14.0),
+                      textAlign: TextAlign.right)
+                ],
+              ),
+              const Spacer(),
+              IconButton(
+                  onPressed: () {},
+                  icon: Opacity(
+                    opacity: Iconopacity,
+                    child: Icon(
+                      Iconsax.heart5,
+                      color: Colors.red,
                       size: 32,
                     ),
                   ))

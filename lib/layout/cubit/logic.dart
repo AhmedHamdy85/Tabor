@@ -8,6 +8,7 @@ import 'package:tabor/shared/endpints.dart';
 import 'package:tabor/shared/network/remote/dio_helper.dart';
 
 import '../../model/bankmodels/all_banks_model/all_banks_model.dart';
+import '../../model/favoret_model/favoret_model.dart';
 
 class layoutCubit extends Cubit<layoutStates> {
   layoutCubit() : super(layoutInatialState());
@@ -55,7 +56,7 @@ class layoutCubit extends Cubit<layoutStates> {
   }
 
   List<AllBanksModel> bankModel = [];
-  List<dynamic>? data;
+
   void getAllBanks() {
     emit(GetAllBanksLoadingState());
     DioHelper.getData(url: ALLBANKS).then((value) {
@@ -67,6 +68,22 @@ class layoutCubit extends Cubit<layoutStates> {
     }).catchError((erorr) {
       print('error is ' + erorr.toString());
       emit(GetAllBanksErorrState());
+    });
+  }
+
+  List<FavoretModel> favoretModel = [];
+
+  void getFavoretBanks() {
+    emit(GetFavoretBanksLoadingState());
+    DioHelper.getData(url: ALLBANKS).then((value) {
+      favoretModel
+          .addAll((value.data as List).map(((e) => FavoretModel.fromJson(e))));
+
+      print(bankModel.length);
+      emit(GetFavoretBanksSuccesState());
+    }).catchError((erorr) {
+      print('favoret error is ' + erorr.toString());
+      emit(GetFavoretBanksErorrState());
     });
   }
 }

@@ -5,7 +5,7 @@ import 'package:tabor/shared/componants/componant.dart';
 class CustomDropdown extends StatefulWidget {
   final String text;
 
-  const CustomDropdown({ Key? key, required this.text}) : super(key: key);
+  const CustomDropdown({Key? key, required this.text}) : super(key: key);
 
   @override
   _CustomDropdownState createState() => _CustomDropdownState();
@@ -24,7 +24,8 @@ class _CustomDropdownState extends State<CustomDropdown> {
   }
 
   void findDropdownData() {
-    RenderBox? renderBox = actionKey.currentContext!.findRenderObject() as RenderBox?;
+    RenderBox? renderBox =
+        actionKey.currentContext!.findRenderObject() as RenderBox?;
     height = renderBox!.size.height;
     width = renderBox.size.width;
     Offset offset = renderBox.localToGlobal(Offset.zero);
@@ -38,7 +39,6 @@ class _CustomDropdownState extends State<CustomDropdown> {
 
   OverlayEntry _createFloatingDropdown() {
     return OverlayEntry(builder: (context) {
-      
       return Positioned(
         left: xPosition,
         width: width,
@@ -66,7 +66,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
               floatingDropdown = _createFloatingDropdown();
               Overlay.of(context).insert(floatingDropdown);
             }
-    
+
             isDropdownOpened = !isDropdownOpened;
           });
         },
@@ -82,7 +82,10 @@ class _CustomDropdownState extends State<CustomDropdown> {
                 children: <Widget>[
                   Text(
                     widget.text.toUpperCase(),
-                    style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600),
                   ),
                   Spacer(),
                   Icon(
@@ -93,18 +96,18 @@ class _CustomDropdownState extends State<CustomDropdown> {
               ),
             ),
             serviceContainer(
-                      tex: "الاستقبال",
-                      width: screenWidth - 32,
-                      context: context,
-                      textcontent: '''
+              tex: "الاستقبال",
+              width: screenWidth - 32,
+              context: context,
+              textcontent: '''
                   فتح حساب  
                   اغلاق حساب
                   الشكاوي  
                     ''',
-                      texttitle: 'الخدمات',
-                      contex: context,
-                      page: Service_screen(),
-                    ),
+              texttitle: 'الخدمات',
+              contex: context,
+              page: Service_screen(),
+            ),
           ],
         ),
       ),
@@ -115,7 +118,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
 class DropDown extends StatelessWidget {
   final double itemHeight;
 
-  const DropDown({ Key? key, required this.itemHeight}) : super(key: key);
+  const DropDown({Key? key, required this.itemHeight}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -183,24 +186,38 @@ class DropDownItem extends StatelessWidget {
   final bool isFirstItem;
   final bool isLastItem;
 
-  const DropDownItem({Key? key, required this.text, required this.iconData, this.isSelected = false, this.isFirstItem = false, this.isLastItem = false})
+  const DropDownItem(
+      {Key? key,
+      required this.text,
+      required this.iconData,
+      this.isSelected = false,
+      this.isFirstItem = false,
+      this.isLastItem = false})
       : super(key: key);
 
-  factory DropDownItem.first({required String text, required IconData iconData, required bool isSelected}) {
+  factory DropDownItem.first(
+      {required String text,
+      required IconData iconData,
+      required bool isSelected}) {
     return DropDownItem(
       text: text,
       iconData: iconData,
       isSelected: isSelected,
-      isFirstItem: true, key: null,
+      isFirstItem: true,
+      key: null,
     );
   }
 
-  factory DropDownItem.last({required String text, required IconData iconData, required bool isSelected}) {
+  factory DropDownItem.last(
+      {required String text,
+      required IconData iconData,
+      required bool isSelected}) {
     return DropDownItem(
       text: text,
       iconData: iconData,
       isSelected: isSelected,
-      isLastItem: true, key: null,
+      isLastItem: true,
+      key: null,
     );
   }
 
@@ -219,7 +236,8 @@ class DropDownItem extends StatelessWidget {
         children: <Widget>[
           Text(
             text.toUpperCase(),
-            style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
           ),
           Spacer(),
           Icon(

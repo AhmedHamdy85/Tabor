@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 
@@ -13,22 +14,17 @@ class FavoretScreen extends StatelessWidget {
     double screenHight = MediaQuery.of(context).size.height;
     return Column(
       children: [
-        CustomAppBar(
-            text: 'المفضلة',
-            screenWidth: screenWidth
-            ),
+        CustomAppBar(text: 'المفضلة', screenWidth: screenWidth),
         Expanded(
           child: Container(
             width: double.infinity,
             child: ListView.builder(
               itemBuilder: (context, index) => VerticalCompanyForm(
-                  image: 'assets/images/Googel.svg',
-                  name: 'خدمة عملاء فودافون',
-                  nomberOfBranshes: 15,
+                  model: layoutCubit.get(context).bankModel[index],
                   context: context,
-                  iconColor: Colors.red,
+                  Iconopacity: 0.9,
                   screenWidth: screenWidth),
-              itemCount: 10,
+              itemCount: layoutCubit.get(context).bankModel.length,
             ),
           ),
         )
@@ -36,7 +32,6 @@ class FavoretScreen extends StatelessWidget {
     );
   }
 }
-
 
 // SingleChildScrollView(
 //               child: Column(

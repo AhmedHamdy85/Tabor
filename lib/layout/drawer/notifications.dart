@@ -22,81 +22,82 @@ class Notifications extends StatelessWidget {
           //mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-                height: 120,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Color(0xffffffff),
-                  boxShadow: [
-                    BoxShadow(blurRadius: 4, color: Color(0xff40000000))
-                  ],
-                  borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(16),
-                      bottomLeft: Radius.circular(16)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 16, left: 24, bottom: 24,top: 54),
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: DefoltSvgImage(
-                              image:
-                                  'assets/images/frame_138.svg'),
+              height: 120,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Color(0xffffffff),
+                boxShadow: [
+                  BoxShadow(blurRadius: 4, color: Color(0xff40000000))
+                ],
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(16),
+                    bottomLeft: Radius.circular(16)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    right: 16, left: 24, bottom: 24, top: 54),
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: DefoltSvgImage(
+                            image: 'assets/images/frame_138.svg'),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 3),
+                        child: specialtext(
+                          text: 'الاشعارات',
+                          fsize: 21,
+                          talign: TextAlign.right,
+                          fweight: FontWeight.w500,
                         ),
-                        SizedBox(
-                          width: 8,
+                      ),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          NavigateTo(
+                              context,
+                              Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: layoutScreen()));
+                        },
+                        child: Positioned(
+                          left: 0,
+                          bottom: 0,
+                          child: CircleAvatar(
+                            backgroundColor: Color(0xffbceee3),
+                            radius: 20,
+                            child: DefoltSvgImage(
+                                image: 'assets/images/frame_32.svg'),
+                          ),
                         ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 3),
-                              child: specialtext(
-                                text: 'الاشعارات',
-                                fsize: 21,
-                                talign:  TextAlign.right,
-                                fweight: FontWeight.w500,
-                              ),
-                            ),                  
-                        Spacer(),
-                        InkWell(
-                          onTap: (){
-                             NavigateTo(context,Directionality(textDirection: TextDirection.rtl,
-                        child: layoutScreen())
-                         );
-                          },
-                          child: Positioned(
-                            left: 0,
-                            bottom: 0,
-                            child: CircleAvatar(
-                              backgroundColor: Color(0xffbceee3),
-                               radius: 20,
-                               child: DefoltSvgImage(image: 'assets/images/frame_32.svg'),
-                               ),
-                            ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
+            ),
             SizedBox(height: 24),
             Expanded(
-            child: Container(
-              width: double.infinity,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    
-                  ],
+              child: Container(
+                width: double.infinity,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [],
+                  ),
                 ),
               ),
-            ),
-          )
+            )
           ],
         ),
       ),

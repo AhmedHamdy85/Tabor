@@ -1,4 +1,4 @@
-import '../../model/bankmodels/allbanks.dart';
+import '../../model/bankmodels/all_banks_model/all_banks_model.dart';
 
 abstract class layoutStates {}
 
@@ -14,10 +14,6 @@ class toggleMode extends layoutStates {}
 
 class GetAllBanksLoadingState extends layoutStates {}
 
-class GetAllBanksSuccesState extends layoutStates {
-  final AllBanksModel bankModel;
-
-  GetAllBanksSuccesState(this.bankModel);
-}
+class GetAllBanksSuccesState extends layoutStates {}
 
 class GetAllBanksErorrState extends layoutStates {}

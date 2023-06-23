@@ -45,6 +45,7 @@ dependencies:
   smooth_page_indicator: 
   toggle_switch: 
   fluttertoast: 
+  conditional_builder_null_safety: ^0.0.6
 
 dev_dependencies:
 

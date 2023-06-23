@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:tabor/model/bankmodels/all_banks_model/all_banks_model.dart';
 import 'package:tabor/modules/branshes/branshes.dart';
 import 'package:tabor/modules/queue/queue.dart';
 import 'package:tabor/modules/service/service.dart';
@@ -141,7 +142,9 @@ Widget DefoltIcon(
     );
 
 Widget DefoltHorisentalCompanyform(
-        {required String image,
+        {required AllBanksModel model,
+        //   required String image,
+        // String? name,
         double? width,
         double? hight,
         required BuildContext context}) =>
@@ -169,8 +172,9 @@ Widget DefoltHorisentalCompanyform(
               ),
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: DefoltSvgImage(
-                  image: image,
+                child: Image(
+                  image: NetworkImage(model.image ??
+                      'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'),
                 ),
               ),
             ),
@@ -178,7 +182,7 @@ Widget DefoltHorisentalCompanyform(
           SizedBox(
             height: 8,
           ),
-          Text("خدمة عملاء اتصالات",
+          Text('${model.name}',
               style: const TextStyle(
                   color: const Color(0xff161616),
                   fontWeight: FontWeight.w400,
@@ -191,11 +195,8 @@ Widget DefoltHorisentalCompanyform(
     );
 
 Widget VerticalCompanyForm(
-        {required String image,
-        required String name,
-        required int nomberOfBranshes,
+        {required AllBanksModel model,
         required double screenWidth,
-        required Color iconColor,
         double Iconopacity = 0.0,
         required BuildContext context}) =>
     Padding(
@@ -224,11 +225,10 @@ Widget VerticalCompanyForm(
                       BoxShadow(blurRadius: 4, color: Color(0xff40000000))
                     ]),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: DefoltSvgImage(
-                    image: image,
-                  ),
-                ),
+                    padding: const EdgeInsets.all(16.0),
+                    child: Image(
+                        image: NetworkImage(model.image ??
+                            'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'))),
               ),
               SizedBox(
                 width: 8,
@@ -237,7 +237,7 @@ Widget VerticalCompanyForm(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name,
+                  Text('${model.name}',
                       style: const TextStyle(
                           color: const Color(0xff161616),
                           fontWeight: FontWeight.w500,
@@ -245,7 +245,7 @@ Widget VerticalCompanyForm(
                           fontStyle: FontStyle.normal,
                           fontSize: 16.0),
                       textAlign: TextAlign.right),
-                  Text("$nomberOfBranshes" + ' ' + 'فرع',
+                  Text("${model.branchs!.length}" + ' ' + 'فرع',
                       style: const TextStyle(
                           color: const Color(0xff161616),
                           fontWeight: FontWeight.w400,
@@ -255,16 +255,14 @@ Widget VerticalCompanyForm(
                       textAlign: TextAlign.right)
                 ],
               ),
-              SizedBox(
-                width: screenWidth * 0.12,
-              ),
+              const Spacer(),
               IconButton(
                   onPressed: () {},
                   icon: Opacity(
                     opacity: Iconopacity,
                     child: Icon(
                       Iconsax.heart5,
-                      color: iconColor,
+                      color: model.favorite != null ? Colors.black : Colors.red,
                       size: 32,
                     ),
                   ))

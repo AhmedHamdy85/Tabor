@@ -7,7 +7,7 @@ import 'package:tabor/modules/tecket/tecket_scrren.dart';
 import 'package:tabor/shared/endpints.dart';
 import 'package:tabor/shared/network/remote/dio_helper.dart';
 
-import '../../model/bankmodels/allbanks.dart';
+import '../../model/bankmodels/all_banks_model/all_banks_model.dart';
 
 class layoutCubit extends Cubit<layoutStates> {
   layoutCubit() : super(layoutInatialState());
@@ -54,13 +54,16 @@ class layoutCubit extends Cubit<layoutStates> {
     emit(toggleMode());
   }
 
-  late AllBanksModel bankModel;
+  List<AllBanksModel> bankModel = [];
+  List<dynamic>? data;
   void getAllBanks() {
     emit(GetAllBanksLoadingState());
     DioHelper.getData(url: ALLBANKS).then((value) {
-      print(value);
-      bankModel = AllBanksModel.fromJson(value.data);
-      emit(GetAllBanksSuccesState(bankModel));
+      bankModel
+          .addAll((value.data as List).map(((e) => AllBanksModel.fromJson(e))));
+
+      print(bankModel.length);
+      emit(GetAllBanksSuccesState());
     }).catchError((erorr) {
       print('error is ' + erorr.toString());
       emit(GetAllBanksErorrState());

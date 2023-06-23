@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -129,17 +130,22 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Container(
                       height: (screenHight * 0.11) + 76,
-                      child: ListView.builder(
-                        itemCount: 7,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return DefoltHorisentalCompanyform(
-                            context: context,
-                            image: 'assets/images/Tabor_Horsintal.svg',
-                            width: 155,
-                            hight: 96,
-                          );
-                        },
+                      child: ConditionalBuilder(
+                        condition: layoutCubit.get(context).bankModel != null,
+                        builder: (context) => ListView.builder(
+                          itemCount: layoutCubit.get(context).bankModel.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return DefoltHorisentalCompanyform(
+                              model: layoutCubit.get(context).bankModel[index],
+                              context: context,
+                              width: 155,
+                              hight: 96,
+                            );
+                          },
+                        ),
+                        fallback: (context) =>
+                            const Center(child: CircularProgressIndicator()),
                       ),
                     ),
                     SizedBox(
@@ -161,19 +167,22 @@ class HomeScreen extends StatelessWidget {
                             textAlign: TextAlign.right),
                       ),
                     ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: 6,
-                      itemBuilder: (context, index) => VerticalCompanyForm(
+                    ConditionalBuilder(
+                      condition: layoutCubit.get(context).bankModel != null,
+                      builder: (context) => ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: layoutCubit.get(context).bankModel.length,
+                        itemBuilder: (context, index) => VerticalCompanyForm(
+                          model: layoutCubit.get(context).bankModel[index],
                           Iconopacity: 0.6,
-                          name: 'خدمة عملاء فودافون',
-                          image: 'assets/images/Googel.svg',
-                          nomberOfBranshes: 15,
                           context: context,
                           screenWidth: screenWidth,
-                          iconColor: Colors.black),
-                    )
+                        ),
+                      ),
+                      fallback: (context) =>
+                          const Center(child: CircularProgressIndicator()),
+                    ),
                   ],
                 ),
               ),

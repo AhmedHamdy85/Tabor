@@ -31,9 +31,9 @@ class _QueuesScreenState extends State<QueuesScreen> {
       'الاربعاء',
       'الخميس',
     ];
-    bool s1=false;
-    bool s2=false;
-     bool s3=false;
+    bool s1 = false;
+    bool s2 = false;
+    bool s3 = false;
     String? selectedValue;
     int? ServiceValue;
     double bottomLeft;
@@ -244,10 +244,10 @@ class _QueuesScreenState extends State<QueuesScreen> {
                             isExpanded: true,
                             hint: Row(
                               children: [
-                                specialtext(text: 'خدمة العملاء',
-                                fsize: 16,
-                                fweight: FontWeight.w700
-                                ),
+                                specialtext(
+                                    text: 'خدمة العملاء',
+                                    fsize: 16,
+                                    fweight: FontWeight.w700),
                                 Spacer(),
                                 /* Icon(Icons.check,
                                 color: Color(0xff1cc500),
@@ -260,95 +260,95 @@ class _QueuesScreenState extends State<QueuesScreen> {
                               ],
                             ),
                             items: [
-                           DropdownMenuItem(
-                            value: 1,
-                            child:Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: InkWell(
-                                onTap: (){
-                                  setState(() {
-                                    // ServiceValue=value;
-                                     s1=true;
-                                     s2=false;
-                                     s3=false;
-                                   });
-                                },
-                                child: RadioListTile(
-                                  value: 1,
-                                  title: specialtext(text: 'فتح /غلق حساب',
-                                  fsize: 16,
-                                  fweight: FontWeight.w500
+                              DropdownMenuItem(
+                                value: 1,
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        // ServiceValue=value;
+                                        s1 = true;
+                                        s2 = false;
+                                        s3 = false;
+                                      });
+                                    },
+                                    child: RadioListTile(
+                                      value: 1,
+                                      title: specialtext(
+                                          text: 'فتح /غلق حساب',
+                                          fsize: 16,
+                                          fweight: FontWeight.w500),
+                                      groupValue: ServiceValue,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          ServiceValue = value;
+                                          s1 = true;
+                                          s2 = false;
+                                          s3 = false;
+                                        });
+                                      },
+                                      toggleable: true,
+                                      selected: s1,
+                                      activeColor: Color(0xff009c7b),
+                                      //tileColor: Color(0xff009c7b),
+                                      selectedTileColor: Color(0xffbceee3),
+                                    ),
                                   ),
-                                  groupValue: ServiceValue,
-                                  onChanged: (value){
-                                   setState(() {
-                                     ServiceValue=value;
-                                     s1=true;
-                                     s2=false;
-                                     s3=false;
-                                   });
-                                  },
-                                  toggleable: true,
-                                  selected:s1,
-                                  activeColor:Color(0xff009c7b)  ,
-                                  //tileColor: Color(0xff009c7b),
-                                  selectedTileColor:Color(0xffbceee3) ,
-                                  ),
+                                ),
                               ),
-                            ),
-                            ),
-                            DropdownMenuItem(
-                            value: 2,
-                            child:Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: RadioListTile(
+                              DropdownMenuItem(
                                 value: 2,
-                                title: specialtext(text: 'فتح /غلق حساب',
-                                fsize: 16,
-                                fweight: FontWeight.w500
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: RadioListTile(
+                                    value: 2,
+                                    title: specialtext(
+                                        text: 'فتح /غلق حساب',
+                                        fsize: 16,
+                                        fweight: FontWeight.w500),
+                                    groupValue: ServiceValue,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        ServiceValue = value;
+                                        s1 = false;
+                                        s2 = true;
+                                        s3 = false;
+                                      });
+                                    },
+                                    selected: s2,
+                                    activeColor: Color(0xff009c7b),
+                                    //tileColor: Color(0xff009c7b),
+                                    selectedTileColor: Color(0xffbceee3),
+                                  ),
                                 ),
-                                groupValue: ServiceValue,
-                                onChanged: (value){
-                                 setState(() {
-                                   ServiceValue=value;
-                                   s1=false;
-                                   s2=true;
-                                   s3=false;
-                                 });
-                                },
-                                 selected:s2,
-                                activeColor:Color(0xff009c7b)  ,
-                                //tileColor: Color(0xff009c7b),
-                                selectedTileColor:Color(0xffbceee3) ,
-                                ),
-                            ),
-                            ),
-                            DropdownMenuItem(
-                            value: 3,
-                            child:Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: RadioListTile(
+                              ),
+                              DropdownMenuItem(
                                 value: 3,
-                                title: specialtext(text: 'فتح /غلق حساب',
-                                fsize: 16,
-                                fweight: FontWeight.w500
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: RadioListTile(
+                                    value: 3,
+                                    title: specialtext(
+                                        text: 'فتح /غلق حساب',
+                                        fsize: 16,
+                                        fweight: FontWeight.w500),
+                                    groupValue: ServiceValue,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        ServiceValue = value;
+                                        s1 = false;
+                                        s2 = false;
+                                        s3 = true;
+                                      });
+                                    },
+                                    selected: s3,
+                                    activeColor: Color(0xff009c7b),
+                                    // tileColor: Color(0xff009c7b),
+                                    selectedTileColor: Color(0xffbceee3),
+                                  ),
                                 ),
-                                groupValue: ServiceValue,
-                                onChanged: (value){
-                                 setState(() {
-                                   ServiceValue=value;
-                                   s1=false;
-                                   s2=false;
-                                   s3=true;
-                                 });
-                                },
-                                 selected:s3,
-                                activeColor:Color(0xff009c7b)  ,
-                               // tileColor: Color(0xff009c7b),
-                                selectedTileColor:Color(0xffbceee3) ,
-                                ),
-                            ),
-                            ),      
+                              ),
                             ],
                             value: ServiceValue,
                             onChanged: (value) {
@@ -411,18 +411,18 @@ class _QueuesScreenState extends State<QueuesScreen> {
             ),
           ),
           buttonCardBottom(
-            space: (16/390)*screenWidth,
-            widthCard: (158/390)*screenWidth,
-            function1: (){
-              NavigateTo(context,  Service_screen());
-            },
-             text1: ' حجز الان',
+              space: (16 / 390) * screenWidth,
+              widthCard: (158 / 390) * screenWidth,
+              function1: () {
+                NavigateTo(context, Service_screen());
+              },
+              text1: ' حجز الان',
               image1: 'assets/images/vuesax_bold_ticket_expired.svg',
-               function2: (){
-                 NavigateTo(context,  FormScheduling());
-               },
-                text2: ' حجز مسبق ',
-                 image2: 'assets/images/vuesax_bold_calendar_tick.svg'),
+              function2: () {
+                NavigateTo(context, FormScheduling());
+              },
+              text2: ' حجز مسبق ',
+              image2: 'assets/images/vuesax_bold_calendar_tick.svg'),
         ],
       ),
     );

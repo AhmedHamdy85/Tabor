@@ -23,3 +23,9 @@ class GetFavoretBanksLoadingState extends layoutStates {}
 class GetFavoretBanksSuccesState extends layoutStates {}
 
 class GetFavoretBanksErorrState extends layoutStates {}
+
+class ChangeFavoretState extends layoutStates {}
+
+class ChangeFavoretSuccesState extends layoutStates {}
+
+class ChangeFavoretErorrState extends layoutStates {}

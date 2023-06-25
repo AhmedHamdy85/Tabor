@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -190,27 +191,34 @@ class logInScreen extends StatelessWidget {
                         height: MediaQuery.of(context).size.height * 0.07,
                       ),
                       Center(
-                        child: MaterialButton(
-                          color: const Color(0xff009c7b),
-                          minWidth: MediaQuery.of(context).size.width - 70,
-                          height: 48,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          onPressed: () {
-                            if (formkey.currentState!.validate()) {
-                              loginCubit.userLogin(
-                                  phoneNumber: phoneControlar.text,
-                                  password: passwordControlar.text);
-                            }
+                        child: ConditionalBuilder(
+                          condition: state is! LogInLoadingState,
+                          builder: (context) {
+                            return MaterialButton(
+                              color: const Color(0xff009c7b),
+                              minWidth: MediaQuery.of(context).size.width - 70,
+                              height: 48,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              onPressed: () {
+                                if (formkey.currentState!.validate()) {
+                                  loginCubit.userLogin(
+                                      phoneNumber: phoneControlar.text,
+                                      password: passwordControlar.text);
+                                }
+                              },
+                              child: const Text(" تسجيل الدخول",
+                                  style: TextStyle(
+                                      color: Color(0xffffffff),
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: "ReadexPro",
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: 18.0),
+                                  textAlign: TextAlign.center),
+                            );
                           },
-                          child: const Text(" تسجيل الدخول",
-                              style: TextStyle(
-                                  color: Color(0xffffffff),
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: "ReadexPro",
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: 18.0),
-                              textAlign: TextAlign.center),
+                          fallback: (context) =>
+                              const CircularProgressIndicator(),
                         ),
                       ),
                       SizedBox(

@@ -6,6 +6,7 @@ class DioHelper {
     dio = Dio(BaseOptions(
       baseUrl: 'https://web-production-5757.up.railway.app',
       receiveDataWhenStatusError: true,
+      validateStatus: (_) => true,
     ));
   }
 

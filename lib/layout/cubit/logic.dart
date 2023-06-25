@@ -1,9 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tabor/layout/cubit/states.dart';
+import 'package:tabor/model/add_favoret_model/add_favoret_model.dart';
 import 'package:tabor/modules/Home/homeScreen.dart';
 import 'package:tabor/modules/favoret/favoret_screen.dart';
 import 'package:tabor/modules/tecket/tecket_scrren.dart';
+import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/endpints.dart';
 import 'package:tabor/shared/network/remote/dio_helper.dart';
 
@@ -56,14 +59,25 @@ class layoutCubit extends Cubit<layoutStates> {
   }
 
   List<AllBanksModel> bankModel = [];
-
+  List<AllBanksModel> favoretIteams = [];
+  Map<num?, bool?> favoret = {};
   void getAllBanks() {
     emit(GetAllBanksLoadingState());
     DioHelper.getData(url: ALLBANKS).then((value) {
       bankModel
           .addAll((value.data as List).map(((e) => AllBanksModel.fromJson(e))));
 
-      print(bankModel.length);
+      bankModel.forEach((element) {
+        if (element.favorite == true) {
+          favoretIteams.add(element);
+        }
+        favoret.addAll({
+          element.id: element.favorite,
+        });
+      });
+
+      print(favoret.toString());
+      print(favoretIteams.length);
       emit(GetAllBanksSuccesState());
     }).catchError((erorr) {
       print('error is ' + erorr.toString());
@@ -75,7 +89,7 @@ class layoutCubit extends Cubit<layoutStates> {
 
   void getFavoretBanks() {
     emit(GetFavoretBanksLoadingState());
-    DioHelper.getData(url: ALLBANKS).then((value) {
+    DioHelper.getData(url: FAVORETBANKS, token: token).then((value) {
       favoretModel
           .addAll((value.data as List).map(((e) => FavoretModel.fromJson(e))));
 
@@ -84,6 +98,27 @@ class layoutCubit extends Cubit<layoutStates> {
     }).catchError((erorr) {
       print('favoret error is ' + erorr.toString());
       emit(GetFavoretBanksErorrState());
+    });
+  }
+
+  late ChangeFavoretModel changeModel;
+  void changeFavorets(num? id, bool? status) async {
+    favoret[id] = !favoret[id]!;
+    emit(ChangeFavoretState());
+    DioHelper.putData(
+      url: '$ADDTOFAVORET${id.toString()}',
+      token: token,
+      data: {'favorite': !status!},
+    ).then((value) {
+      changeModel = ChangeFavoretModel.fromJson(value.data);
+      getAllBanks();
+      print(value.data);
+
+      emit(ChangeFavoretSuccesState());
+    }).catchError((erorr) {
+      favoret[id] = !favoret[id]!;
+      print(erorr.toString());
+      emit(ChangeFavoretErorrState());
     });
   }
 }

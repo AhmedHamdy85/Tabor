@@ -15,6 +15,7 @@ void main() async {
   await CasheHelper.init();
   DioHelper.init();
   token = CasheHelper.getData(Key: 'token');
+  print(token);
   Widget widget;
   if (token != null) {
     widget = const layoutScreen();

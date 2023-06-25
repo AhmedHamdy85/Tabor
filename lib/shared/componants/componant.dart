@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/model/bankmodels/all_banks_model/all_banks_model.dart';
 import 'package:tabor/modules/branshes/branshes.dart';
 import 'package:tabor/modules/queue/queue.dart';
@@ -259,12 +260,18 @@ Widget VerticalCompanyForm(
               ),
               const Spacer(),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    layoutCubit
+                        .get(context)
+                        .changeFavorets(model.id, model.favorite);
+                  },
                   icon: Opacity(
                     opacity: Iconopacity,
                     child: Icon(
                       Iconsax.heart5,
-                      color: model.favorite != null ? Colors.red : Colors.black,
+                      color: layoutCubit.get(context).favoret[model.id] ?? false
+                          ? Colors.red
+                          : Colors.black,
                       size: 32,
                     ),
                   ))
@@ -277,7 +284,7 @@ Widget VerticalCompanyForm(
 //custom favoret iteam
 
 Widget FavoretIteam(
-        {required FavoretModel model,
+        {required AllBanksModel model,
         required double screenWidth,
         double Iconopacity = 1,
         required BuildContext context}) =>
@@ -339,12 +346,18 @@ Widget FavoretIteam(
               ),
               const Spacer(),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    layoutCubit
+                        .get(context)
+                        .changeFavorets(model.id, model.favorite);
+                  },
                   icon: Opacity(
                     opacity: Iconopacity,
                     child: Icon(
                       Iconsax.heart5,
-                      color: Colors.red,
+                      color: layoutCubit.get(context).favoret[model.id] ?? false
+                          ? Colors.red
+                          : Colors.black,
                       size: 32,
                     ),
                   ))

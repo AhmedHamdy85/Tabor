@@ -131,7 +131,7 @@ class HomeScreen extends StatelessWidget {
                     Container(
                       height: (screenHight * 0.11) + 76,
                       child: ConditionalBuilder(
-                        condition: layoutCubit.get(context).bankModel != null,
+                        condition: state is! GetAllBanksLoadingState,
                         builder: (context) => ListView.builder(
                           itemCount: layoutCubit.get(context).bankModel.length,
                           scrollDirection: Axis.horizontal,
@@ -168,14 +168,14 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     ConditionalBuilder(
-                      condition: layoutCubit.get(context).bankModel != null,
+                      condition: state is! GetAllBanksLoadingState,
                       builder: (context) => ListView.builder(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
                         itemCount: layoutCubit.get(context).bankModel.length,
                         itemBuilder: (context, index) => VerticalCompanyForm(
+                          Iconopacity: 1,
                           model: layoutCubit.get(context).bankModel[index],
-                          Iconopacity: 0.6,
                           context: context,
                           screenWidth: screenWidth,
                         ),

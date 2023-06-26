@@ -123,19 +123,35 @@ class layoutCubit extends Cubit<layoutStates> {
     });
   }
 
-  List<ActiveTeckitModel> activeTeckit = [];
+  List<TeckitModel> activeTeckit = [];
 
   void getActiveTeckit() {
     emit(GetActiveTeckitLoadingState());
     DioHelper.getData(url: ACTIVETICET, token: token).then((value) {
-      activeTeckit.addAll(
-          (value.data as List).map(((e) => ActiveTeckitModel.fromJson(e))));
+      activeTeckit
+          .addAll((value.data as List).map(((e) => TeckitModel.fromJson(e))));
 
       //  print('tecits ${activeTeckit[0].numOfTurn}');
       emit(GetActiveTeckitSuccesState());
     }).catchError((erorr) {
       print('Teckit error is ' + erorr.toString());
       emit(GetActiveTeckitErorrState());
+    });
+  }
+
+  List<TeckitModel> completedTeckit = [];
+
+  void getCompletedTeckit() {
+    emit(GetCompletedTeckitLoadingState());
+    DioHelper.getData(url: COMPLETEDTICKETS, token: token).then((value) {
+      completedTeckit
+          .addAll((value.data as List).map(((e) => TeckitModel.fromJson(e))));
+
+      print(' completed tecits ${completedTeckit[0].active}');
+      emit(GetCompletedTeckitSuccesState());
+    }).catchError((erorr) {
+      print('Teckit error is ' + erorr.toString());
+      emit(GetCompletedTeckitErorrState());
     });
   }
 }

@@ -35,3 +35,9 @@ class GetActiveTeckitLoadingState extends layoutStates {}
 class GetActiveTeckitSuccesState extends layoutStates {}
 
 class GetActiveTeckitErorrState extends layoutStates {}
+
+class GetCompletedTeckitLoadingState extends layoutStates {}
+
+class GetCompletedTeckitSuccesState extends layoutStates {}
+
+class GetCompletedTeckitErorrState extends layoutStates {}

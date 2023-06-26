@@ -21,7 +21,8 @@ class layoutScreen extends StatelessWidget {
       create: (BuildContext context) => layoutCubit()
         ..getAllBanks()
         ..getFavoretBanks()
-        ..getActiveTeckit(),
+        ..getActiveTeckit()
+        ..getCompletedTeckit(),
       child: BlocConsumer<layoutCubit, layoutStates>(
         listener: (context, state) {},
         builder: (context, state) {

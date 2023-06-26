@@ -1,8 +1,13 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tabor/layout/cubit/logic.dart';
+import 'package:tabor/layout/cubit/states.dart';
+import 'package:tabor/model/active_teckit_model/active_teckit_model.dart';
 import 'package:tabor/modules/on_bording/on_bording.dart';
 import 'package:tabor/modules/queue/queue.dart';
 import 'package:tabor/modules/tecktRelode/tecktRelode.dart';
@@ -18,60 +23,79 @@ class TecketScrren extends StatelessWidget {
     double screenHight = MediaQuery.of(context).size.height;
     double containrwidth = screenWidth - 64;
     double cotanrhigt = screenHight * 0.45;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CustomAppBar(screenWidth: screenWidth, text: 'التذاكر' + '    '),
-        Expanded(
-          child: Container(
-            width: double.infinity,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Opacity(
-                      opacity: 0.699999988079071,
-                      child: Text("تذاكر نشطة",
-                          style: const TextStyle(
-                              color: const Color(0xff161616),
-                              fontWeight: FontWeight.w500,
-                              fontFamily: "ReadexPro",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 21.0),
-                          textAlign: TextAlign.right),
+    return BlocConsumer<layoutCubit, layoutStates>(
+      listener: (context, state) {},
+      builder: (context, state) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomAppBar(screenWidth: screenWidth, text: 'التذاكر' + '    '),
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Opacity(
+                        opacity: 0.699999988079071,
+                        child: Text("تذاكر نشطة",
+                            style: const TextStyle(
+                                color: const Color(0xff161616),
+                                fontWeight: FontWeight.w500,
+                                fontFamily: "ReadexPro",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 21.0),
+                            textAlign: TextAlign.right),
+                      ),
                     ),
-                  ),
-                  ActiveTeckt(
-                      screenWidth: screenWidth,
-                      screenHight: screenHight,
-                      cotanrhigt: cotanrhigt,
-                      containrwidth: containrwidth),
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Opacity(
-                      opacity: 0.699999988079071,
-                      child: Text("تذاكر سابقة",
-                          style: const TextStyle(
-                              color: const Color(0xff161616),
-                              fontWeight: FontWeight.w500,
-                              fontFamily: "ReadexPro",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 21.0),
-                          textAlign: TextAlign.right),
+                    ActiveTeckt(
+                        screenWidth: screenWidth,
+                        screenHight: screenHight,
+                        cotanrhigt: cotanrhigt,
+                        containrwidth: containrwidth),
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Opacity(
+                        opacity: 0.699999988079071,
+                        child: Text("تذاكر سابقة",
+                            style: const TextStyle(
+                                color: const Color(0xff161616),
+                                fontWeight: FontWeight.w500,
+                                fontFamily: "ReadexPro",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 21.0),
+                            textAlign: TextAlign.right),
+                      ),
                     ),
-                  ),
-                  for (int i = 0; i <= 5; i++)
-                    Center(
-                      child: InActiveTeckt(screenWidth: screenWidth),
-                    ),
-                ],
+                    ConditionalBuilder(
+                        condition: state is! GetCompletedTeckitLoadingState,
+                        builder: (context) => ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: layoutCubit
+                                  .get(context)
+                                  .completedTeckit
+                                  .length,
+                              itemBuilder: (context, index) => Center(
+                                child: InActiveTeckt(
+                                  screenWidth: screenWidth,
+                                  model: layoutCubit
+                                      .get(context)
+                                      .completedTeckit[index],
+                                ),
+                              ),
+                            ),
+                        fallback: (context) =>
+                            const Center(child: CircularProgressIndicator()))
+                  ],
+                ),
               ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }
@@ -80,9 +104,11 @@ class InActiveTeckt extends StatelessWidget {
   const InActiveTeckt({
     super.key,
     required this.screenWidth,
+    required this.model,
   });
 
   final double screenWidth;
+  final TeckitModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +134,9 @@ class InActiveTeckt extends StatelessWidget {
               right: 10,
             ),
             child: Row(children: [
-              Center(child: DefoltSvgImage(image: 'assets/images/Googel.svg')),
+              Center(
+                child: DefoltSvgImage(image: 'assets/images/Googel.svg'),
+              ),
               SizedBox(
                 width: 8,
               ),
@@ -117,7 +145,7 @@ class InActiveTeckt extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("البنك الاهلى المصرى",
+                    Text("${model.service!.queue!.branch!.bank!.name}",
                         style: const TextStyle(
                             color: const Color(0xff161616),
                             fontWeight: FontWeight.w500,
@@ -127,7 +155,8 @@ class InActiveTeckt extends StatelessWidget {
                         textAlign: TextAlign.right),
                     Padding(
                       padding: const EdgeInsets.only(top: 8, bottom: 8),
-                      child: Text("الفيوم - فرع الجامعة",
+                      child: Text(
+                          "${model.service!.queue!.branch!.nameOfBranch} ",
                           style: const TextStyle(
                               color: const Color(0xff161616),
                               fontWeight: FontWeight.w500,
@@ -138,7 +167,7 @@ class InActiveTeckt extends StatelessWidget {
                     ),
                     Opacity(
                       opacity: 0.5,
-                      child: Text("طابور خدمة العملاء",
+                      child: Text("${model.service!.queue!.nameOfQueue}",
                           style: const TextStyle(
                               color: const Color(0xff161616),
                               fontWeight: FontWeight.w400,
@@ -150,9 +179,7 @@ class InActiveTeckt extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                width: 50,
-              ),
+              const Spacer(),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

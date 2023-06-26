@@ -1,7 +1,7 @@
 import 'service.dart';
 import 'user.dart';
 
-class ActiveTeckitModel {
+class TeckitModel {
   num? id;
   num? numOfTurn;
   num? numOfWaitings;
@@ -12,7 +12,7 @@ class ActiveTeckitModel {
   User? user;
   Service? service;
 
-  ActiveTeckitModel({
+  TeckitModel({
     this.id,
     this.numOfTurn,
     this.numOfWaitings,
@@ -24,8 +24,8 @@ class ActiveTeckitModel {
     this.service,
   });
 
-  factory ActiveTeckitModel.fromJson(Map<String, dynamic> json) {
-    return ActiveTeckitModel(
+  factory TeckitModel.fromJson(Map<String, dynamic> json) {
+    return TeckitModel(
       id: num.tryParse(json['id'].toString()),
       numOfTurn: num.tryParse(json['num_of_turn'].toString()),
       numOfWaitings: num.tryParse(json['num_of_waitings'].toString()),

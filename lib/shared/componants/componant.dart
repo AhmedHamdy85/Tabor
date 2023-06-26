@@ -10,8 +10,6 @@ import 'package:tabor/modules/service/service.dart';
 import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 
-import '../../model/favoret_model/favoret_model.dart';
-
 Widget DefoltButon({
   double width = double.infinity,
   required double fontsize,

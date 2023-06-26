@@ -29,3 +29,9 @@ class ChangeFavoretState extends layoutStates {}
 class ChangeFavoretSuccesState extends layoutStates {}
 
 class ChangeFavoretErorrState extends layoutStates {}
+
+class GetActiveTeckitLoadingState extends layoutStates {}
+
+class GetActiveTeckitSuccesState extends layoutStates {}
+
+class GetActiveTeckitErorrState extends layoutStates {}

@@ -10,6 +10,7 @@ import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/endpints.dart';
 import 'package:tabor/shared/network/remote/dio_helper.dart';
 
+import '../../model/active_teckit_model/active_teckit_model.dart';
 import '../../model/bankmodels/all_banks_model/all_banks_model.dart';
 import '../../model/favoret_model/favoret_model.dart';
 
@@ -76,8 +77,8 @@ class layoutCubit extends Cubit<layoutStates> {
         });
       });
 
-      print(favoret.toString());
-      print(favoretIteams.length);
+      //  print(favoret.toString());
+      //print(favoretIteams.length);
       emit(GetAllBanksSuccesState());
     }).catchError((erorr) {
       print('error is ' + erorr.toString());
@@ -90,10 +91,10 @@ class layoutCubit extends Cubit<layoutStates> {
   void getFavoretBanks() {
     emit(GetFavoretBanksLoadingState());
     DioHelper.getData(url: FAVORETBANKS, token: token).then((value) {
-      favoretModel
-          .addAll((value.data as List).map(((e) => FavoretModel.fromJson(e))));
+      // favoretModel
+      //     .addAll((value.data as List).map(((e) => FavoretModel.fromJson(e))));
 
-      print(bankModel.length);
+      print('favoret 1 is ${value.statusMessage}');
       emit(GetFavoretBanksSuccesState());
     }).catchError((erorr) {
       print('favoret error is ' + erorr.toString());
@@ -111,7 +112,7 @@ class layoutCubit extends Cubit<layoutStates> {
       data: {'favorite': !status!},
     ).then((value) {
       changeModel = ChangeFavoretModel.fromJson(value.data);
-      getAllBanks();
+      // getAllBanks();
       print(value.data);
 
       emit(ChangeFavoretSuccesState());
@@ -119,6 +120,22 @@ class layoutCubit extends Cubit<layoutStates> {
       favoret[id] = !favoret[id]!;
       print(erorr.toString());
       emit(ChangeFavoretErorrState());
+    });
+  }
+
+  List<ActiveTeckitModel> activeTeckit = [];
+
+  void getActiveTeckit() {
+    emit(GetActiveTeckitLoadingState());
+    DioHelper.getData(url: ACTIVETICET, token: token).then((value) {
+      activeTeckit.addAll(
+          (value.data as List).map(((e) => ActiveTeckitModel.fromJson(e))));
+
+      //  print('tecits ${activeTeckit[0].numOfTurn}');
+      emit(GetActiveTeckitSuccesState());
+    }).catchError((erorr) {
+      print('Teckit error is ' + erorr.toString());
+      emit(GetActiveTeckitErorrState());
     });
   }
 }

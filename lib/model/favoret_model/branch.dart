@@ -1,33 +1,34 @@
-import 'branch.dart';
-
-class FavoretModel {
+class Branch {
   num? id;
-  String? name;
-  num? numberOfBranchs;
-  dynamic image;
+  String? nameOfBranch;
+  String? distanceBranchUser;
+  String? image;
+  num? numberOfQueues;
   bool? favorite;
   DateTime? createdAt;
   DateTime? updatedAt;
   num? user;
-  List<Branch>? branchs;
+  String? bank;
 
-  FavoretModel({
+  Branch({
     this.id,
-    this.name,
-    this.numberOfBranchs,
+    this.nameOfBranch,
+    this.distanceBranchUser,
     this.image,
+    this.numberOfQueues,
     this.favorite,
     this.createdAt,
     this.updatedAt,
     this.user,
-    this.branchs,
+    this.bank,
   });
 
-  factory FavoretModel.fromJson(Map<String, dynamic> json) => FavoretModel(
+  factory Branch.fromJson(Map<String, dynamic> json) => Branch(
         id: num.tryParse(json['id'].toString()),
-        name: json['name']?.toString(),
-        numberOfBranchs: num.tryParse(json['number_of_branchs'].toString()),
-        image: json['image'],
+        nameOfBranch: json['name_of_branch']?.toString(),
+        distanceBranchUser: json['Distance_branch_user']?.toString(),
+        image: json['image']?.toString(),
+        numberOfQueues: num.tryParse(json['number_of_queues'].toString()),
         favorite: json['favorite']?.toString().contains("true"),
         createdAt: json['created_at'] == null
             ? null
@@ -36,21 +37,20 @@ class FavoretModel {
             ? null
             : DateTime.tryParse(json['updated_at'].toString()),
         user: num.tryParse(json['user'].toString()),
-        branchs: (json['Branchs'] as List<dynamic>?)
-            ?.map((e) => Branch.fromJson(Map<String, dynamic>.from(e)))
-            .toList(),
+        bank: json['bank']?.toString(),
       );
 
   Map<String, dynamic> toJson() => {
         if (id != null) 'id': id,
-        if (name != null) 'name': name,
-        if (numberOfBranchs != null) 'number_of_branchs': numberOfBranchs,
+        if (nameOfBranch != null) 'name_of_branch': nameOfBranch,
+        if (distanceBranchUser != null)
+          'Distance_branch_user': distanceBranchUser,
         if (image != null) 'image': image,
+        if (numberOfQueues != null) 'number_of_queues': numberOfQueues,
         if (favorite != null) 'favorite': favorite,
         if (createdAt != null) 'created_at': createdAt?.toIso8601String(),
         if (updatedAt != null) 'updated_at': updatedAt?.toIso8601String(),
         if (user != null) 'user': user,
-        if (branchs != null)
-          'Branchs': branchs?.map((e) => e.toJson()).toList(),
+        if (bank != null) 'bank': bank,
       };
 }

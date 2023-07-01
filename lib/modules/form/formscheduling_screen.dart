@@ -21,9 +21,6 @@ class FormScheduling extends StatefulWidget {
 
 class _FormSchedulingState extends State<FormScheduling> {
   @override
-  Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHight = MediaQuery.of(context).size.height;
     TextEditingController phoneController = TextEditingController();
     TextEditingController nationalIDController = TextEditingController();
     TextEditingController nameController = TextEditingController();
@@ -51,8 +48,11 @@ class _FormSchedulingState extends State<FormScheduling> {
         });
       });
     }
-    TextEditingController dateController = TextEditingController();
-    TextEditingController timeController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),

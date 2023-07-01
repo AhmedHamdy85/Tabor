@@ -44,9 +44,14 @@ dependencies:
   shared_preferences: 
   smooth_page_indicator: 
   toggle_switch: 
+  google_maps_flutter: 
+  material_dialogs: 
+  lottie:
+  slide_countdown: 
+  simple_progress_indicators:
+  animated_custom_dropdown:
   fluttertoast: 
   conditional_builder_null_safety: ^0.0.6
-
 dev_dependencies:
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -71,6 +76,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/animation/
 
   fonts:
     - family: ReadexPro

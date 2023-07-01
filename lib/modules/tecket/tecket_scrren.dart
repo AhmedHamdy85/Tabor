@@ -1,18 +1,19 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:tabor/layout/layout_screen.dart';
+import 'package:tabor/modules/Home/map/mapscreen.dart';
+import 'package:tabor/modules/showTecket/showTecket.dart';
+import 'package:tabor/modules/tecktRelode/tecktRelode.dart';
+import 'package:tabor/shared/componants/componant.dart';
+import 'package:tabor/shared/componants/constants.dart';
+import 'package:tabor/shared/componants/iconsax_icons.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/layout/cubit/states.dart';
+import 'package:flutter/rendering.dart';
 import 'package:tabor/model/active_teckit_model/active_teckit_model.dart';
 import 'package:tabor/modules/on_bording/on_bording.dart';
 import 'package:tabor/modules/queue/queue.dart';
-import 'package:tabor/modules/tecktRelode/tecktRelode.dart';
-import 'package:tabor/shared/componants/componant.dart';
-import 'package:tabor/shared/componants/iconsax_icons.dart';
 
 class TecketScrren extends StatelessWidget {
   const TecketScrren({super.key});
@@ -28,7 +29,10 @@ class TecketScrren extends StatelessWidget {
       builder: (context, state) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomAppBar(screenWidth: screenWidth, text: 'التذاكر' + '    '),
+          CustomAppBar(
+              screenWidth: screenWidth,
+              text: 'التذاكر' '    ',
+              context: context),
           Expanded(
             child: Container(
               width: double.infinity,
@@ -40,33 +44,51 @@ class TecketScrren extends StatelessWidget {
                       padding: const EdgeInsets.all(16),
                       child: Opacity(
                         opacity: 0.699999988079071,
-                        child: Text("تذاكر نشطة",
-                            style: const TextStyle(
-                                color: const Color(0xff161616),
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "ReadexPro",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 21.0),
-                            textAlign: TextAlign.right),
+                        child: specialtext(
+                            text: "تذاكر نشطة",
+                            fsize: 21,
+                            fweight: FontWeight.w500),
                       ),
                     ),
-                    ActiveTeckt(
-                        screenWidth: screenWidth,
-                        screenHight: screenHight,
-                        cotanrhigt: cotanrhigt,
-                        containrwidth: containrwidth),
+                    InkWell(
+                      onTap: () {
+                        NavigateTo(
+                            context,
+                            const Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: ShowTecketScreen()));
+                      },
+                      child: ConditionalBuilder(
+                          condition: state is! GetActiveTeckitLoadingState,
+                          builder: (context) => ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: layoutCubit
+                                    .get(context)
+                                    .activeTeckit
+                                    .length,
+                                itemBuilder: (context, index) => Center(
+                                  child: ActiveTeckt(
+                                      model: layoutCubit
+                                          .get(context)
+                                          .activeTeckit[index],
+                                      screenWidth: screenWidth,
+                                      screenHight: screenHight,
+                                      cotanrhigt: cotanrhigt,
+                                      containrwidth: containrwidth),
+                                ),
+                              ),
+                          fallback: (context) =>
+                              const Center(child: CircularProgressIndicator())),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: Opacity(
                         opacity: 0.699999988079071,
-                        child: Text("تذاكر سابقة",
-                            style: const TextStyle(
-                                color: const Color(0xff161616),
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "ReadexPro",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 21.0),
-                            textAlign: TextAlign.right),
+                        child: specialtext(
+                            text: "تذاكر سابقة",
+                            fsize: 21,
+                            fweight: FontWeight.w500),
                       ),
                     ),
                     ConditionalBuilder(
@@ -88,7 +110,7 @@ class TecketScrren extends StatelessWidget {
                               ),
                             ),
                         fallback: (context) =>
-                            const Center(child: CircularProgressIndicator()))
+                            const Center(child: CircularProgressIndicator())),
                   ],
                 ),
               ),
@@ -134,9 +156,7 @@ class InActiveTeckt extends StatelessWidget {
               right: 10,
             ),
             child: Row(children: [
-              Center(
-                child: DefoltSvgImage(image: 'assets/images/Googel.svg'),
-              ),
+              Center(child: DefoltSvgImage(image: 'assets/images/Googel.svg')),
               SizedBox(
                 width: 8,
               ),
@@ -145,36 +165,23 @@ class InActiveTeckt extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("${model.service!.queue!.branch!.bank!.name}",
-                        style: const TextStyle(
-                            color: const Color(0xff161616),
-                            fontWeight: FontWeight.w500,
-                            fontFamily: "ReadexPro",
-                            fontStyle: FontStyle.normal,
-                            fontSize: 14.0),
-                        textAlign: TextAlign.right),
+                    specialtext(
+                      text: "${model.service!.queue!.branch!.bank!.name}",
+                      fweight: FontWeight.w500,
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8, bottom: 8),
-                      child: Text(
-                          "${model.service!.queue!.branch!.nameOfBranch} ",
-                          style: const TextStyle(
-                              color: const Color(0xff161616),
-                              fontWeight: FontWeight.w500,
-                              fontFamily: "ReadexPro",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 12.0),
-                          textAlign: TextAlign.right),
+                      child: specialtext(
+                          text:
+                              "${model.service!.queue!.branch!.nameOfBranch} ",
+                          fsize: 12,
+                          fweight: FontWeight.w500),
                     ),
                     Opacity(
                       opacity: 0.5,
-                      child: Text("${model.service!.queue!.nameOfQueue}",
-                          style: const TextStyle(
-                              color: const Color(0xff161616),
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "ReadexPro",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 12.0),
-                          textAlign: TextAlign.right),
+                      child: specialtext(
+                          text: "${model.service!.queue!.nameOfQueue}",
+                          fsize: 12),
                     ),
                   ],
                 ),
@@ -250,8 +257,10 @@ class ActiveTeckt extends StatelessWidget {
     required this.screenHight,
     required this.cotanrhigt,
     required this.containrwidth,
+    required this.model,
   });
 
+  final TeckitModel model;
   final double screenWidth;
   final double screenHight;
   final double cotanrhigt;
@@ -287,41 +296,26 @@ class ActiveTeckt extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("البنك الاهلى المصرى",
-                          style: const TextStyle(
-                              color: const Color(0xff161616),
-                              fontWeight: FontWeight.w500,
-                              fontFamily: "ReadexPro",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 14.0),
-                          textAlign: TextAlign.right),
+                      specialtext(
+                          text: '${model.service!.queue!.branch!.bank!.name}',
+                          fweight: FontWeight.w500),
                       Padding(
                         padding: const EdgeInsets.only(top: 8, bottom: 8),
-                        child: Text("الفيوم - فرع الجامعة",
-                            style: const TextStyle(
-                                color: const Color(0xff161616),
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "ReadexPro",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 12.0),
-                            textAlign: TextAlign.right),
+                        child: specialtext(
+                            text:
+                                "${model.service!.queue!.branch!.nameOfBranch}",
+                            fsize: 12,
+                            fweight: FontWeight.w500),
                       ),
                       Opacity(
                         opacity: 0.5,
-                        child: Text("طابور خدمة العملاء",
-                            style: const TextStyle(
-                                color: const Color(0xff161616),
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "ReadexPro",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 12.0),
-                            textAlign: TextAlign.right),
+                        child: specialtext(
+                            text: '${model.service!.queue!.nameOfQueue}',
+                            fsize: 12),
                       ),
                     ],
                   ),
-                  SizedBox(
-                    width: screenWidth * 0.052,
-                  ),
+                  const Spacer(),
                   Padding(
                     padding: const EdgeInsets.all(11),
                     child: Container(
@@ -336,7 +330,7 @@ class ActiveTeckt extends StatelessWidget {
                           ]),
                       child: InkWell(
                           onTap: () {
-                            print(screenHight);
+                            NavigateTo(context, MapHome());
                           },
                           child: Image.asset('assets/images/Frame 70.png')),
                     ),
@@ -344,7 +338,19 @@ class ActiveTeckt extends StatelessWidget {
                   Opacity(
                     opacity: 0.5,
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        animatedDialog(
+                            context: context,
+                            width: screenWidth,
+                            text1: 'رجوع',
+                            text2: 'الغاء التذكرة',
+                            title: 'هل تريد الغاء تذكرتك ؟',
+                            massege:
+                                'عند تكرار الغاء التذكرة سيتم حذرك من استخدام خدماتنا',
+                            animation: 'question',
+                            screen: const layoutScreen(),
+                            color: const Color(0xffE11A1A));
+                      },
                       child: Container(
                         width: 32,
                         height: 32,
@@ -376,25 +382,17 @@ class ActiveTeckt extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 16, left: 16),
                   child: Row(
                     children: [
-                      Text("العدد فى الانتظار",
-                          style: const TextStyle(
-                              color: const Color(0xff161616),
-                              fontWeight: FontWeight.w500,
-                              fontFamily: "ReadexPro",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 18.0),
-                          textAlign: TextAlign.right),
+                      specialtext(
+                          text: "العدد فى الانتظار",
+                          fweight: FontWeight.w500,
+                          fsize: 18),
                       SizedBox(
                         width: screenWidth * 0.22,
                       ),
-                      Text(" 3 ",
-                          style: const TextStyle(
-                              color: const Color(0xff161616),
-                              fontWeight: FontWeight.w500,
-                              fontFamily: "ReadexPro",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 18.0),
-                          textAlign: TextAlign.right)
+                      specialtext(
+                          text: '${model.numOfWaitings}',
+                          fsize: 18,
+                          fweight: FontWeight.w500),
                     ],
                   ),
                 ),
@@ -407,25 +405,12 @@ class ActiveTeckt extends StatelessWidget {
               padding: const EdgeInsets.only(right: 16, left: 16),
               child: Row(
                 children: [
-                  Text("الوقت المتبقى",
-                      style: const TextStyle(
-                          color: const Color(0xff161616),
-                          fontWeight: FontWeight.w500,
-                          fontFamily: "ReadexPro",
-                          fontStyle: FontStyle.normal,
-                          fontSize: 14.0),
-                      textAlign: TextAlign.right),
-                  SizedBox(
-                    width: screenWidth * 0.38,
+                  specialtext(
+                    text: "الوقت المتبقى",
+                    fweight: FontWeight.w500,
                   ),
-                  Text("05:00",
-                      style: const TextStyle(
-                          color: const Color(0xff161616),
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "ReadexPro",
-                          fontStyle: FontStyle.normal,
-                          fontSize: 14.0),
-                      textAlign: TextAlign.right),
+                  const Spacer(),
+                  timeRemain(),
                 ],
               ),
             ),
@@ -433,19 +418,7 @@ class ActiveTeckt extends StatelessWidget {
               height: 5,
             ),
             Center(
-              child: Container(
-                width: containrwidth - 32,
-                height: 8,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    gradient: LinearGradient(stops: [
-                      0.3,
-                      0.3
-                    ], colors: [
-                      Color(0xffbceee3),
-                      Color(0xff009c7b),
-                    ])),
-              ),
+              child: linearIndicator(width: containrwidth - 32),
             ),
             SizedBox(
               height: 30,
@@ -456,12 +429,6 @@ class ActiveTeckt extends StatelessWidget {
                   width: 25,
                   height: 35,
                   decoration: BoxDecoration(
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //       color: const Color(0x40000000),
-                      //       offset: Offset(0, 0),
-                      //       spreadRadius: 0)
-                      // ],
                       color: Color(0xffE9EBEB),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(20),
@@ -488,12 +455,6 @@ class ActiveTeckt extends StatelessWidget {
                   width: 25,
                   height: 35,
                   decoration: BoxDecoration(
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //       color: const Color(0x40000000),
-                      //       offset: Offset(0, 0),
-                      //       spreadRadius: 0)
-                      // ],
                       color: Color(0xffE9EBEB),
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(20),
@@ -503,56 +464,15 @@ class ActiveTeckt extends StatelessWidget {
             ),
             Opacity(
               opacity: 0.5,
-              child: Text("رقم الدور",
-                  style: const TextStyle(
-                      color: const Color(0xff161616),
-                      fontWeight: FontWeight.w500,
-                      fontFamily: "ReadexPro",
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14.0),
-                  textAlign: TextAlign.right),
+              child: specialtext(
+                text: "رقم الدور",
+                fweight: FontWeight.w500,
+              ),
             ),
-            Text("C-002",
-                style: const TextStyle(
-                    color: const Color(0xff161616),
-                    fontWeight: FontWeight.w500,
-                    fontFamily: "ReadexPro",
-                    fontStyle: FontStyle.normal,
-                    fontSize: 41.0),
-                textAlign: TextAlign.right)
+            specialtext(text: "C-002", fweight: FontWeight.w500, fsize: 41),
           ],
         ),
       ),
     );
   }
 }
-/*class MenuItems {
-  static const List<MenuItem> firstItems = [like, share, download];
-  static const List<MenuItem> secondItems = [cancel];
-
-  static const like = MenuItem(text: 'Like', icon: Icons.favorite);
-  static const share = MenuItem(text: 'Share', icon: Icons.share);
-  static const download = MenuItem(text: 'Download', icon: Icons.download);
-  static const cancel = MenuItem(text: 'Cancel', icon: Icons.cancel);
-
-  static Widget buildItem(MenuItem item) {
-    return Row(
-      children: [
-        Icon(
-          item.icon,
-          color: Colors.white,
-          size: 22,
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Text(
-          item.text,
-          style: const TextStyle(
-            color: Colors.white,
-          ),
-        ),
-      ],
-    );
-  }
-  }*/

@@ -1,14 +1,27 @@
-import 'package:flutter/cupertino.dart';
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tabor/model/favoret_model/favoret_model.dart';
+import 'package:tabor/modules/branshes/branshes.dart';
+import 'package:tabor/modules/queue/queue.dart';
+import 'package:tabor/modules/showTecket/showTecket.dart';
+import 'package:tabor/modules/tecket/tecket_scrren.dart';
+import 'package:tabor/shared/componants/constants.dart';
+import 'package:tabor/shared/componants/iconsax_icons.dart';
+import 'package:material_dialogs/material_dialogs.dart';
+import 'package:lottie/lottie.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/model/bankmodels/all_banks_model/all_banks_model.dart';
-import 'package:tabor/modules/branshes/branshes.dart';
-import 'package:tabor/modules/queue/queue.dart';
 import 'package:tabor/modules/service/service.dart';
-import 'package:tabor/shared/componants/constants.dart';
-import 'package:tabor/shared/componants/iconsax_icons.dart';
+import 'package:material_dialogs/widgets/buttons/icon_button.dart';
+import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
+import 'package:simple_progress_indicators/simple_progress_indicators.dart';
+import 'package:slide_countdown/slide_countdown.dart';
+import 'package:tabor/layout/layout_screen.dart';
+import 'package:tabor/modules/Home/map/mapscreen.dart';
+import 'package:tabor/modules/Home/search/search.dart';
 
 Widget DefoltButon({
   double width = double.infinity,
@@ -282,7 +295,7 @@ Widget VerticalCompanyForm(
 //custom favoret iteam
 
 Widget FavoretIteam(
-        {required AllBanksModel model,
+        {required FavoretModel model,
         required double screenWidth,
         double Iconopacity = 1,
         required BuildContext context}) =>
@@ -368,7 +381,8 @@ Widget FavoretIteam(
 Widget CustomAppBar(
         { //double screenHight=120,
         required double screenWidth,
-        required String text}) =>
+        required String text,
+        required BuildContext context}) =>
     Container(
       height: 120,
       width: double.infinity,
@@ -379,7 +393,7 @@ Widget CustomAppBar(
             bottomRight: Radius.circular(16), bottomLeft: Radius.circular(16)),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
+        padding: const EdgeInsets.only(right: 16, left: 16, bottom: 24),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -399,11 +413,14 @@ Widget CustomAppBar(
       ),
     );
 
-Widget AppBar2(
-        {required double screenHight,
-        required double screenWidth,
-        required String text,
-        required BuildContext context}) =>
+Widget AppBar2({
+  required double screenHight,
+  required double screenWidth,
+  required String text,
+  required BuildContext context,
+  required Widget screenMap,
+  required Widget screenSearch,
+}) =>
     Container(
       height: 120,
       width: double.infinity,
@@ -1180,27 +1197,21 @@ Widget navigationButton(
         double height = 52,
         double width = double.infinity,
         VoidCallback? function}) =>
-    InkWell(
-        onTap: function,
-        /*(){
-                      /*  NavigateTo(context,Directionality(textDirection: TextDirection.rtl,
-                        child: layoutScreen())
-                         );*/
-                  },*/
-        child: Container(
-          height: height,
-          width: width,
-          decoration: BoxDecoration(
-              color: Color(0xff009c7b),
-              borderRadius: BorderRadius.all(Radius.circular(8))),
-          child: Center(
-            child: specialtext(
-                text: text,
-                fcolor: Color(0xffffffff),
-                fsize: 18,
-                fweight: FontWeight.w500),
-          ),
-        ));
+    MaterialButton(
+      onPressed: function,
+      height: height,
+      minWidth: width,
+      color: mainColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: specialtext(
+          text: text,
+          fsize: 18,
+          fweight: FontWeight.w500,
+          fcolor: const Color(0xffffffff),
+          talign: TextAlign.center),
+    );
 Widget MixedText({
   required String text1,
   String text2 = "*",
@@ -1225,11 +1236,9 @@ Widget MixedText({
           text: text2)
     ]));
 Widget ContainerPicker({
-  //required String text,
-  required TextEditingController myController,
+  required String text,
   required IconData icon,
   required VoidCallback function,
-  required FormFieldValidator<String>? validate,
 }) =>
     Container(
       height: 48,
@@ -1242,11 +1251,7 @@ Widget ContainerPicker({
       ),
       child: Row(
         children: [
-          TextFormField(
-            readOnly: true,
-            controller: myController,
-            validator: validate,
-          ),
+          specialtext(text: text, fsize: 16, talign: TextAlign.end),
           const Spacer(),
           InkWell(
             onTap: function,
@@ -1271,7 +1276,6 @@ Widget ContainerPicker({
         ],
       ),
     );
-
 void showToast({required String text, required toastStates state}) =>
     Fluttertoast.showToast(
       msg: text,
@@ -1300,3 +1304,449 @@ Color choseToastColor(toastStates state) {
   }
   return color;
 }
+
+Widget SpecificDrawer(
+        {required double screenWidth,
+        required double screenheight,
+        required int notifyNumber,
+        required bool darktMode,
+        required bool lightMode,
+        VoidCallback? darkfunction,
+        VoidCallback? lightfunction,
+        VoidCallback? navigyNotify,
+        VoidCallback? navigyEdit}) =>
+    Container(
+      width: (290 / 390) * screenWidth,
+      height: screenheight,
+      color: Colors.white,
+      child: ListView(
+        children: [
+          Container(
+            height: (224 / 844) * screenheight,
+            child: UserAccountsDrawerHeader(
+              accountName: Text(
+                "نادر سيد",
+                style: TextStyle(
+                    color: const Color(0xffffffff),
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "ReadexPro",
+                    fontStyle: FontStyle.normal,
+                    fontSize: 21.0),
+                textAlign: TextAlign.center,
+              ),
+              accountEmail: Text("01125229119",
+                  style: TextStyle(
+                      color: Color(0xffffffff),
+                      fontWeight: FontWeight.w300,
+                      fontFamily: "ReadexPro",
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14.0),
+                  textAlign: TextAlign.right),
+              currentAccountPicture: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Container(
+                  height: 64,
+                  width: 64,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      image: DecorationImage(
+                          image: AssetImage(
+                            'assets/images/unknown.png',
+                          ),
+                          fit: BoxFit.fill)),
+                ),
+              ),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    "https://images.unsplash.com/photo-1553095066-5014bc7b7f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2FsbCUyMGJhY2tncm91bmR8ZW58MHx8MHx8&w=1000&q=80",
+                  ),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8, bottom: 8),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+                color: notifyNumber > 0 ? Color(0xffe9ebeb) : null,
+              ),
+              child: ListTile(
+                selectedColor: Colors.grey,
+                horizontalTitleGap: 0,
+                leading: Container(
+                  width: 24,
+                  height: 24,
+                  child: DefoltSvgImage(
+                      image: 'assets/images/vuesax_outline_notification.svg'),
+                ),
+                title: specialtext(
+                  text: 'الاشعارات',
+                ),
+                trailing: CircleAvatar(
+                  radius: 10,
+                  backgroundColor:
+                      notifyNumber > 0 ? Color(0xff009c7b) : Colors.white,
+                  child: specialtext(
+                    text: '$notifyNumber',
+                    fcolor: Color(0xffe9ebeb),
+                  ),
+                ),
+                onTap: navigyNotify,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: ListTile(
+              selectedColor: Colors.grey,
+              horizontalTitleGap: 0,
+              leading: Container(
+                width: 24,
+                height: 24,
+                child: DefoltSvgImage(
+                    image: 'assets/images/vuesax_outline_setting_2.svg'),
+              ),
+              title: specialtext(
+                text: 'تعديل الملف الشخصي',
+              ),
+              onTap: navigyEdit,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: ListTile(
+              selectedColor: Colors.grey,
+              horizontalTitleGap: 0,
+              leading: Container(
+                width: 24,
+                height: 24,
+                child: DefoltSvgImage(
+                    image: 'assets/images/vuesax_outline_global.svg'),
+              ),
+              title: specialtext(
+                text: 'اللغة',
+              ),
+              subtitle: specialtext(
+                text: 'العربية',
+                fcolor: Color(0xff7d7d7d),
+              ),
+              onTap: () {},
+            ),
+          ),
+          Divider(
+            thickness: 2,
+            indent: 20,
+            endIndent: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: ListTile(
+              selectedColor: Colors.grey,
+              horizontalTitleGap: 0,
+              leading: Container(
+                width: 24,
+                height: 24,
+                child: DefoltSvgImage(
+                    image: 'assets/images/vuesax_outline_book.svg'),
+              ),
+              title: specialtext(
+                text: 'سياسة الخصوصية',
+              ),
+              onTap: () {},
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: ListTile(
+              selectedColor: Colors.grey,
+              horizontalTitleGap: 0,
+              leading: Container(
+                width: 24,
+                height: 24,
+                child: DefoltSvgImage(
+                    image: 'assets/images/vuesax_outline_clipboard_text.svg'),
+              ),
+              title: specialtext(
+                text: 'الشروط والاحكام',
+              ),
+              onTap: () {},
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: ListTile(
+              selectedColor: Colors.grey,
+              horizontalTitleGap: 0,
+              leading: Container(
+                width: 24,
+                height: 24,
+                child: DefoltSvgImage(
+                    image: 'assets/images/vuesax_outline_message.svg'),
+              ),
+              title: specialtext(
+                text: 'تواصل معنا',
+              ),
+              onTap: () {},
+            ),
+          ),
+          Divider(
+            thickness: 2,
+            indent: 20,
+            endIndent: 20,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: ListTile(
+              selectedColor: Colors.grey,
+              horizontalTitleGap: 0,
+              leading: Container(
+                width: 24,
+                height: 24,
+                child: DefoltSvgImage(
+                    image: 'assets/images/vuesax_outline_logout.svg'),
+              ),
+              title: specialtext(
+                text: 'تسجيل الخروج',
+              ),
+              onTap: () {},
+            ),
+          ),
+          Spacer(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: (25 / 390) * screenWidth),
+            child: Container(
+              width: (242 / 390) * screenWidth,
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                color: darktMode ? Colors.black : Color(0xffe9e9e9),
+              ),
+              child: Row(
+                children: [
+                  InkWell(
+                    onTap: darkfunction,
+                    child: Container(
+                      width: (117 / 390) * screenWidth,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                        color: darktMode ? Colors.black : Color(0xffe9e9e9),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          specialtext(
+                              text: 'Dark',
+                              fcolor:
+                                  darktMode ? Colors.orange : Color(0xff8c8c8c),
+                              fsize: 16,
+                              ffamily: 'Roboto-Medium',
+                              fweight: FontWeight.w500,
+                              talign: TextAlign.center),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Iconsax.moon5,
+                            size: 25,
+                            color:
+                                darktMode ? Colors.orange : Color(0xff8c8c8c),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: lightfunction,
+                    child: Container(
+                      width: (117 / 390) * screenWidth,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                        boxShadow: [
+                          BoxShadow(color: Color(0xff40000000), blurRadius: 4),
+                        ],
+                        color: lightMode ? Color(0xffffffff) : Colors.black,
+                        //Color(0xffffffff),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          specialtext(
+                              text: 'Light',
+                              fcolor: lightMode
+                                  ? Color(0xff3e3e3e)
+                                  : Color(0xff8c8c8c),
+                              fsize: 16,
+                              ffamily: 'Roboto-Medium',
+                              fweight: FontWeight.w500,
+                              talign: TextAlign.center),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Iconsax.sun_15,
+                            size: 22.5,
+                            color: lightMode
+                                ? Color(0xff3e3e3e)
+                                : Color(0xff8c8c8c),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+Future<void> animatedDialog({
+  required BuildContext context,
+  required double width,
+  String title = 'تم حجز تذكرتك بنجاح',
+  String massege = 'لا تقلق سوف نقوم بتذكيرك عند اقتراب دورك',
+  String text1 = 'الغاء',
+  String text2 = 'حسنا',
+  String animation = 'done',
+  Widget screen = const ShowTecketScreen(),
+  Color color = const Color(0xff009c7b),
+}) =>
+    Dialogs.materialDialog(
+        titleAlign: TextAlign.center,
+        msgAlign: TextAlign.center,
+        dialogWidth: width,
+        color: Colors.white,
+        msg: massege,
+        title: title,
+        msgStyle: TextStyle(
+          fontSize: 20,
+          color: Color(0xff161616),
+          fontStyle: FontStyle.normal,
+          fontFamily: "ReadexPro",
+          fontWeight: FontWeight.w400,
+        ),
+        titleStyle: TextStyle(
+            fontSize: 27,
+            color: color,
+            fontStyle: FontStyle.normal,
+            fontFamily: "ReadexPro",
+            fontWeight: FontWeight.w500),
+        lottieBuilder: Lottie.asset(
+          'assets/animation/$animation.json',
+          fit: BoxFit.contain,
+        ),
+        context: context,
+        actions: [
+          IconsOutlineButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            text: text1,
+            textStyle: TextStyle(color: mainColor),
+            iconColor: mainColor,
+          ),
+          IconsButton(
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Directionality(
+                          textDirection: TextDirection.rtl, child: screen)),
+                  (route) => false);
+            },
+            text: text2,
+            color: mainColor,
+            textStyle: TextStyle(color: Colors.white),
+            iconColor: Colors.white,
+          ),
+        ]);
+Widget Navigation2Button() => MaterialButton(
+      color: Color(0xff009c7b),
+      minWidth: double.infinity,
+      height: 52,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      onPressed: () {},
+      child: Container(
+        alignment: Alignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Iconsax.repeat,
+              color: const Color(0xffffffff),
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            specialtext(
+                text: 'اعادة الحجز',
+                fsize: 18,
+                fweight: FontWeight.w500,
+                fcolor: const Color(0xffffffff),
+                talign: TextAlign.center)
+          ],
+        ),
+      ),
+    );
+Widget timeRemain() => SlideCountdown(
+      duration: Duration(minutes: x),
+      textStyle: TextStyle(
+        color: const Color(0xff161616),
+        fontWeight: FontWeight.w400,
+        fontFamily: "ReadexPro",
+        fontStyle: FontStyle.normal,
+        fontSize: 14.0,
+      ),
+      separatorStyle: TextStyle(
+        color: const Color(0xff161616),
+      ),
+      decoration: BoxDecoration(
+        color: const Color(0xffffffff),
+      ),
+    );
+Widget linearIndicator({required double width}) => ProgressBarAnimation(
+    width: width,
+    height: 8,
+    duration: Duration(minutes: x),
+    gradient: const LinearGradient(
+      colors: [
+        Color(0xffbceee3),
+        mainColor,
+      ],
+    ),
+    backgroundColor: Colors.grey.withOpacity(0.4));
+Widget customDropDown(
+        {required TextEditingController controller,
+        dynamic Function(String)? onChanged}) =>
+    Directionality(
+      textDirection: TextDirection.rtl,
+      child: CustomDropdown(
+          hintText: '  اختار غرضك من الخدمه',
+          items: ['  فتح /غلق حساب', '  شكوى', '  خدمات اخرى'],
+          controller: controller,
+          selectedStyle: TextStyle(
+            color: mainColor,
+            fontWeight: FontWeight.w500,
+            fontFamily: "ReadexPro",
+            fontStyle: FontStyle.normal,
+            fontSize: 16.0,
+          ),
+          listItemStyle: TextStyle(
+              color: const Color(0xff161616),
+              fontWeight: FontWeight.w500,
+              fontFamily: "ReadexPro",
+              fontStyle: FontStyle.normal,
+              fontSize: 16.0),
+          onChanged: onChanged),
+    );

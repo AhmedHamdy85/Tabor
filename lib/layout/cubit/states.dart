@@ -6,11 +6,13 @@ class layoutInatialState extends layoutStates {}
 
 class changeBottmnaveState extends layoutStates {}
 
-class serviceRadioButtonState extends layoutStates {}
+class serviceRadioButtonState extends layoutStates{}
 
-class passwordState extends layoutStates {}
+class passwordState extends layoutStates{}
 
-class toggleMode extends layoutStates {}
+class toggleMode extends layoutStates{}
+
+class TimeDay extends layoutStates{}
 
 class GetAllBanksLoadingState extends layoutStates {}
 

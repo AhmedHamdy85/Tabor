@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:tabor/modules/resiveCode/code.dart';
 import 'package:tabor/shared/componants/componant.dart';
 
@@ -55,7 +53,7 @@ class PhoneScreen extends StatelessWidget {
                   height: 66,
                 ),
                 Center(
-                  child: specialtext(
+                  child:specialtext(
                     text: "هل نسيت كلمة المرور؟",
                     fweight: FontWeight.w500,
                     fcolor: Color(0xff009c7b),

@@ -69,9 +69,9 @@ class layoutCubit extends Cubit<layoutStates> {
           .addAll((value.data as List).map(((e) => AllBanksModel.fromJson(e))));
 
       bankModel.forEach((element) {
-        if (element.favorite == true) {
-          favoretIteams.add(element);
-        }
+        // if (element.favorite == true) {
+        //   favoretIteams.add(element);
+        // }
         favoret.addAll({
           element.id: element.favorite,
         });
@@ -91,10 +91,10 @@ class layoutCubit extends Cubit<layoutStates> {
   void getFavoretBanks() {
     emit(GetFavoretBanksLoadingState());
     DioHelper.getData(url: FAVORETBANKS, token: token).then((value) {
-      // favoretModel
-      //     .addAll((value.data as List).map(((e) => FavoretModel.fromJson(e))));
+      favoretModel
+          .addAll((value.data as List).map(((e) => FavoretModel.fromJson(e))));
 
-      print('favoret 1 is ${value.statusMessage}');
+      print('favoret 1 is ${favoretModel}');
       emit(GetFavoretBanksSuccesState());
     }).catchError((erorr) {
       print('favoret error is ' + erorr.toString());
@@ -112,7 +112,7 @@ class layoutCubit extends Cubit<layoutStates> {
       data: {'favorite': !status!},
     ).then((value) {
       changeModel = ChangeFavoretModel.fromJson(value.data);
-      // getAllBanks();
+      getFavoretBanks();
       print(value.data);
 
       emit(ChangeFavoretSuccesState());

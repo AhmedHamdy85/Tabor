@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -19,18 +20,23 @@ class FavoretScreen extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            CustomAppBar(text: 'المفضلة', screenWidth: screenWidth),
+            CustomAppBar(
+                text: 'المفضلة', screenWidth: screenWidth, context: context),
             Expanded(
               child: Container(
-                width: double.infinity,
-                child: ListView.builder(
-                  itemBuilder: (context, index) => FavoretIteam(
-                      model: layoutCubit.get(context).favoretIteams[index],
-                      screenWidth: screenWidth,
-                      context: context),
-                  itemCount: layoutCubit.get(context).favoretIteams.length,
-                ),
-              ),
+                  width: double.infinity,
+                  child: ConditionalBuilder(
+                    condition: state is! GetFavoretBanksLoadingState,
+                    builder: (context) => ListView.builder(
+                      itemBuilder: (context, index) => FavoretIteam(
+                          model: layoutCubit.get(context).favoretModel[index],
+                          screenWidth: screenWidth,
+                          context: context),
+                      itemCount: layoutCubit.get(context).favoretModel.length,
+                    ),
+                    fallback: (context) =>
+                        const Center(child: CircularProgressIndicator()),
+                  )),
             )
           ],
         );
@@ -38,15 +44,3 @@ class FavoretScreen extends StatelessWidget {
     );
   }
 }
-
-// SingleChildScrollView(
-//               child: Column(
-//                 children: [
-//                   for (int i = 0; i <= 10; i++)
-//                     VerticalCompanyForm(
-//                         context: context,
-//                         distance: screenWidth * 0.12,
-//                         iconColor: Colors.red),
-//                 ],
-//               ),
-//             ),

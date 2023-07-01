@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tabor/modules/Home/map/mapscreen.dart';
+import 'package:tabor/modules/Home/search/search.dart';
+import 'package:tabor/modules/branshes/search/search_branches.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 
@@ -16,7 +19,10 @@ class BranshesScreen extends StatelessWidget {
               screenHight: screenHight,
               screenWidth: screenWidth,
               text: 'السابق',
-              context: context),
+              context: context,
+              screenMap: MapHome(),
+              screenSearch: const SearchBranchesScreen()
+              ),
           SizedBox(
             height: 192,
             child: Image.network(

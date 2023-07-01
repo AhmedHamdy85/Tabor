@@ -148,7 +148,7 @@ class _RequirementScreenState extends State<RequirementScreen> {
                         const  SizedBox(height: 8,), 
                         Container(
                             padding: EdgeInsetsDirectional.only(start: 8,top: 8),
-                            height: 72,
+                            height: 86,
                             width: double.infinity,
                             decoration: const BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(16),

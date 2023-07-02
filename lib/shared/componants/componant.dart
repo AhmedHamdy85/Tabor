@@ -10,7 +10,7 @@ import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:lottie/lottie.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/model/bankmodels/all_banks_model/all_banks_model.dart';
@@ -1726,27 +1726,3 @@ Widget linearIndicator({required double width}) => ProgressBarAnimation(
       ],
     ),
     backgroundColor: Colors.grey.withOpacity(0.4));
-Widget customDropDown(
-        {required TextEditingController controller,
-        dynamic Function(String)? onChanged}) =>
-    Directionality(
-      textDirection: TextDirection.rtl,
-      child: CustomDropdown(
-          hintText: '  اختار غرضك من الخدمه',
-          items: ['  فتح /غلق حساب', '  شكوى', '  خدمات اخرى'],
-          controller: controller,
-          selectedStyle: TextStyle(
-            color: mainColor,
-            fontWeight: FontWeight.w500,
-            fontFamily: "ReadexPro",
-            fontStyle: FontStyle.normal,
-            fontSize: 16.0,
-          ),
-          listItemStyle: TextStyle(
-              color: const Color(0xff161616),
-              fontWeight: FontWeight.w500,
-              fontFamily: "ReadexPro",
-              fontStyle: FontStyle.normal,
-              fontSize: 16.0),
-          onChanged: onChanged),
-    );

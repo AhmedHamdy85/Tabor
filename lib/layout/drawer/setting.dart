@@ -5,11 +5,6 @@ import 'package:tabor/layout/cubit/states.dart';
 import 'package:tabor/layout/drawer/notifications.dart';
 import 'package:tabor/layout/layout_screen.dart';
 import 'package:tabor/shared/componants/componant.dart';
-import 'package:tabor/shared/componants/constants.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:tabor/modules/Home/homeScreen.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 
 class Setting extends StatelessWidget {
   Setting({super.key});

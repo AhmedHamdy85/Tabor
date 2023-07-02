@@ -1,8 +1,11 @@
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:tabor/modules/form/formscheduling_screen.dart';
 import 'package:tabor/modules/service/service.dart';
 import 'package:tabor/shared/componants/componant.dart';
+
+import '../../shared/componants/constants.dart';
 
 class QueuesScreen extends StatefulWidget {
   const QueuesScreen({super.key});
@@ -12,14 +15,10 @@ class QueuesScreen extends StatefulWidget {
 }
 
 class _QueuesScreenState extends State<QueuesScreen> {
-  var surviceController= TextEditingController();
-  var receptionController=TextEditingController();
-  var transfersController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
-    var _selectedItem;
     List<String> dayItems = [
       'السبت',
       'الاحد',
@@ -28,6 +27,11 @@ class _QueuesScreenState extends State<QueuesScreen> {
       'الاربعاء',
       'الخميس',
     ];
+    List<String> dropDownTitleItem=[
+      'خدمة العملاء','استقبال','حوالات'
+    ];
+    List<String> dropDownService=
+    [ '  فتح /غلق حساب', '  شكوى', '  خدمات اخرى'];
     String? selectedValue;
     return Scaffold(
       body: Column(
@@ -151,9 +155,9 @@ class _QueuesScreenState extends State<QueuesScreen> {
                             ],
                             value: selectedValue,
                             onChanged: (value) {
-                              setState(() {
+                              /*setState(() {
                                 selectedValue = value as String;
-                              });
+                              });*/
                             },
                             buttonStyleData: ButtonStyleData(
                               height: 60,
@@ -220,35 +224,38 @@ class _QueuesScreenState extends State<QueuesScreen> {
                     SizedBox(
                       height: 16,
                     ),
-                    specialtext(
-                      text: 'خدمة العملاء',
-                      fsize: 16,
-                      fweight: FontWeight.w700
+                    SizedBox(
+                      height: 100 * dropDownTitleItem.length.toDouble(),
+                      child: Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: ListView.separated(
+                          physics:const NeverScrollableScrollPhysics(),
+                          itemBuilder: (BuildContext context, int index) { 
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                specialtext(
+                                 text: dropDownTitleItem[index],
+                                 fsize: 16,
+                                 fweight: FontWeight.w700
+                                ),
+                                const SizedBox(height: 8),
+                                DropDownClass (
+                                  items: dropDownService,
+                                ),
+                              ],
+                            );
+                          },
+                          separatorBuilder: (BuildContext buildContext, int index ){
+                            return const SizedBox(
+                             height: 16,
+                             );
+                          },
+                          itemCount: dropDownTitleItem.length
+                        ),
+                      ),
                     ),
-                    const SizedBox(height: 8),
-                    customDropDown(
-                      controller: surviceController,
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    specialtext(
-                      text: 'استقبال',
-                      fsize: 16,
-                      fweight: FontWeight.w700
-                    ),
-                    const SizedBox(height: 8,),
-                    customDropDown(controller: receptionController),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    specialtext(
-                      text: 'حوالات',
-                      fsize: 16,
-                      fweight: FontWeight.w700
-                    ),
-                    const SizedBox(height: 8,),
-                    customDropDown(controller: transfersController),
                   ],
                 ),
               ),
@@ -270,5 +277,42 @@ class _QueuesScreenState extends State<QueuesScreen> {
         ],
       ),
     );
+  }
+}
+class DropDownClass extends StatelessWidget {
+   DropDownClass({
+    super.key,
+    required this.items,
+    this.onChanged
+  });
+
+  final controller=TextEditingController();
+  final dynamic Function(String)? onChanged;
+  final List<String>? items;
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: CustomDropdown(
+                       hintText: '  اختار غرضك من الخدمه',
+                       items:  items,
+                       controller: controller,
+                       selectedStyle: TextStyle(
+                        color: mainColor,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: "ReadexPro",
+                        fontStyle:  FontStyle.normal,
+                        fontSize: 16.0,
+                       ),
+                       listItemStyle: TextStyle(
+                        color:  const Color(0xff161616),
+                        fontWeight: FontWeight.w500,
+                        fontFamily: "ReadexPro",
+                        fontStyle:  FontStyle.normal,
+                        fontSize: 16.0
+                       ),
+                       onChanged: onChanged
+                       ),
+                    );
   }
 }

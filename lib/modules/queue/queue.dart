@@ -5,16 +5,16 @@ import 'package:tabor/modules/service/service.dart';
 import 'package:tabor/shared/componants/componant.dart';
 
 class QueuesScreen extends StatefulWidget {
-  const QueuesScreen({super.key});
-
+  QueuesScreen({super.key, required this.name});
+  String name;
   @override
   State<QueuesScreen> createState() => _QueuesScreenState();
 }
 
 class _QueuesScreenState extends State<QueuesScreen> {
-  var surviceController= TextEditingController();
-  var receptionController=TextEditingController();
-  var transfersController=TextEditingController();
+  var surviceController = TextEditingController();
+  var receptionController = TextEditingController();
+  var transfersController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -66,10 +66,10 @@ class _QueuesScreenState extends State<QueuesScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 3),
-                      child: specialtext(text: 'الفيوم-فرع الجامعة',
-                      fsize: 18,
-                      fweight: FontWeight.w600
-                      ),
+                      child: specialtext(
+                          text: widget.name,
+                          fsize: 18,
+                          fweight: FontWeight.w600),
                     ),
                     Spacer(),
                     Padding(
@@ -95,7 +95,7 @@ class _QueuesScreenState extends State<QueuesScreen> {
           SizedBox(height: 24),
           Expanded(
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
               width: double.infinity,
               child: SingleChildScrollView(
                 child: Column(
@@ -179,7 +179,7 @@ class _QueuesScreenState extends State<QueuesScreen> {
                             ),
                             dropdownStyleData: DropdownStyleData(
                               maxHeight: 300,
-                              width:screenWidth-32,
+                              width: screenWidth - 32,
                               //padding: EdgeInsets.only(left: 16, right: 16),
                               direction: DropdownDirection.textDirection,
                               decoration: BoxDecoration(
@@ -221,10 +221,9 @@ class _QueuesScreenState extends State<QueuesScreen> {
                       height: 16,
                     ),
                     specialtext(
-                      text: 'خدمة العملاء',
-                      fsize: 16,
-                      fweight: FontWeight.w700
-                    ),
+                        text: 'خدمة العملاء',
+                        fsize: 16,
+                        fweight: FontWeight.w700),
                     const SizedBox(height: 8),
                     customDropDown(
                       controller: surviceController,
@@ -233,21 +232,19 @@ class _QueuesScreenState extends State<QueuesScreen> {
                       height: 16,
                     ),
                     specialtext(
-                      text: 'استقبال',
-                      fsize: 16,
-                      fweight: FontWeight.w700
+                        text: 'استقبال', fsize: 16, fweight: FontWeight.w700),
+                    const SizedBox(
+                      height: 8,
                     ),
-                    const SizedBox(height: 8,),
                     customDropDown(controller: receptionController),
                     const SizedBox(
                       height: 16,
                     ),
                     specialtext(
-                      text: 'حوالات',
-                      fsize: 16,
-                      fweight: FontWeight.w700
+                        text: 'حوالات', fsize: 16, fweight: FontWeight.w700),
+                    const SizedBox(
+                      height: 8,
                     ),
-                    const SizedBox(height: 8,),
                     customDropDown(controller: transfersController),
                   ],
                 ),
@@ -255,18 +252,18 @@ class _QueuesScreenState extends State<QueuesScreen> {
             ),
           ),
           buttonCardBottom(
-            space: (16/390)*screenWidth,
-            widthCard: (158/390)*screenWidth,
-            function1: (){
-              NavigateTo(context,  Service_screen());
-            },
-             text1: ' حجز الان',
+              space: (16 / 390) * screenWidth,
+              widthCard: (158 / 390) * screenWidth,
+              function1: () {
+                NavigateTo(context, Service_screen());
+              },
+              text1: ' حجز الان',
               image1: 'assets/images/vuesax_bold_ticket_expired.svg',
-               function2: (){
-                  NavigateTo(context,  FormScheduling());
-               },
-                text2: ' حجز مسبق ',
-                 image2: 'assets/images/vuesax_bold_calendar_tick.svg'),
+              function2: () {
+                NavigateTo(context, FormScheduling());
+              },
+              text2: ' حجز مسبق ',
+              image2: 'assets/images/vuesax_bold_calendar_tick.svg'),
         ],
       ),
     );

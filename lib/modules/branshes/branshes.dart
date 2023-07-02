@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tabor/model/bankmodels/all_banks_model/all_banks_model.dart';
 import 'package:tabor/modules/Home/map/mapscreen.dart';
 import 'package:tabor/modules/Home/search/search.dart';
 import 'package:tabor/modules/branshes/search/search_branches.dart';
@@ -6,8 +7,8 @@ import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 
 class BranshesScreen extends StatelessWidget {
-  const BranshesScreen({super.key});
-
+  BranshesScreen({super.key, required this.model});
+  final AllBanksModel model;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -21,8 +22,7 @@ class BranshesScreen extends StatelessWidget {
               text: 'السابق',
               context: context,
               screenMap: MapHome(),
-              screenSearch: const SearchBranchesScreen()
-              ),
+              screenSearch: const SearchBranchesScreen()),
           SizedBox(
             height: 192,
             child: Image.network(
@@ -50,6 +50,7 @@ class BranshesScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
                               onPressed: () {},
@@ -58,15 +59,15 @@ class BranshesScreen extends StatelessWidget {
                                 child: Icon(
                                   Iconsax.heart5,
                                   size: 32,
+                                  color: model.favorite ?? false
+                                      ? Colors.red
+                                      : Colors.black,
                                 ),
                               )),
-                          SizedBox(
-                            width: screenWidth * 0.25,
-                          ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text("البنك الاهلى المصرى",
+                              Text('${model.name}',
                                   style: const TextStyle(
                                       color: const Color(0xff161616),
                                       fontWeight: FontWeight.w600,
@@ -94,7 +95,7 @@ class BranshesScreen extends StatelessWidget {
                                   Opacity(
                                     opacity: 0.5,
                                     child: Text(
-                                      ' ' + '15',
+                                      ' ' + '${model.branchs?.length ?? 0}',
                                       style: const TextStyle(
                                           color: const Color(0xff161616),
                                           fontWeight: FontWeight.w500,
@@ -122,13 +123,31 @@ class BranshesScreen extends StatelessWidget {
                             color: Color(0xff161616)),
                       ),
                     ),
-                    for (int i = 0; i <= 5; i++)
-                      BranshesCard(
-                          screenWidth: screenWidth,
-                          context: context,
-                          image: 'assets/images/status.svg',
-                          name: 'الفيوم-فرع الجامعة',
-                          destance: 15)
+                    const Padding(
+                      padding: EdgeInsets.only(
+                        top: 32,
+                        right: 16,
+                      ),
+                      child: Text("الفروع",
+                          style: TextStyle(
+                              color: Color(0xff7d7d7d),
+                              fontWeight: FontWeight.w500,
+                              fontFamily: "ReadexPro",
+                              fontStyle: FontStyle.normal,
+                              fontSize: 18.0),
+                          textAlign: TextAlign.right),
+                    ),
+                    ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: model.branchs?.length ?? 0,
+                        itemBuilder: (context, index) => BranshesCard(
+                            screenWidth: screenWidth,
+                            context: context,
+                            image: 'assets/images/status.svg',
+                            name: '${model.branchs![index].nameOfBranch}',
+                            destance:
+                                '${model.branchs![index].distanceBranchUser}'))
                   ],
                 ),
               ),

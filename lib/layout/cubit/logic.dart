@@ -82,13 +82,13 @@ class layoutCubit extends Cubit<layoutStates> {
     });
   }
 
-  List<FavoretModel> favoretModel = [];
+  List<AllBanksModel> favoretModel = [];
 
   void getFavoretBanks() {
     emit(GetFavoretBanksLoadingState());
     DioHelper.getData(url: FAVORETBANKS, token: token).then((value) {
       favoretModel
-          .addAll((value.data as List).map(((e) => FavoretModel.fromJson(e))));
+          .addAll((value.data as List).map(((e) => AllBanksModel.fromJson(e))));
 
       print('favoret 1 is ${favoretModel}');
       emit(GetFavoretBanksSuccesState());

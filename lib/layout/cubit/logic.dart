@@ -60,7 +60,6 @@ class layoutCubit extends Cubit<layoutStates> {
   }
 
   List<AllBanksModel> bankModel = [];
-  List<AllBanksModel> favoretIteams = [];
   Map<num?, bool?> favoret = {};
   void getAllBanks() {
     emit(GetAllBanksLoadingState());
@@ -69,9 +68,6 @@ class layoutCubit extends Cubit<layoutStates> {
           .addAll((value.data as List).map(((e) => AllBanksModel.fromJson(e))));
 
       bankModel.forEach((element) {
-        // if (element.favorite == true) {
-        //   favoretIteams.add(element);
-        // }
         favoret.addAll({
           element.id: element.favorite,
         });
@@ -112,12 +108,12 @@ class layoutCubit extends Cubit<layoutStates> {
       data: {'favorite': !status!},
     ).then((value) {
       changeModel = ChangeFavoretModel.fromJson(value.data);
+      favoretModel.clear();
       getFavoretBanks();
       print(value.data);
 
       emit(ChangeFavoretSuccesState());
     }).catchError((erorr) {
-      favoret[id] = !favoret[id]!;
       print(erorr.toString());
       emit(ChangeFavoretErorrState());
     });

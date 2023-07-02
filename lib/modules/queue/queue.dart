@@ -221,7 +221,7 @@ class _QueuesScreenState extends State<QueuesScreen> {
                         fcolor: Color(0xff7d7d7d),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     SizedBox(

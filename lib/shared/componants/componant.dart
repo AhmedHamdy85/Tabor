@@ -172,7 +172,11 @@ Widget DefoltHorisentalCompanyform(
         children: [
           InkWell(
             onTap: () {
-              NavigateTo(context, BranshesScreen());
+              NavigateTo(
+                  context,
+                  BranshesScreen(
+                    model: model,
+                  ));
             },
             child: Container(
               width: width,
@@ -217,7 +221,11 @@ Widget VerticalCompanyForm(
       padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
       child: InkWell(
         onTap: () {
-          NavigateTo(context, const BranshesScreen());
+          NavigateTo(
+              context,
+              BranshesScreen(
+                model: model,
+              ));
         },
         child: Container(
           width: double.infinity,
@@ -295,7 +303,7 @@ Widget VerticalCompanyForm(
 //custom favoret iteam
 
 Widget FavoretIteam(
-        {required FavoretModel model,
+        {required AllBanksModel model,
         required double screenWidth,
         double Iconopacity = 1,
         required BuildContext context}) =>
@@ -303,7 +311,11 @@ Widget FavoretIteam(
       padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
       child: InkWell(
         onTap: () {
-          NavigateTo(context, const BranshesScreen());
+          NavigateTo(
+              context,
+              BranshesScreen(
+                model: model,
+              ));
         },
         child: Container(
           width: double.infinity,
@@ -467,14 +479,14 @@ Widget BranshesCard({
   required BuildContext context,
   required String image,
   required String name,
-  required double destance,
+  required String destance,
 }) =>
     Center(
       child: Padding(
         padding: const EdgeInsets.only(top: 16),
         child: InkWell(
           onTap: () {
-            NavigateTo(context, QueuesScreen());
+            NavigateTo(context, QueuesScreen(name: name));
           },
           child: Container(
             width: screenWidth - 32,
@@ -487,11 +499,9 @@ Widget BranshesCard({
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   DefoltSvgImage(image: image),
-                  SizedBox(
-                    width: screenWidth * 0.34,
-                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [

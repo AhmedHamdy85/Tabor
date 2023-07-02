@@ -127,12 +127,13 @@ class Service_screen extends StatelessWidget {
                             SizedBox(height: 16,),
                             Container(
                             width: screenWidth - 32,
-                            height: 152,
+                            height: 190,
                             decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.white,
                             ),
                             child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (BuildContext context, int index) =>Padding(
                                 padding: EdgeInsetsDirectional.only(end: 8,top: 8),
                                 child: Container(

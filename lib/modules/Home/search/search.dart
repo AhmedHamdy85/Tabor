@@ -5,6 +5,9 @@ import 'package:tabor/layout/cubit/states.dart';
 import 'package:tabor/layout/layout_screen.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
+
+import '../../../shared/componants/constants.dart';
+import '../../branshes/branshes.dart';
 class SearchHomeScreen extends StatefulWidget {
    const SearchHomeScreen({super.key});
 
@@ -14,7 +17,20 @@ class SearchHomeScreen extends StatefulWidget {
 
 class _SearchHomeScreenState extends State<SearchHomeScreen> {
   @override
-
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    filterList('kl');
+  }
+  static List<String> mainList=[
+    'خدمة عملاء فودافون ', 'خدمة عملاء وي', 'بنك القاهرة','بنك الاسكنتدرية','بنك مصر','البنك الاهلي المصري','بنك ابوظبي'
+  ];
+  List<String> displayList=List.from(mainList);
+  void filterList(String value)
+  { setState(() {
+    displayList=mainList.where((element) => element.contains(value)).toList();
+  });
+  }
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
@@ -59,28 +75,37 @@ class _SearchHomeScreenState extends State<SearchHomeScreen> {
                             ),
                           ),
                           SizedBox(
-                            width: 4,
+                            width: 8,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 5),
-                            child: specialtext(text: 'البحث الرئيسي',
-                            fsize: 21,
-                            fweight: FontWeight.w500
+                          Container(
+                            width: screenWidth-72,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Color(0xffbceee3),
+                              borderRadius: BorderRadius.all(Radius.circular(20))
                             ),
-                          ),
-                          Spacer(),
-                          CircleAvatar(
-                            backgroundColor: Color(0xffbceee3),
-                            child: InkWell(
-                                onTap: () {
-                                  NavigateAndFinsh(
-                                      context,
-                                      Directionality(
-                                          textDirection: TextDirection.rtl,
-                                          child: layoutScreen()));
-                                },
-                                child: Icon(Iconsax.gps),
+                            child: TextField(
+                              onChanged: (value)=>filterList(value),
+                              style: TextStyle(
+                                fontSize : 16,
+                                fontWeight :FontWeight.w500,
+                                color: mainColor,
+                                fontFamily: "ReadexPro",
+                                fontStyle:FontStyle.normal, 
+                               ),
+                              decoration: InputDecoration(
+                                contentPadding:EdgeInsets.symmetric(horizontal: 16) ,
+                                suffixIcon: Icon(Iconsax.search_normal),
+                                iconColor: mainColor,
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xffbceee3)
+                                  ),
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
                                 ),
+                                hintText: 'ما الذي تبحث عنه ؟',
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -88,7 +113,67 @@ class _SearchHomeScreenState extends State<SearchHomeScreen> {
                   ),
                   Expanded(
                     child: Container(
+                      color: const Color(0xffe9ebeb),
                       width: double.infinity,
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 32,),
+                          SizedBox(
+                            height: 64*displayList.length.toDouble(),
+                            child:displayList.isEmpty? Center(child: specialtext(text: 'ادخل بيانات صحيحه',
+                            fcolor: Colors.red,
+                            fweight: FontWeight.w600,
+                            fsize: 24
+                            ),) : ListView.separated(
+                              itemBuilder: (BuildContext context, int index)
+                              {
+                                return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: Container
+                              (
+                                decoration: const BoxDecoration(
+                                 borderRadius: BorderRadius.all(Radius.circular(16)),
+                                 color: Color(0xffffffff),
+                                 boxShadow: [
+                              BoxShadow(
+                              color: Color(0xff40000000),
+                              blurRadius: 4,
+                              ),
+                                ]
+                                ),
+                              child: ListTile(
+                              title: specialtext(text: displayList[index],
+                              fsize: 16,
+                              fweight: FontWeight.w500
+                              ),
+                              trailing: MaterialButton(
+                                minWidth: 80,
+                                height: 24,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(8))
+                                ),
+                                color:const Color(0xff009c7b),
+                                child: specialtext(text: 'احجز',
+                                fcolor:const Color(0xffffffff),
+                                fweight: FontWeight.w500
+                                ),
+                                onPressed: (){
+                                  NavigateTo(
+                                    context, layoutScreen()
+                                  
+                                  );
+                                }
+                                ),
+                                                    ),
+                                                  ),
+                            );
+                              },
+                              separatorBuilder: (BuildContext context, int index)
+                              {return const SizedBox(height: 16,);},
+                              itemCount: displayList.length),
+                          )
+                        ],
+                      )
                     ),
                   ),
              ],

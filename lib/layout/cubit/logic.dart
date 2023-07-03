@@ -13,6 +13,7 @@ import 'package:tabor/shared/network/remote/dio_helper.dart';
 import '../../model/active_teckit_model/active_teckit_model.dart';
 import '../../model/bankmodels/all_banks_model/all_banks_model.dart';
 import '../../model/favoret_model/favoret_model.dart';
+import '../../modules/branshes/search/search_branches.dart';
 
 class layoutCubit extends Cubit<layoutStates> {
   layoutCubit() : super(layoutInatialState());
@@ -32,6 +33,21 @@ class layoutCubit extends Cubit<layoutStates> {
   bool b2 = false;
   bool b3 = false;
   List<Widget> bottmScreen = [HomeScreen(), TecketScrren(), FavoretScreen()];
+  static List<String> mainHomeList=[
+    'خدمة عملاء فودافون ','خدمة عملاء اتصالات','خدمة عملاءاورانج', 'خدمة عملاء وي', 'بنك القاهرة','بنك الاسكنتدرية','بنك مصر','البنك الاهلي المصري','بنك ابوظبي'
+  ];
+  List<String> displayHomeList=List.from(mainHomeList);
+   static List<ListDataModel> mainBranchesList=[
+    ListDataModel('الفيوم-فرع الجامعة', 'assets/images/status1.svg'),
+    ListDataModel('الفيوم-فرع السواقي', 'assets/images/status2.svg'),
+    ListDataModel('الفيوم-فرع المسلة',  'assets/images/status3.svg'),
+    ListDataModel('الفيوم-فرع مخيمر تاون',  'assets/images/status1.svg'),
+    ListDataModel('الفيوم-فرع سنهور البحرية سيتي',  'assets/images/status1.svg'),
+    ListDataModel('الاسكندرية-فرع سموحه',  'assets/images/status2.svg'),
+    ListDataModel('القاهرة-فرع الزمالك',  'assets/images/status3.svg'),
+    ListDataModel('القليوبية-فرع شبرا الخيمة',  'assets/images/status1.svg'),
+  ];
+  List<ListDataModel> displayBranchesList=List.from(mainBranchesList);
   void changeNaveBar(int index) {
     curentIndex = index;
     emit(changeBottmnaveState());
@@ -149,5 +165,15 @@ class layoutCubit extends Cubit<layoutStates> {
       print('Teckit error is ' + erorr.toString());
       emit(GetCompletedTeckitErorrState());
     });
+  }
+  void filterHomeList(String value)
+  { 
+    displayHomeList=mainHomeList.where((element) => element.contains(value)).toList();
+    emit(ListHomeSearch());
+  }
+  void filterBranchesList(String value)
+  { 
+    displayBranchesList=mainBranchesList.where((element) => element.title.contains(value)).toList();
+    emit(ListBranchesSearch());
   }
 }

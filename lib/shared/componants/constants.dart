@@ -10,3 +10,7 @@ class Variables {
 const Color mainColor = Color(0xff009c7b);
 int x = 15;
 String token = '';
+/*
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+ */

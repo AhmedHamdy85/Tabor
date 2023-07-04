@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "45246918086",
+    "project_id": "tabor-391521",
+    "storage_bucket": "tabor-391521.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45246918086:android:868854cb943d97fc2b56c7",
+        "android_client_info": {
+          "package_name": "com.example.tabor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45246918086-tav5jc38r3qtvok71vat1krgo7m5jiaf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLANXNB8X7hIqvrK767mHxdoQClNUG06M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45246918086-tav5jc38r3qtvok71vat1krgo7m5jiaf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

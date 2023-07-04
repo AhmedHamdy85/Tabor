@@ -28,37 +28,33 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  animated_custom_dropdown: null
   animated_text_kit: null
+  bloc: null
+  conditional_builder_null_safety: ^0.0.6
   cupertino_icons: ^1.0.2
   dio: null
   dotted_line: null
   dropdown_button2: null
+  firebase_auth: ^4.6.3
+  firebase_core: ^2.14.0
   flutter:
     sdk: flutter
-  bloc:  
-  flutter_bloc: 
-  flutter_svg: 
-  font_awesome_flutter: 
-  google_nav_bar: 
-  intl: 
-  shared_preferences: 
-  smooth_page_indicator: 
-  toggle_switch: 
-  google_maps_flutter: 
-  material_dialogs: 
-  lottie:
-  slide_countdown: 
-  simple_progress_indicators:
-  animated_custom_dropdown:
-  fluttertoast: 
-  conditional_builder_null_safety: ^0.0.6
+  flutter_bloc: null
+  flutter_svg: null
+  fluttertoast: null
+  font_awesome_flutter: null
+  google_maps_flutter: null
+  google_nav_bar: null
+  intl: null
+  lottie: null
+  material_dialogs: null
+  shared_preferences: null
+  simple_progress_indicators: null
+  slide_countdown: null
+  smooth_page_indicator: null
+  toggle_switch: null
 dev_dependencies:
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter

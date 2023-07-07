@@ -4,7 +4,7 @@ class DioHelper {
   static late Dio dio;
   static init() {
     dio = Dio(BaseOptions(
-      baseUrl: 'https://web-production-5757.up.railway.app',
+      baseUrl: 'http://mostafa582001.pythonanywhere.com',
       receiveDataWhenStatusError: true,
       validateStatus: (_) => true,
     ));

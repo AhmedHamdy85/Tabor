@@ -21,33 +21,32 @@ class FormScheduling extends StatefulWidget {
 
 class _FormSchedulingState extends State<FormScheduling> {
   @override
-    TextEditingController phoneController = TextEditingController();
-    TextEditingController nationalIDController = TextEditingController();
-    TextEditingController nameController = TextEditingController();
-    TimeOfDay timeDay=TimeOfDay(hour: 11 , minute: 30 );
-    DateTime date=DateTime.now();
-    void showTimeOfPicker (){
-    showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now()
-      ).then((value) {
-        setState(() {
-          timeDay=value!;
-        });
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController nationalIDController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TimeOfDay timeDay = TimeOfDay(hour: 11, minute: 30);
+  DateTime date = DateTime.now();
+  void showTimeOfPicker() {
+    showTimePicker(context: context, initialTime: TimeOfDay.now())
+        .then((value) {
+      setState(() {
+        timeDay = value!;
       });
-    }
-    void showDateOfPicker (){
+    });
+  }
+
+  void showDateOfPicker() {
     showDatePicker(
-      context: context, 
-      initialDate: DateTime.now(), 
-      firstDate: DateTime.now(), 
-      lastDate: DateTime(2025)
-      ).then((value) {
-        setState(() {
-          date=value!;
-        });
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime.now(),
+            lastDate: DateTime(2025))
+        .then((value) {
+      setState(() {
+        date = value!;
       });
-    }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,10 +101,10 @@ class _FormSchedulingState extends State<FormScheduling> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                specialtext(text: 'الفيوم-فرع الجامعة',
-                                fsize: 18,
-                                fweight: FontWeight.w600
-                                ),
+                                specialtext(
+                                    text: 'الفيوم-فرع الجامعة',
+                                    fsize: 18,
+                                    fweight: FontWeight.w600),
                                 SizedBox(
                                   height: 8,
                                 ),
@@ -150,128 +149,151 @@ class _FormSchedulingState extends State<FormScheduling> {
                                   fweight: FontWeight.w500,
                                   fsize: 18,
                                 ),
-                              SizedBox(height: 16,),
-                           Container(
-                            padding:EdgeInsetsDirectional.all(16) ,
-                            width: double.infinity,
-                            height: 144,
-                            decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            color: Colors.white,
-                            ),
-                            child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ContainerPicker(
-                                text: DateFormat.yMMMd().format(date).toString(),
-                                icon: Iconsax.calendar_tick, 
-                                function: showDateOfPicker 
-                              ),
-                              const SizedBox(height: 16,),
-                              ContainerPicker(
-                                text: timeDay.format(context).toString(),
-                                icon: Iconsax.clock, 
-                                function: showTimeOfPicker
-                              ),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                Container(
+                                  padding: EdgeInsetsDirectional.all(16),
+                                  width: double.infinity,
+                                  height: 144,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color: Colors.white,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      ContainerPicker(
+                                          text: DateFormat.yMMMd()
+                                              .format(date)
+                                              .toString(),
+                                          icon: Iconsax.calendar_tick,
+                                          function: showDateOfPicker),
+                                      const SizedBox(
+                                        height: 16,
+                                      ),
+                                      ContainerPicker(
+                                          text: timeDay
+                                              .format(context)
+                                              .toString(),
+                                          icon: Iconsax.clock,
+                                          function: showTimeOfPicker),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                specialtext(
+                                  text: 'المعلومات الخاصه بك',
+                                  fweight: FontWeight.w500,
+                                  fsize: 18,
+                                  fcolor: const Color(0xff7d7d7d),
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Container(
+                                  padding: EdgeInsetsDirectional.only(
+                                      start: 16, end: 16, top: 8),
+                                  width: double.infinity,
+                                  height: 250,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color: Colors.white,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      MixedText(text1: 'رقم الهاتف'),
+                                      const SizedBox(
+                                        height: 4,
+                                      ),
+                                      defaultFormFieldReservation(
+                                          fcolor: Color(0xff161616),
+                                          hintText: 'ادخل رقم الهاتف',
+                                          controller: phoneController,
+                                          type: TextInputType.phone,
+                                          validate: (value) {
+                                            if (value == null ||
+                                                value.isEmpty) {
+                                              return 'الرجاء ادخال رقم هاتف صحيح';
+                                            }
+                                          },
+                                          width: double.infinity),
+                                      const SizedBox(
+                                        height: 16,
+                                      ),
+                                      MixedText(text1: 'الاسم'),
+                                      const SizedBox(
+                                        height: 4,
+                                      ),
+                                      defaultFormFieldReservation(
+                                          fcolor: Color(0xff161616),
+                                          hintText: 'اادخل ااسمك',
+                                          controller: nameController,
+                                          type: TextInputType.name,
+                                          validate: (value) {
+                                            if (value == null ||
+                                                value.isEmpty) {
+                                              return 'الرجاء ادخال اسما صحيحا';
+                                            }
+                                          },
+                                          width: double.infinity),
+                                      const SizedBox(
+                                        height: 16,
+                                      ),
+                                      MixedText(text1: 'الرقم القومي'),
+                                      const SizedBox(
+                                        height: 4,
+                                      ),
+                                      defaultFormFieldReservation(
+                                          fcolor: Color(0xff161616),
+                                          hintText: "ادخل الرقم القومي",
+                                          controller: nationalIDController,
+                                          type: TextInputType.number,
+                                          validate: (value) {
+                                            if (value == null ||
+                                                value.isEmpty) {
+                                              return 'الرجاء ادخال رقم قومي صحيح';
+                                            }
+                                          },
+                                          width: double.infinity),
+                                    ],
+                                  ),
+                                ),
                               ],
-                              ),
-                              ), 
-                           const SizedBox(height: 16,),
-                           specialtext(text: 'المعلومات الخاصه بك',
-                            fweight: FontWeight.w500,
-                            fsize: 18,
-                             fcolor: const Color(0xff7d7d7d),
                             ),
-                           const SizedBox(height: 16,),
-                           Container(
-                            padding:EdgeInsetsDirectional.only(start: 16,end: 16,top: 8) ,
-                            width: double.infinity,
-                            height: 250,
-                            decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            color: Colors.white,
-                            ),
-                            child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              MixedText(text1: 'رقم الهاتف'),
-                              const SizedBox(height: 4,),
-                              defaultFormFieldReservation(
-                                fcolor: Color(0xff161616),
-                                hintText: 'ادخل رقم الهاتف',
-                                controller: phoneController ,
-                                 type: TextInputType.phone,
-                                 validate: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'الرجاء ادخال رقم هاتف صحيح';
-                                    }
-                                  },
-                                 width: double.infinity
-                                 ),
-                                  const SizedBox(height: 16,),
-                              MixedText(text1: 'الاسم'),
-                              const SizedBox(height: 4,),
-                              defaultFormFieldReservation(
-                                fcolor: Color(0xff161616),
-                                hintText: 'اادخل ااسمك',
-                                controller:nameController ,
-                                 type: TextInputType.name,
-                                 validate: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'الرجاء ادخال اسما صحيحا';
-                                    }
-                                  },
-                                 width: double.infinity),
-                                  
-                                const SizedBox(height: 16,),
-                                MixedText(text1: 'الرقم القومي'),
-                                const SizedBox(height: 4,),
-                                defaultFormFieldReservation(
-                                fcolor: Color(0xff161616),
-                                hintText: "ادخل الرقم القومي",
-                                controller: nationalIDController ,
-                                 type: TextInputType.number,
-                                 validate: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'الرجاء ادخال رقم قومي صحيح';
-                                    }
-                                  },
-                                 width: double.infinity),
-                              ],
-                              ),
-                              ),      
-                            ],
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  buttonCardBottom(
-                  space: (16/390)*screenWidth,
-                  widthCard: (158/390)*screenWidth,
-                  function1: (){
-                    animatedDialog(
-                      context: context,
-                      width: screenWidth
-                      );
-                  },
-                   text1:' حجز الدور',
-                    image1: 'assets/images/vuesax_bold_ticket_expired.svg',
-                  function2: (){
-                  NavigateTo(context,   Directionality(textDirection: direction,
-                  child: RequirementScreen()));
-                  },
-                    text2: ' المطلوب',
-                    image2: 'assets/images/vuesax_bold_info_circle.svg'),
-             
-             ],
-         );
-        }
-       ),
-     ),
-    ),
-  );
- }
+                    buttonCardBottom(
+                        space: (16 / 390) * screenWidth,
+                        widthCard: (158 / 390) * screenWidth,
+                        function1: () {
+                          animatedDialog(context: context, width: screenWidth);
+                        },
+                        text1: ' حجز الدور',
+                        image1: 'assets/images/vuesax_bold_ticket_expired.svg',
+                        function2: () {
+                          NavigateTo(
+                              context,
+                              Directionality(
+                                  textDirection: direction,
+                                  child: RequirementScreen()));
+                        },
+                        text2: ' المطلوب',
+                        image2: 'assets/images/vuesax_bold_info_circle.svg'),
+                  ],
+                );
+              }),
+        ),
+      ),
+    );
+  }
 }

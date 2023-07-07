@@ -12,10 +12,13 @@ import 'cubit/queue_logic.dart';
 class QueuesScreen extends StatelessWidget {
   QueuesScreen({super.key, required this.name});
   String name;
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
+    num? serviceId;
+    String queueName = 'null';
     List<String> dayItems = [
       'السبت',
       'الاحد',
@@ -32,7 +35,9 @@ class QueuesScreen extends StatelessWidget {
     ];
     String? selectedValue;
     return BlocProvider(
-      create: (context) => QueueCubit(),
+      create: (context) => QueueCubit()
+        ..getQueues()
+        ..getServices(),
       child: BlocConsumer<QueueCubit, QueueState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -254,12 +259,21 @@ class QueuesScreen extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         specialtext(
-                                            text: dropDownTitleItem[index],
+                                            text: QueueCubit.get(context)
+                                                .dropDownTitleItem[index],
                                             fsize: 16,
                                             fweight: FontWeight.w700),
                                         const SizedBox(height: 8),
                                         DropDownClass(
-                                          items: dropDownService,
+                                          items: QueueCubit.get(context)
+                                              .dropDownService,
+                                          onChanged: (value) {
+                                            queueName = QueueCubit.get(context)
+                                                .dropDownTitleItem[index];
+
+                                            serviceId = QueueCubit.get(context)
+                                                .servicesId[index];
+                                          },
                                         ),
                                       ],
                                     );
@@ -270,7 +284,9 @@ class QueuesScreen extends StatelessWidget {
                                       height: 16,
                                     );
                                   },
-                                  itemCount: dropDownTitleItem.length),
+                                  itemCount: QueueCubit.get(context)
+                                      .dropDownTitleItem
+                                      .length),
                             ),
                           ),
                         ],
@@ -282,7 +298,13 @@ class QueuesScreen extends StatelessWidget {
                     space: (16 / 390) * screenWidth,
                     widthCard: (158 / 390) * screenWidth,
                     function1: () {
-                      NavigateTo(context, Service_screen());
+                      NavigateTo(
+                          context,
+                          Service_screen(
+                            branshName: name,
+                            serviceId: serviceId,
+                            queueName: queueName,
+                          ));
                     },
                     text1: ' حجز الان',
                     image1: 'assets/images/vuesax_bold_ticket_expired.svg',

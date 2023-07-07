@@ -36,9 +36,10 @@ class ShowTecketScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    specialtext(text:'التذكرة',
-                    fsize: 21,
-                    fweight: FontWeight.w600,
+                    specialtext(
+                      text: 'التذكرة',
+                      fsize: 21,
+                      fweight: FontWeight.w600,
                     ),
                     const Spacer(),
                     CircleAvatar(
@@ -89,21 +90,23 @@ class ShowTecketScreen extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                specialtext(text: "البنك الاهلى المصرى",
-                                fweight: FontWeight.w500,
+                                specialtext(
+                                  text: "البنك الاهلى المصرى",
+                                  fweight: FontWeight.w500,
                                 ),
                                 Padding(
                                   padding:
                                       const EdgeInsets.only(top: 8, bottom: 8),
-                                  child: specialtext(text: "الفيوم - فرع الجامعة",
-                                  fweight: FontWeight.w500,
-                                  fsize: 12
-                                  ),
+                                  child: specialtext(
+                                      text: "الفيوم - فرع الجامعة",
+                                      fweight: FontWeight.w500,
+                                      fsize: 12),
                                 ),
                                 Opacity(
                                   opacity: 0.5,
-                                  child: specialtext(text: "طابور خدمة العملاء",
-                                  fsize: 12,
+                                  child: specialtext(
+                                    text: "طابور خدمة العملاء",
+                                    fsize: 12,
                                   ),
                                 ),
                               ],
@@ -128,16 +131,17 @@ class ShowTecketScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 16, left: 16),
                             child: Row(
                               children: [
-                                specialtext(text: "العدد فى الانتظار",
-                                fweight: FontWeight.w500,
-                                fsize: 18
-                                ),
+                                specialtext(
+                                    text: "العدد فى الانتظار",
+                                    fweight: FontWeight.w500,
+                                    fsize: 18),
                                 SizedBox(
                                   width: screenWidth * 0.22,
                                 ),
-                                specialtext(text: " 3 ",
-                                fweight: FontWeight.w500,
-                                fsize: 18,
+                                specialtext(
+                                  text: " 3 ",
+                                  fweight: FontWeight.w500,
+                                  fsize: 18,
                                 ),
                               ],
                             ),
@@ -152,8 +156,9 @@ class ShowTecketScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            specialtext(text: "الوقت المتبقى",
-                            fweight: FontWeight.w500,
+                            specialtext(
+                              text: "الوقت المتبقى",
+                              fweight: FontWeight.w500,
                             ),
                             SizedBox(
                               width: screenWidth * 0.38,
@@ -166,21 +171,20 @@ class ShowTecketScreen extends StatelessWidget {
                         height: 5,
                       ),
                       Center(
-                        child: linearIndicator(width: containrwidth-32),
+                        child: linearIndicator(width: containrwidth - 32),
                       ),
                       SizedBox(
                         height: 85,
                       ),
                       Opacity(
                         opacity: 0.5,
-                        child: specialtext(text:"رقم الدور",
-                        fweight: FontWeight.w500,
-                         ),
+                        child: specialtext(
+                          text: "رقم الدور",
+                          fweight: FontWeight.w500,
+                        ),
                       ),
-                      specialtext(text: "C-002",
-                      fsize: 41,
-                      fweight: FontWeight.w500
-                      ),
+                      specialtext(
+                          text: "C-002", fsize: 41, fweight: FontWeight.w500),
                     ],
                   ),
                 ),
@@ -191,9 +195,12 @@ class ShowTecketScreen extends StatelessWidget {
               child: Row(
                 children: [
                   InkWell(
-                    onTap: (){
-                      NavigateTo(context, Directionality(textDirection: TextDirection.rtl,
-                      child: MapHome()));
+                    onTap: () {
+                      NavigateTo(
+                          context,
+                          Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: MapHome()));
                     },
                     child: Container(
                       width: screenWidth * 0.39,
@@ -214,10 +221,11 @@ class ShowTecketScreen extends StatelessWidget {
                           SizedBox(
                             width: 8,
                           ),
-                          specialtext(text: "الذهاب للموقع",
-                          fweight: FontWeight.w500,
-                          fsize: 16,
-                          fcolor: const Color(0xff1a73e8),
+                          specialtext(
+                            text: "الذهاب للموقع",
+                            fweight: FontWeight.w500,
+                            fsize: 16,
+                            fcolor: const Color(0xff1a73e8),
                           ),
                         ],
                       ),
@@ -231,16 +239,16 @@ class ShowTecketScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         animatedDialog(
-                          context: context, 
-                          width: screenWidth,
-                          text1:'رجوع',
-                          text2: 'الغاء التذكرة' ,
-                          title: 'هل تريد الغاء تذكرتك ؟',
-                          massege: 'عند تكرار الغاء التذكرة سيتم حذرك من استخدام خدماتنا',
-                          animation: 'question',
-                          screen: layoutScreen() ,
-                          color: Color(0xffE11A1A)
-                          );
+                            context: context,
+                            width: screenWidth,
+                            text1: 'رجوع',
+                            text2: 'الغاء التذكرة',
+                            title: 'هل تريد الغاء تذكرتك ؟',
+                            massege:
+                                'عند تكرار الغاء التذكرة سيتم حذرك من استخدام خدماتنا',
+                            animation: 'question',
+                            screen: layoutScreen(),
+                            color: Color(0xffE11A1A));
                       },
                       child: Container(
                         width: screenWidth * 0.39,
@@ -259,10 +267,11 @@ class ShowTecketScreen extends StatelessWidget {
                             SizedBox(
                               width: 4,
                             ),
-                            specialtext(text: " الغاء التذكرة",
-                            fsize: 16,
-                            fweight: FontWeight.w500,
-                            fcolor: const Color(0xffffffff),
+                            specialtext(
+                              text: " الغاء التذكرة",
+                              fsize: 16,
+                              fweight: FontWeight.w500,
+                              fcolor: const Color(0xffffffff),
                             ),
                           ],
                         ),
@@ -273,14 +282,15 @@ class ShowTecketScreen extends StatelessWidget {
               ),
             ),
             Spacer(),
-            navigationButton(text: "القائمة الرئسية",
-            function: () {
-                  NavigateAndFinsh(
-                      context,
-                      const Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: layoutScreen()));
-                },
+            navigationButton(
+              text: "القائمة الرئسية",
+              function: () {
+                NavigateAndFinsh(
+                    context,
+                    const Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: layoutScreen()));
+              },
             ),
           ],
         ),

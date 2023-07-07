@@ -9,3 +9,7 @@ String ADDTOFAVORET = '/bank/addFav/';
 String ACTIVETICET = '/ticket/active_tickets/';
 
 String COMPLETEDTICKETS = '/ticket/completed_tickets/';
+
+String QUEUE = '/queue/all';
+
+String SERVECISE = '/queue/service/all';

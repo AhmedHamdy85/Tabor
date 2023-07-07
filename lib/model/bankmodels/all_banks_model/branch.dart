@@ -9,25 +9,27 @@ class Branch {
   DateTime? updatedAt;
   num? user;
   String? bank;
+  String? placeId;
 
-  Branch({
-    this.id,
-    this.nameOfBranch,
-    this.distanceBranchUser,
-    this.image,
-    this.numberOfQueues,
-    this.favorite,
-    this.createdAt,
-    this.updatedAt,
-    this.user,
-    this.bank,
-  });
+  Branch(
+      {this.id,
+      this.nameOfBranch,
+      this.distanceBranchUser,
+      this.image,
+      this.numberOfQueues,
+      this.favorite,
+      this.createdAt,
+      this.updatedAt,
+      this.user,
+      this.bank,
+      this.placeId});
 
   factory Branch.fromJson(Map<String, dynamic> json) => Branch(
         id: num.tryParse(json['id'].toString()),
         nameOfBranch: json['name_of_branch']?.toString(),
         distanceBranchUser: json['Distance_branch_user']?.toString(),
         image: json['image']?.toString(),
+        placeId: json['place_id']?.toString(),
         numberOfQueues: num.tryParse(json['number_of_queues'].toString()),
         favorite: json['favorite']?.toString().contains("true"),
         createdAt: json['created_at'] == null

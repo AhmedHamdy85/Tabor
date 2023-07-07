@@ -53,7 +53,7 @@ class PhoneScreen extends StatelessWidget {
                   height: 66,
                 ),
                 Center(
-                  child:specialtext(
+                  child: specialtext(
                     text: "هل نسيت كلمة المرور؟",
                     fweight: FontWeight.w500,
                     fcolor: Color(0xff009c7b),

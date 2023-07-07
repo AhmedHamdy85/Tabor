@@ -44,7 +44,8 @@ dependencies:
   flutter_svg: null
   fluttertoast: null
   font_awesome_flutter: null
-  google_maps_flutter: null
+  geolocator: ^9.0.2
+  google_maps_flutter: ^2.3.0
   google_nav_bar: null
   intl: null
   lottie: null

@@ -14,4 +14,10 @@ class GetServicesLoadingState extends QueueState {}
 
 class GetServicesSuccesState extends QueueState {}
 
-class GetServecesErorrState extends QueueState {}
+class GetServicesErorrState extends QueueState {}
+
+class CreateTeckitLoadingState extends QueueState {}
+
+class CreateTeckitSuccesState extends QueueState {}
+
+class CreateTeckitErorrState extends QueueState {}

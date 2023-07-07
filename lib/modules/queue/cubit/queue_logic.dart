@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tabor/shared/endpints.dart';
 
+import '../../../model/create_tecit_model.dart';
 import '../../../model/queue_model/queue_model.dart';
 import '../../../model/serveses_model/serveses_model.dart';
 import '../../../shared/componants/constants.dart';
@@ -37,7 +38,7 @@ class QueueCubit extends Cubit<QueueState> {
 
   List<ServesesModel> servecModel = [];
   List<String> dropDownService = [];
-  List<num?> servicesId = [];
+  Map<String, dynamic> servicesId = {};
   void getServices() {
     emit(GetServicesLoadingState());
     DioHelper.getData(url: SERVECISE, token: token).then((value) {
@@ -47,8 +48,13 @@ class QueueCubit extends Cubit<QueueState> {
       if (servecModel.isNotEmpty) {
         servecModel.forEach((element) {
           dropDownService.add('${element.name}');
-          servicesId.add(element.id);
         });
+
+        for (var element in servecModel) {
+          String name = '${element.name}';
+          num? id = element.id;
+          servicesId[name] = id;
+        }
       }
       print('serveses ${dropDownService.length}');
       print('serveses id ${servicesId.length}');
@@ -58,7 +64,33 @@ class QueueCubit extends Cubit<QueueState> {
       emit(GetServicesSuccesState());
     }).catchError((erorr) {
       print('service error is ' + erorr.toString());
-      emit(GetServecesErorrState());
+      emit(GetServicesErorrState());
     });
+  }
+
+  late CreateTecitModel createModel;
+  late final parsedTime;
+  void createTeckit(num? serviceId) {
+    emit(CreateTeckitSuccesState());
+    DioHelper.postData(url: CREATETECITE, data: {'service': serviceId})
+        .then((value) {
+      createModel = CreateTecitModel.fromJson(value.data);
+      parsedTime = parseWaitingTime('${createModel.waitingTime}');
+      print(createModel);
+      emit(CreateTeckitSuccesState());
+    }).catchError((erorr) {
+      print('create tickit error is ${erorr.toString()}');
+      emit(CreateTeckitErorrState());
+    });
+  }
+
+  Map<String, int> parseWaitingTime(String waitingTime) {
+    final parts = waitingTime.split(' ');
+    final timeParts = parts[0].split(':');
+
+    final hours = int.parse(timeParts[0]);
+    final minutes = int.parse(timeParts[1]);
+
+    return {'hours': hours, 'minutes': minutes};
   }
 }

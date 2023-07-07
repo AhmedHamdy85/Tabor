@@ -3,18 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/layout/cubit/states.dart';
 import 'package:tabor/layout/layout_screen.dart';
+import 'package:tabor/modules/queue/cubit/queue_logic.dart';
 import 'package:tabor/modules/requirement/requirement.dart';
+import 'package:tabor/modules/showTecket/showTecket.dart';
 import 'package:tabor/shared/componants/componant.dart';
 
 class Service_screen extends StatelessWidget {
-  String branshName;
+  String? branshName;
   num? serviceId;
-  String queueName;
-  Service_screen(
-      {super.key,
-      required this.branshName,
-      this.serviceId,
-      required this.queueName});
+  String? queueName;
+  Service_screen({super.key, this.branshName, this.serviceId, this.queueName});
   @override
   TextEditingController phoneController = TextEditingController();
   TextEditingController nationalIDController = TextEditingController();
@@ -40,6 +38,7 @@ class Service_screen extends StatelessWidget {
             listener: (context, state) {},
             builder: (context, state) {
               var serviceCubit = layoutCubit.get(context);
+              var queueCubit = QueueCubit.get(context);
               print(serviceId);
               return Column(
                 children: [
@@ -262,7 +261,12 @@ class Service_screen extends StatelessWidget {
                       space: (16 / 390) * screenWidth,
                       widthCard: (158 / 390) * screenWidth,
                       function1: () {
-                        animatedDialog(context: context, width: screenWidth);
+                        animatedDialog(
+                          screen:
+                              ShowTecketScreen(model: queueCubit.createModel),
+                          context: context,
+                          width: screenWidth,
+                        );
                       },
                       text1: ' حجز الدور',
                       image1: 'assets/images/vuesax_bold_ticket_expired.svg',

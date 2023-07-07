@@ -34,290 +34,279 @@ class QueuesScreen extends StatelessWidget {
       '  خدمات اخرى'
     ];
     String? selectedValue;
-    return BlocProvider(
-      create: (context) => QueueCubit()
-        ..getQueues()
-        ..getServices(),
-      child: BlocConsumer<QueueCubit, QueueState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return Scaffold(
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Container(
-                  height: 120,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Color(0xffffffff),
-                    boxShadow: [
-                      BoxShadow(blurRadius: 4, color: Color(0xff40000000))
-                    ],
-                    borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(16),
-                        bottomLeft: Radius.circular(16)),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        right: 16, left: 24, bottom: 24, top: 54),
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: DefoltSvgImage(
-                                image:
-                                    'assets/images/vuesax_bulk_arrow_square_right.svg'),
+    return BlocConsumer<QueueCubit, QueueState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Container(
+                height: 120,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Color(0xffffffff),
+                  boxShadow: [
+                    BoxShadow(blurRadius: 4, color: Color(0xff40000000))
+                  ],
+                  borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(16),
+                      bottomLeft: Radius.circular(16)),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      right: 16, left: 24, bottom: 24, top: 54),
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: DefoltSvgImage(
+                              image:
+                                  'assets/images/vuesax_bulk_arrow_square_right.svg'),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 3),
+                          child: specialtext(
+                              text: name, fsize: 18, fweight: FontWeight.w600),
+                        ),
+                        Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                  backgroundColor: Colors.green, radius: 6),
+                              SizedBox(
+                                height: 3,
+                              ),
+                              specialtext(
+                                text: "مفتوح",
+                              )
+                            ],
                           ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 3),
-                            child: specialtext(
-                                text: name,
-                                fsize: 18,
-                                fweight: FontWeight.w600),
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8),
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                    backgroundColor: Colors.green, radius: 6),
-                                SizedBox(
-                                  height: 3,
-                                ),
-                                specialtext(
-                                  text: "مفتوح",
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                SizedBox(height: 24),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 24),
-                    width: double.infinity,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Center(
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton2(
-                                  isExpanded: true,
-                                  hint: Row(
-                                    children: [
-                                      Text(
-                                        'ساعات العمل',
-                                        style: TextStyle(
-                                            color: const Color(0xff161616),
-                                            fontWeight: FontWeight.w700,
-                                            fontFamily: "ReadexPro",
-                                            fontStyle: FontStyle.normal,
-                                            fontSize: 16.0),
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.right,
-                                      ),
-                                      Spacer(),
-                                    ],
-                                  ),
-                                  items: [
-                                    DropdownMenuItem(
-                                      child: itemDropdown(
-                                          day: dayItems.elementAt(0)),
-                                      enabled: false,
+              ),
+              SizedBox(height: 24),
+              Expanded(
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                  width: double.infinity,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Center(
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton2(
+                                isExpanded: true,
+                                hint: Row(
+                                  children: [
+                                    Text(
+                                      'ساعات العمل',
+                                      style: TextStyle(
+                                          color: const Color(0xff161616),
+                                          fontWeight: FontWeight.w700,
+                                          fontFamily: "ReadexPro",
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: 16.0),
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.right,
                                     ),
-                                    DropdownMenuItem(
-                                      child: itemDropdown(
-                                          day: dayItems.elementAt(1)),
-                                      enabled: false,
-                                    ),
-                                    DropdownMenuItem(
-                                      child: itemDropdown(
-                                          day: dayItems.elementAt(2)),
-                                      enabled: false,
-                                    ),
-                                    DropdownMenuItem(
-                                      child: itemDropdown(
-                                          day: dayItems.elementAt(3)),
-                                      enabled: false,
-                                    ),
-                                    DropdownMenuItem(
-                                      child: itemDropdown(
-                                          day: dayItems.elementAt(4)),
-                                      enabled: false,
-                                    ),
-                                    DropdownMenuItem(
-                                      child: itemDropdown(
-                                          day: dayItems.elementAt(5)),
-                                      enabled: false,
-                                    ),
+                                    Spacer(),
                                   ],
-                                  value: selectedValue,
-                                  onChanged: (value) {
-                                    /*setState(() {
-                                      selectedValue = value as String;
-                                    });*/
-                                  },
-                                  buttonStyleData: ButtonStyleData(
-                                    height: 60,
-                                    width: double.infinity,
-                                    padding: const EdgeInsets.only(
-                                        left: 14,
-                                        right: 14,
-                                        top: 18,
-                                        bottom: 18),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(14),
-                                      color: Color(0xffffffff),
-                                    ),
-                                    elevation: 10,
+                                ),
+                                items: [
+                                  DropdownMenuItem(
+                                    child: itemDropdown(
+                                        day: dayItems.elementAt(0)),
+                                    enabled: false,
                                   ),
-                                  iconStyleData: IconStyleData(
-                                    icon: Icon(
-                                      Icons.arrow_drop_down,
-                                    ),
-                                    iconEnabledColor: Color(0xff161616),
-                                    iconDisabledColor: Color(0xff161616),
-                                    openMenuIcon: Icon(
-                                      Icons.arrow_drop_up,
-                                      color: Color(0xff009c7b),
-                                    ),
+                                  DropdownMenuItem(
+                                    child: itemDropdown(
+                                        day: dayItems.elementAt(1)),
+                                    enabled: false,
                                   ),
-                                  dropdownStyleData: DropdownStyleData(
-                                    maxHeight: 300,
-                                    width: screenWidth - 32,
-                                    //padding: EdgeInsets.only(left: 16, right: 16),
-                                    direction: DropdownDirection.textDirection,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(14),
-                                        bottomRight: Radius.circular(14),
-                                      ),
-                                      color: Color(0xffffffff),
-                                    ),
-                                    elevation: 0,
-                                    //offset: const Offset(-20, 0),
-                                    scrollbarTheme: ScrollbarThemeData(
-                                      radius: const Radius.circular(40),
-                                      //thickness: MaterialStateProperty.all<double>(6),
-                                      //thumbVisibility: MaterialStateProperty.all<bool>(true),
-                                    ),
+                                  DropdownMenuItem(
+                                    child: itemDropdown(
+                                        day: dayItems.elementAt(2)),
+                                    enabled: false,
                                   ),
-                                  menuItemStyleData: MenuItemStyleData(
-                                    height: 40,
-                                    padding: EdgeInsets.only(left: 8, right: 8),
+                                  DropdownMenuItem(
+                                    child: itemDropdown(
+                                        day: dayItems.elementAt(3)),
+                                    enabled: false,
                                   ),
+                                  DropdownMenuItem(
+                                    child: itemDropdown(
+                                        day: dayItems.elementAt(4)),
+                                    enabled: false,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: itemDropdown(
+                                        day: dayItems.elementAt(5)),
+                                    enabled: false,
+                                  ),
+                                ],
+                                value: selectedValue,
+                                onChanged: (value) {
+                                  /*setState(() {
+                                    selectedValue = value as String;
+                                  });*/
+                                },
+                                buttonStyleData: ButtonStyleData(
+                                  height: 60,
+                                  width: double.infinity,
+                                  padding: const EdgeInsets.only(
+                                      left: 14, right: 14, top: 18, bottom: 18),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    color: Color(0xffffffff),
+                                  ),
+                                  elevation: 10,
+                                ),
+                                iconStyleData: IconStyleData(
+                                  icon: Icon(
+                                    Icons.arrow_drop_down,
+                                  ),
+                                  iconEnabledColor: Color(0xff161616),
+                                  iconDisabledColor: Color(0xff161616),
+                                  openMenuIcon: Icon(
+                                    Icons.arrow_drop_up,
+                                    color: Color(0xff009c7b),
+                                  ),
+                                ),
+                                dropdownStyleData: DropdownStyleData(
+                                  maxHeight: 300,
+                                  width: screenWidth - 32,
+                                  //padding: EdgeInsets.only(left: 16, right: 16),
+                                  direction: DropdownDirection.textDirection,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(14),
+                                      bottomRight: Radius.circular(14),
+                                    ),
+                                    color: Color(0xffffffff),
+                                  ),
+                                  elevation: 0,
+                                  //offset: const Offset(-20, 0),
+                                  scrollbarTheme: ScrollbarThemeData(
+                                    radius: const Radius.circular(40),
+                                    //thickness: MaterialStateProperty.all<double>(6),
+                                    //thumbVisibility: MaterialStateProperty.all<bool>(true),
+                                  ),
+                                ),
+                                menuItemStyleData: MenuItemStyleData(
+                                  height: 40,
+                                  padding: EdgeInsets.only(left: 8, right: 8),
                                 ),
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: 24,
+                        ),
+                        SizedBox(
+                          height: 24,
+                        ),
+                        Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: specialtext(
+                            text: 'الطابور',
+                            fsize: 18,
+                            fweight: FontWeight.w500,
+                            fcolor: Color(0xff7d7d7d),
                           ),
-                          Directionality(
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        SizedBox(
+                          height: 100 * dropDownTitleItem.length.toDouble(),
+                          child: Directionality(
                             textDirection: TextDirection.rtl,
-                            child: specialtext(
-                              text: 'الطابور',
-                              fsize: 18,
-                              fweight: FontWeight.w500,
-                              fcolor: Color(0xff7d7d7d),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          SizedBox(
-                            height: 100 * dropDownTitleItem.length.toDouble(),
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: ListView.separated(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        specialtext(
-                                            text: QueueCubit.get(context)
-                                                .dropDownTitleItem[index],
-                                            fsize: 16,
-                                            fweight: FontWeight.w700),
-                                        const SizedBox(height: 8),
-                                        DropDownClass(
-                                          items: QueueCubit.get(context)
-                                              .dropDownService,
-                                          onChanged: (value) {
-                                            queueName = QueueCubit.get(context)
-                                                .dropDownTitleItem[index];
+                            child: ListView.separated(
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      specialtext(
+                                          text: QueueCubit.get(context)
+                                              .dropDownTitleItem[index],
+                                          fsize: 16,
+                                          fweight: FontWeight.w700),
+                                      const SizedBox(height: 8),
+                                      DropDownClass(
+                                        items: QueueCubit.get(context)
+                                            .dropDownService,
+                                        onChanged: (value) {
+                                          queueName = QueueCubit.get(context)
+                                              .dropDownTitleItem[index];
 
-                                            serviceId = QueueCubit.get(context)
-                                                .servicesId[index];
-                                          },
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                  separatorBuilder:
-                                      (BuildContext buildContext, int index) {
-                                    return const SizedBox(
-                                      height: 16,
-                                    );
-                                  },
-                                  itemCount: QueueCubit.get(context)
-                                      .dropDownTitleItem
-                                      .length),
-                            ),
+                                          serviceId = QueueCubit.get(context)
+                                              .servicesId[value];
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                                separatorBuilder:
+                                    (BuildContext buildContext, int index) {
+                                  return const SizedBox(
+                                    height: 16,
+                                  );
+                                },
+                                itemCount: QueueCubit.get(context)
+                                    .dropDownTitleItem
+                                    .length),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                buttonCardBottom(
-                    space: (16 / 390) * screenWidth,
-                    widthCard: (158 / 390) * screenWidth,
-                    function1: () {
-                      NavigateTo(
-                          context,
-                          Service_screen(
-                            branshName: name,
-                            serviceId: serviceId,
-                            queueName: queueName,
-                          ));
-                    },
-                    text1: ' حجز الان',
-                    image1: 'assets/images/vuesax_bold_ticket_expired.svg',
-                    function2: () {
-                      NavigateTo(context, FormScheduling());
-                    },
-                    text2: ' حجز مسبق ',
-                    image2: 'assets/images/vuesax_bold_calendar_tick.svg'),
-              ],
-            ),
-          );
-        },
-      ),
+              ),
+              buttonCardBottom(
+                  space: (16 / 390) * screenWidth,
+                  widthCard: (158 / 390) * screenWidth,
+                  function1: () {
+                    QueueCubit.get(context).createTeckit(serviceId);
+                    NavigateTo(
+                        context,
+                        Service_screen(
+                          branshName: name,
+                          serviceId: serviceId,
+                          queueName: queueName,
+                        ));
+                  },
+                  text1: ' حجز الان',
+                  image1: 'assets/images/vuesax_bold_ticket_expired.svg',
+                  function2: () {
+                    NavigateTo(context, FormScheduling());
+                  },
+                  text2: ' حجز مسبق ',
+                  image2: 'assets/images/vuesax_bold_calendar_tick.svg'),
+            ],
+          ),
+        );
+      },
     );
   }
 }

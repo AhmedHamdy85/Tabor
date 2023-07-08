@@ -15,8 +15,6 @@ import 'package:tabor/model/active_teckit_model/active_teckit_model.dart';
 import 'package:tabor/modules/on_bording/on_bording.dart';
 import 'package:tabor/modules/queue/queue.dart';
 
-import '../queue/cubit/queue_logic.dart';
-
 class TecketScrren extends StatelessWidget {
   const TecketScrren({super.key});
 
@@ -26,7 +24,6 @@ class TecketScrren extends StatelessWidget {
     double screenHight = MediaQuery.of(context).size.height;
     double containrwidth = screenWidth - 64;
     double cotanrhigt = screenHight * 0.45;
-
     return BlocConsumer<layoutCubit, layoutStates>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -284,8 +281,6 @@ class ActiveTeckt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var queueCubit = QueueCubit.get(context);
-
     return Center(
       child: Container(
         width: screenWidth - 64,
@@ -436,10 +431,7 @@ class ActiveTeckt extends StatelessWidget {
                     fweight: FontWeight.w500,
                   ),
                   const Spacer(),
-                  timeRemain(
-                    hours: layoutCubit.get(context).parsedTime['hours'] ?? 0,
-                    munets: layoutCubit.get(context).parsedTime['minutes'] ?? 0,
-                  ),
+                  timeRemain(),
                 ],
               ),
             ),
@@ -447,11 +439,7 @@ class ActiveTeckt extends StatelessWidget {
               height: 5,
             ),
             Center(
-              child: linearIndicator(
-                width: containrwidth - 32,
-                hours: layoutCubit.get(context).parsedTime['hours'] ?? 0,
-                munets: layoutCubit.get(context).parsedTime['minutes'] ?? 0,
-              ),
+              child: linearIndicator(width: containrwidth - 32),
             ),
             SizedBox(
               height: 30,

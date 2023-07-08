@@ -6,7 +6,7 @@ import 'package:tabor/layout/cubit/states.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
-import 'package:tabor/modules/Home/map/mapscreen.dart';
+
 import 'package:tabor/modules/Home/search/search.dart';
 
 import '../../layout/drawer/setting.dart';
@@ -18,13 +18,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var logInCubit = LoginCubit.get(context);
-
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
     var cubit = layoutCubit.get(context);
     Setting.mopile = '${cubit.userData?.mobile ?? ''}';
     Setting.userName = '${cubit.userData?.username ?? ''}';
+
     return BlocConsumer<layoutCubit, layoutStates>(
         listener: (context, state) {},
         builder: (context, state) {

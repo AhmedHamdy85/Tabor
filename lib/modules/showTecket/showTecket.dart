@@ -1,29 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tabor/layout/layout_screen.dart';
+import 'package:tabor/model/create_tecit_model.dart';
 import 'package:tabor/modules/Home/map/mapscreen.dart';
 import 'package:tabor/modules/queue/cubit/queue_logic.dart';
 import 'package:tabor/shared/componants/componant.dart';
 
-import '../../model/create_tecit_model.dart';
-
 class ShowTecketScreen extends StatelessWidget {
-  ShowTecketScreen(
-      {super.key,
-      required this.model,
-      required this.bankName,
-      required this.branchName,
-      required this.queueName});
-  CreateTecitModel model;
-  String bankName;
-  String branchName;
-  String queueName;
+  const ShowTecketScreen({super.key, required this.branchName, required this.queueName, required this.bankName, required this.model});
+final String branchName;
+ final String queueName;
+  final String bankName;
+ final CreateTecitModel model;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
     double containrwidth = screenWidth - 64;
-    var queueCubit = QueueCubit.get(context);
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
       body: Directionality(
@@ -103,7 +96,7 @@ class ShowTecketScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 specialtext(
-                                  text: bankName,
+                                  text: bankName ,
                                   fweight: FontWeight.w500,
                                 ),
                                 Padding(
@@ -151,7 +144,7 @@ class ShowTecketScreen extends StatelessWidget {
                                   width: screenWidth * 0.22,
                                 ),
                                 specialtext(
-                                  text: '${model.numOfWaitings}',
+                                  text: "${model.numOfWaitings}",
                                   fweight: FontWeight.w500,
                                   fsize: 18,
                                 ),
@@ -176,8 +169,8 @@ class ShowTecketScreen extends StatelessWidget {
                               width: screenWidth * 0.38,
                             ),
                             timeRemain(
-                              hours: queueCubit.parsedTime['hours'] ?? 0,
-                              munets: queueCubit.parsedTime['minutes'] ?? 0,
+                              hours: QueueCubit.get(context).parsedTime['hours']??0,
+                              munets: QueueCubit.get(context).parsedTime['minutes']??0
                             ),
                           ],
                         ),
@@ -186,11 +179,7 @@ class ShowTecketScreen extends StatelessWidget {
                         height: 5,
                       ),
                       Center(
-                        child: linearIndicator(
-                          width: containrwidth - 32,
-                          hours: queueCubit.parsedTime['hours'] ?? 0,
-                          munets: queueCubit.parsedTime['minutes'] ?? 0,
-                        ),
+                        child: linearIndicator(width: containrwidth - 32),
                       ),
                       SizedBox(
                         height: 85,

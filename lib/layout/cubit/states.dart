@@ -6,13 +6,13 @@ class layoutInatialState extends layoutStates {}
 
 class changeBottmnaveState extends layoutStates {}
 
-class serviceRadioButtonState extends layoutStates{}
+class serviceRadioButtonState extends layoutStates {}
 
-class passwordState extends layoutStates{}
+class passwordState extends layoutStates {}
 
-class toggleMode extends layoutStates{}
+class toggleMode extends layoutStates {}
 
-class TimeDay extends layoutStates{}
+class TimeDay extends layoutStates {}
 
 class GetAllBanksLoadingState extends layoutStates {}
 
@@ -44,7 +44,8 @@ class GetCompletedTeckitSuccesState extends layoutStates {}
 
 class GetCompletedTeckitErorrState extends layoutStates {}
 
-class ListHomeSearch extends layoutStates{}
+class ListHomeSearch extends layoutStates {}
 
-class ListBranchesSearch extends layoutStates{}
+class ListBranchesSearch extends layoutStates {}
 
+//class ListBranchesSearch extends layoutStates{}

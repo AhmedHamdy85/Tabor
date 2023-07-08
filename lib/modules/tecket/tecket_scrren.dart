@@ -50,37 +50,26 @@ class TecketScrren extends StatelessWidget {
                             fweight: FontWeight.w500),
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        NavigateTo(
-                            context,
-                            const Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: ShowTecketScreen()));
-                      },
-                      child: ConditionalBuilder(
-                          condition: state is! GetActiveTeckitLoadingState,
-                          builder: (context) => ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: layoutCubit
-                                    .get(context)
-                                    .activeTeckit
-                                    .length,
-                                itemBuilder: (context, index) => Center(
-                                  child: ActiveTeckt(
-                                      model: layoutCubit
-                                          .get(context)
-                                          .activeTeckit[index],
-                                      screenWidth: screenWidth,
-                                      screenHight: screenHight,
-                                      cotanrhigt: cotanrhigt,
-                                      containrwidth: containrwidth),
-                                ),
+                    ConditionalBuilder(
+                        condition: state is! GetActiveTeckitLoadingState,
+                        builder: (context) => ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount:
+                                  layoutCubit.get(context).activeTeckit.length,
+                              itemBuilder: (context, index) => Center(
+                                child: ActiveTeckt(
+                                    model: layoutCubit
+                                        .get(context)
+                                        .activeTeckit[index],
+                                    screenWidth: screenWidth,
+                                    screenHight: screenHight,
+                                    cotanrhigt: cotanrhigt,
+                                    containrwidth: containrwidth),
                               ),
-                          fallback: (context) =>
-                              const Center(child: CircularProgressIndicator())),
-                    ),
+                            ),
+                        fallback: (context) =>
+                            const Center(child: CircularProgressIndicator())),
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: Opacity(

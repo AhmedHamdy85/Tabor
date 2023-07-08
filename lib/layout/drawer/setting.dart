@@ -17,30 +17,31 @@ class _SettingState extends State<Setting> {
   //void compare;
 
   @override
-   String name ='نادر سيد';
+  String name = 'نادر سيد';
 
-   String phoneNumber = '01125229119';
+  String phoneNumber = '01125229119';
 
-   Color saveColor = Color(0xff7d7d7d);
+  Color saveColor = Color(0xff7d7d7d);
   final formkey = GlobalKey<ScaffoldState>();
 
   var phoneControlar = TextEditingController();
 
   var nameControlar = TextEditingController();
   void updateSaveColor() {
-  String newName = nameControlar.text;
-  String newPhoneNumber = phoneControlar.text;
+    String newName = nameControlar.text;
+    String newPhoneNumber = phoneControlar.text;
 
-  if (newName != name || newPhoneNumber != phoneNumber) {
-    setState(() {
-      saveColor = Color(0xff009c7b); // Change the color to the desired color
-    });
-  } else {
-    setState(() {
-      saveColor = Color(0xff7d7d7d); // Change the color to the default color
-    });
+    if (newName != name || newPhoneNumber != phoneNumber) {
+      setState(() {
+        saveColor = Color(0xff009c7b); // Change the color to the desired color
+      });
+    } else {
+      setState(() {
+        saveColor = Color(0xff7d7d7d); // Change the color to the default color
+      });
+    }
   }
-}
+
   @override
   void initState() {
     super.initState();
@@ -57,9 +58,8 @@ class _SettingState extends State<Setting> {
     // bool isTextGreen = (nameController.text != name || phoneController.text != phoneNumber);
     return BlocProvider(
       create: (BuildContext context) => layoutCubit(),
-      child: BlocConsumer<layoutCubit,layoutStates>(
-        listener: (context, state) {
-        },
+      child: BlocConsumer<layoutCubit, layoutStates>(
+        listener: (context, state) {},
         builder: (context, state) {
           var cubit = layoutCubit.get(context);
           return Directionality(
@@ -74,7 +74,7 @@ class _SettingState extends State<Setting> {
                   darktMode: cubit.darktMode,
                   lightMode: cubit.lightMode,
                   navigyEdit: () {
-                   // NavigateTo(context, Setting());
+                    // NavigateTo(context, Setting());
                   },
                   navigyNotify: () {
                     NavigateTo(context, Notifications());
@@ -280,17 +280,18 @@ class _SettingState extends State<Setting> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 32),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 32),
                     child: navigationButton(
-                                text: 'القائمة الرئيسية',
-                                function: () {
-                                  NavigateTo(
-                                      context,
-                                      const Directionality(
-                                          textDirection: TextDirection.rtl,
-                                          child: layoutScreen()));
-                                },
-                              ),
+                      text: 'القائمة الرئيسية',
+                      function: () {
+                        NavigateTo(
+                            context,
+                            const Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: layoutScreen()));
+                      },
+                    ),
                   ),
                 ],
               ),

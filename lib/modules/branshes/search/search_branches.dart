@@ -33,7 +33,7 @@ class _SearchBranchesScreenState extends State<SearchBranchesScreen> {
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: BlocProvider(
-          create: (BuildContext context)=> layoutCubit() ,
+          create: (BuildContext context) => layoutCubit(),
           child: BlocConsumer<layoutCubit, layoutStates>(
               listener: (context, state) => {},
               builder: (context, state) {
@@ -126,9 +126,14 @@ class _SearchBranchesScreenState extends State<SearchBranchesScreen> {
                             : ListView.separated(
                                 itemBuilder: (BuildContext context, int index) {
                                   return InkWell(
-                                    onTap: (){
-                                      NavigateTo(context,Directionality(textDirection: TextDirection.rtl,
-                                      child: QueuesScreen(name: 'خدمة العملاء',)));///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                    onTap: () {
+                                      NavigateTo(
+                                          context,
+                                          Directionality(
+                                              textDirection: TextDirection.rtl,
+                                              child: QueuesScreen(
+                                                name: 'خدمة العملاء',
+                                              ))); ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(

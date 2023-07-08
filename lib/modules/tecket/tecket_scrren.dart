@@ -328,7 +328,7 @@ class ActiveTeckt extends StatelessWidget {
                           ]),
                       child: InkWell(
                           onTap: () {
-                            NavigateTo(context, MapHome());
+                            NavigateTo(context, MapspecificLocation());
                           },
                           child: Image.asset('assets/images/Frame 70.png')),
                     ),

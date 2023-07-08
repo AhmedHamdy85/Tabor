@@ -55,8 +55,10 @@ dependencies:
   slide_countdown: null
   smooth_page_indicator: null
   toggle_switch: null
+  uuid: ^3.0.7
+  permission_handler: 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.0  
   flutter_test:
     sdk: flutter
 

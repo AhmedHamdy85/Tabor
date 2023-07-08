@@ -23,7 +23,7 @@ class LoginCubit extends Cubit<LoginStates> {
 
   LoginModel? loginModel;
 
-  void userLogin({required String phoneNumber, required String password}) {
+  void userLogin({required phoneNumber, required password}) {
     emit(LogInLoadingState());
     DioHelper.postData(
         url: LOGIN,

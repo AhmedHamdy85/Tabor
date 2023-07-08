@@ -10,6 +10,7 @@ import 'package:tabor/modules/Home/map/mapscreen.dart';
 import 'package:tabor/modules/Home/search/search.dart';
 
 import '../login/cubit/logic.dart';
+import 'map/map_home.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -113,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                           hight: 40,
                           icon: Iconsax.location5,
                           context: context,
-                          page: MapHome())
+                          page: MapHomescreen())
                     ],
                   ),
                 ),

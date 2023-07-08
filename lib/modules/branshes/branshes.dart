@@ -3,11 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/layout/cubit/states.dart';
 import 'package:tabor/model/bankmodels/all_banks_model/all_banks_model.dart';
+import 'package:tabor/modules/Home/homeScreen.dart';
 import 'package:tabor/modules/Home/map/mapscreen.dart';
 import 'package:tabor/modules/Home/search/search.dart';
 import 'package:tabor/modules/branshes/search/search_branches.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
+
+import '../Home/map/map_branches.dart';
 
 class BranshesScreen extends StatelessWidget {
   BranshesScreen({super.key, required this.model});
@@ -27,7 +30,7 @@ class BranshesScreen extends StatelessWidget {
                   screenWidth: screenWidth,
                   text: 'السابق',
                   context: context,
-                  screenMap: MapHome(),
+                  screenMap: HomeScreen(),
                   screenSearch: const SearchBranchesScreen()),
               SizedBox(
                 height: 192,

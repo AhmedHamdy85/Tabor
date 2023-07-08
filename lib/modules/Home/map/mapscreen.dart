@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
@@ -12,14 +12,14 @@ import 'package:tabor/shared/componants/iconsax_icons.dart';
 
 import '../../../shared/network/helpers/location_helper.dart';
 
-/*class MapHome extends StatefulWidget {
-  const MapHome({super.key});
+/*class MapspecificLocation extends StatefulWidget {
+  const MapspecificLocation({super.key});
 
   @override
-  State<MapHome> createState() => _MapHomeState();
+  State<MapspecificLocation> createState() => _MapspecificLocationState();
 }
 
-class _MapHomeState extends State<MapHome> {
+class _MapspecificLocationState extends State<MapspecificLocation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,25 +35,48 @@ class _MapHomeState extends State<MapHome> {
     );
   }
 }*/
-class MapHome extends StatefulWidget {
-  MapHome({super.key});
+class MapspecificLocation extends StatefulWidget {
+  MapspecificLocation({super.key});
 
   @override
-  State<MapHome> createState() => _MapHomeState();
+  State<MapspecificLocation> createState() => _MapspecificLocationState();
 }
 
-class _MapHomeState extends State<MapHome> {
+class _MapspecificLocationState extends State<MapspecificLocation> {
   @override
   void initState() {
     super.initState();
+    _requestLocationPermission();
     getMyCurrentLocatin();
+  }
+  void _requestLocationPermission() async {
+    final PermissionStatus permissionStatus =
+    await Permission.location.request();
+    if (permissionStatus != PermissionStatus.granted) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: Text('Location permission'),
+          content:
+          Text('Please grant location permission to use this feature.'),
+          actions: <Widget>[
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   final Completer<GoogleMapController> _mapController = Completer();
   static Position? position;
   static final CameraPosition _cameraPositionOfmyCurrentPosition =
       CameraPosition(
-          target: LatLng(position!.altitude, position!.latitude), zoom: 15);
+          target: LatLng(position!.altitude, position!.latitude), 
+          zoom: 15
+          );
   Future<void> getMyCurrentLocatin() async {
     position = await HelperClass.determinePosition().whenComplete(() {
       setState(() {});
@@ -72,7 +95,7 @@ class _MapHomeState extends State<MapHome> {
     );
   }
 
-  Future<void> _goToMyLocation() async {
+  Future<void> _goToMyCurrentLocation() async {
     final GoogleMapController controller = await _mapController.future;
     await controller.animateCamera(
         CameraUpdate.newCameraPosition(_cameraPositionOfmyCurrentPosition));
@@ -137,11 +160,7 @@ class _MapHomeState extends State<MapHome> {
                                 backgroundColor: Color(0xffbceee3),
                                 child: InkWell(
                                   onTap: () {
-                                    NavigateAndFinsh(
-                                        context,
-                                        Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: layoutScreen()));
+                                    _goToMyCurrentLocation;
                                   },
                                   child: Icon(Iconsax.gps),
                                 ),

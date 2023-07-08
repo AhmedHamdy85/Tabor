@@ -17,3 +17,6 @@ String SERVECISE = '/queue/service/all';
 String CREATETECITE = '/ticket/create';
 
 String VIWEPROFILE = '/users/show/';
+
+const String googleLocationBaseUrl =
+    'https://maps.googleapis.com/maps/api/place/details/output';

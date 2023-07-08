@@ -219,7 +219,7 @@ class ShowTecketScreen extends StatelessWidget {
                           context,
                           Directionality(
                               textDirection: TextDirection.rtl,
-                              child: MapHome()));
+                              child: MapspecificLocation()));
                     },
                     child: Container(
                       width: screenWidth * 0.39,

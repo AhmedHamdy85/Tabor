@@ -15,8 +15,6 @@ import 'package:tabor/model/active_teckit_model/active_teckit_model.dart';
 import 'package:tabor/modules/on_bording/on_bording.dart';
 import 'package:tabor/modules/queue/queue.dart';
 
-import '../queue/cubit/queue_logic.dart';
-
 class TecketScrren extends StatelessWidget {
   const TecketScrren({super.key});
 
@@ -26,94 +24,89 @@ class TecketScrren extends StatelessWidget {
     double screenHight = MediaQuery.of(context).size.height;
     double containrwidth = screenWidth - 64;
     double cotanrhigt = screenHight * 0.45;
-
     return BlocConsumer<layoutCubit, layoutStates>(
       listener: (context, state) {},
-      builder: (context, state) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomAppBar(
-                screenWidth: screenWidth,
-                text: 'التذاكر' '    ',
-                context: context),
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Opacity(
-                          opacity: 0.699999988079071,
-                          child: specialtext(
-                              text: "تذاكر نشطة",
-                              fsize: 21,
-                              fweight: FontWeight.w500),
-                        ),
+      builder: (context, state) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomAppBar(
+              screenWidth: screenWidth,
+              text: 'التذاكر' '    ',
+              context: context),
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Opacity(
+                        opacity: 0.699999988079071,
+                        child: specialtext(
+                            text: "تذاكر نشطة",
+                            fsize: 21,
+                            fweight: FontWeight.w500),
                       ),
-                      ConditionalBuilder(
-                          condition: state is! GetActiveTeckitLoadingState,
-                          builder: (context) => ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: layoutCubit
-                                    .get(context)
-                                    .activeTeckit
-                                    .length,
-                                itemBuilder: (context, index) => Center(
-                                  child: ActiveTeckt(
-                                      model: layoutCubit
-                                          .get(context)
-                                          .activeTeckit[index],
-                                      screenWidth: screenWidth,
-                                      screenHight: screenHight,
-                                      cotanrhigt: cotanrhigt,
-                                      containrwidth: containrwidth),
-                                ),
-                              ),
-                          fallback: (context) =>
-                              const Center(child: CircularProgressIndicator())),
-                      Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Opacity(
-                          opacity: 0.699999988079071,
-                          child: specialtext(
-                              text: "تذاكر سابقة",
-                              fsize: 21,
-                              fweight: FontWeight.w500),
-                        ),
-                      ),
-                      ConditionalBuilder(
-                          condition: state is! GetCompletedTeckitLoadingState,
-                          builder: (context) => ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: layoutCubit
-                                    .get(context)
-                                    .completedTeckit
-                                    .length,
-                                itemBuilder: (context, index) => Center(
-                                  child: InActiveTeckt(
-                                    screenWidth: screenWidth,
+                    ),
+                    ConditionalBuilder(
+                        condition: state is! GetActiveTeckitLoadingState,
+                        builder: (context) => ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount:
+                                  layoutCubit.get(context).activeTeckit.length,
+                              itemBuilder: (context, index) => Center(
+                                child: ActiveTeckt(
                                     model: layoutCubit
                                         .get(context)
-                                        .completedTeckit[index],
-                                  ),
+                                        .activeTeckit[index],
+                                    screenWidth: screenWidth,
+                                    screenHight: screenHight,
+                                    cotanrhigt: cotanrhigt,
+                                    containrwidth: containrwidth),
+                              ),
+                            ),
+                        fallback: (context) =>
+                            const Center(child: CircularProgressIndicator())),
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Opacity(
+                        opacity: 0.699999988079071,
+                        child: specialtext(
+                            text: "تذاكر سابقة",
+                            fsize: 21,
+                            fweight: FontWeight.w500),
+                      ),
+                    ),
+                    ConditionalBuilder(
+                        condition: state is! GetCompletedTeckitLoadingState,
+                        builder: (context) => ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: layoutCubit
+                                  .get(context)
+                                  .completedTeckit
+                                  .length,
+                              itemBuilder: (context, index) => Center(
+                                child: InActiveTeckt(
+                                  screenWidth: screenWidth,
+                                  model: layoutCubit
+                                      .get(context)
+                                      .completedTeckit[index],
                                 ),
                               ),
-                          fallback: (context) =>
-                              const Center(child: CircularProgressIndicator())),
-                    ],
-                  ),
+                            ),
+                        fallback: (context) =>
+                            const Center(child: CircularProgressIndicator())),
+                  ],
                 ),
               ),
-            )
-          ],
-        );
-      },
+            ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -264,8 +257,6 @@ class ActiveTeckt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var queueCubit = QueueCubit.get(context);
-
     return Center(
       child: Container(
         width: screenWidth - 64,
@@ -328,7 +319,7 @@ class ActiveTeckt extends StatelessWidget {
                           ]),
                       child: InkWell(
                           onTap: () {
-                            NavigateTo(context, MapspecificLocation());
+                            NavigateTo(context,MapspecificLocation());
                           },
                           child: Image.asset('assets/images/Frame 70.png')),
                     ),
@@ -408,10 +399,7 @@ class ActiveTeckt extends StatelessWidget {
                     fweight: FontWeight.w500,
                   ),
                   const Spacer(),
-                  timeRemain(
-                    hours: layoutCubit.get(context).parsedTime['hours'] ?? 0,
-                    munets: layoutCubit.get(context).parsedTime['minutes'] ?? 0,
-                  ),
+                  timeRemain(),
                 ],
               ),
             ),
@@ -419,11 +407,7 @@ class ActiveTeckt extends StatelessWidget {
               height: 5,
             ),
             Center(
-              child: linearIndicator(
-                width: containrwidth - 32,
-                hours: layoutCubit.get(context).parsedTime['hours'] ?? 0,
-                munets: layoutCubit.get(context).parsedTime['minutes'] ?? 0,
-              ),
+              child: linearIndicator(width: containrwidth - 32),
             ),
             SizedBox(
               height: 30,

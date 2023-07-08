@@ -69,14 +69,17 @@ class QueueCubit extends Cubit<QueueState> {
   }
 
   late CreateTecitModel createModel;
-  late final parsedTime;
-  void createTeckit(num? serviceId) {
+  dynamic parsedTime;
+  void createTeckit(int serviceId) {
     emit(CreateTeckitSuccesState());
-    DioHelper.postData(url: CREATETECITE, data: {'service': serviceId})
+    DioHelper.postData(
+            url: CREATETECITE, data: {'service': serviceId}, token: token)
         .then((value) {
       createModel = CreateTecitModel.fromJson(value.data);
-      parsedTime = parseWaitingTime('${createModel.waitingTime}');
+      parsedTime = parseTime('${createModel.waitingTime}');
       print(createModel);
+      print(value.statusCode);
+      print(value.statusMessage);
       emit(CreateTeckitSuccesState());
     }).catchError((erorr) {
       print('create tickit error is ${erorr.toString()}');
@@ -84,13 +87,23 @@ class QueueCubit extends Cubit<QueueState> {
     });
   }
 
-  Map<String, int> parseWaitingTime(String waitingTime) {
-    final parts = waitingTime.split(' ');
-    final timeParts = parts[0].split(':');
+  static Map<String, int> parseTime(String timeString) {
+    // Split the time string into hours and minutes parts
+    final parts = timeString.split(' ');
 
-    final hours = int.parse(timeParts[0]);
-    final minutes = int.parse(timeParts[1]);
+    // Extract the hours and minutes as strings
+    final timeParts = parts[1].split(':');
+    final hoursString = parts[0];
 
-    return {'hours': hours, 'minutes': minutes};
+    final minutesString = timeParts[1];
+
+    // Convert the hours and minutes strings to integers
+    final hours = int.tryParse(hoursString) ?? 0;
+    final minutes = int.tryParse(minutesString) ?? 0;
+
+    // Create a map to store the parsed values
+    final parsedTime = {'hours': hours, 'minutes': minutes};
+
+    return parsedTime;
   }
 }

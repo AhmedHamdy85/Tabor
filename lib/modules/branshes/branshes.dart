@@ -154,6 +154,7 @@ class BranshesScreen extends StatelessWidget {
                                 screenWidth: screenWidth,
                                 context: context,
                                 image: 'assets/images/status.svg',
+                                bankName: '${model.name}',
                                 name: '${model.branchs![index].nameOfBranch}',
                                 destance:
                                     '${model.branchs![index].distanceBranchUser}'))

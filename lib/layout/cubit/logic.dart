@@ -5,6 +5,7 @@ import 'package:tabor/layout/cubit/states.dart';
 import 'package:tabor/model/add_favoret_model/add_favoret_model.dart';
 import 'package:tabor/modules/Home/homeScreen.dart';
 import 'package:tabor/modules/favoret/favoret_screen.dart';
+import 'package:tabor/modules/queue/cubit/queue_logic.dart';
 import 'package:tabor/modules/tecket/tecket_scrren.dart';
 import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/endpints.dart';
@@ -13,6 +14,7 @@ import 'package:tabor/shared/network/remote/dio_helper.dart';
 import '../../model/active_teckit_model/active_teckit_model.dart';
 import '../../model/bankmodels/all_banks_model/all_banks_model.dart';
 import '../../model/favoret_model/favoret_model.dart';
+import '../../model/profileModel/profile_model.dart';
 import '../../modules/branshes/search/search_branches.dart';
 
 class layoutCubit extends Cubit<layoutStates> {
@@ -144,14 +146,15 @@ class layoutCubit extends Cubit<layoutStates> {
   }
 
   List<TeckitModel> activeTeckit = [];
-
+  dynamic parsedTime;
   void getActiveTeckit() {
     emit(GetActiveTeckitLoadingState());
     DioHelper.getData(url: ACTIVETICET, token: token).then((value) {
       activeTeckit
           .addAll((value.data as List).map(((e) => TeckitModel.fromJson(e))));
-
+      parsedTime = QueueCubit.parseTime('${activeTeckit[2].waitingTime}');
       //  print('tecits ${activeTeckit[0].numOfTurn}');
+      print(parsedTime);
       emit(GetActiveTeckitSuccesState());
     }).catchError((erorr) {
       print('Teckit error is ' + erorr.toString());
@@ -186,5 +189,22 @@ class layoutCubit extends Cubit<layoutStates> {
         .where((element) => element.title.contains(value))
         .toList();
     emit(ListBranchesSearch());
+  }
+
+  ProfileModel? userData;
+  void getUserData(num? id) async {
+    emit(GetUserProfileLoadingState());
+    DioHelper.getData(
+      url: '$VIWEPROFILE${id.toString()}',
+      token: token,
+    ).then((value) {
+      userData = ProfileModel.fromJson(value.data);
+
+      emit(GetUserProfileSuccesState());
+      print(value.statusMessage);
+    }).catchError((erorr) {
+      print(erorr.toString());
+      emit(GetUserProfileErorrState());
+    });
   }
 }

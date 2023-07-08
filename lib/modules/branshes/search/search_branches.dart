@@ -132,6 +132,7 @@ class _SearchBranchesScreenState extends State<SearchBranchesScreen> {
                                           Directionality(
                                               textDirection: TextDirection.rtl,
                                               child: QueuesScreen(
+                                                bankName: '',
                                                 name: 'خدمة العملاء',
                                               ))); ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                     },

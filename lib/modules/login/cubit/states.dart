@@ -9,7 +9,7 @@ class ChangePasswordVizabiltyState extends LoginStates {}
 class LogInLoadingState extends LoginStates {}
 
 class LogInSuccesState extends LoginStates {
-  final LoginModel loginModel;
+  final LoginModel? loginModel;
 
   LogInSuccesState(this.loginModel);
 }

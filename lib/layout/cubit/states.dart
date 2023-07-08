@@ -47,3 +47,9 @@ class GetCompletedTeckitErorrState extends layoutStates {}
 class ListHomeSearch extends layoutStates {}
 
 class ListBranchesSearch extends layoutStates {}
+
+class GetUserProfileLoadingState extends layoutStates {}
+
+class GetUserProfileSuccesState extends layoutStates {}
+
+class GetUserProfileErorrState extends layoutStates {}

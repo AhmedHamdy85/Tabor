@@ -68,6 +68,8 @@ class _SettingState extends State<Setting> {
               key: formkey,
               backgroundColor: Color(0xffe9ebeb),
               drawer: SpecificDrawer(
+                  userName: 'احمد',
+                  usetPhone: "01146399104",
                   screenWidth: screenWidth,
                   screenheight: screenHight,
                   notifyNumber: cubit.notificationsNumber,

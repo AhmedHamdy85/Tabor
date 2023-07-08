@@ -29,9 +29,12 @@ class logInScreen extends StatelessWidget {
             if (state is LogInSuccesState) {
               showToast(
                   text: 'تم تسجيل الدخول بنجاح', state: toastStates.SUCCESS);
-              CasheHelper.saveData(key: 'token', value: state.loginModel.token)
+
+              CasheHelper.saveData(key: 'token', value: state.loginModel!.token)
                   .then((value) {
-                token = state.loginModel.token;
+                token = state.loginModel!.token;
+                id = state.loginModel!.data.id;
+                refreshToken = state.loginModel!.refreshToken;
                 NavigateAndFinsh(
                     context,
                     const Directionality(

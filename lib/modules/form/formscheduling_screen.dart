@@ -4,8 +4,10 @@ import 'package:intl/intl.dart';
 import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/layout/cubit/states.dart';
 import 'package:tabor/layout/layout_screen.dart';
+import 'package:tabor/modules/queue/cubit/queue_logic.dart';
 import 'package:tabor/modules/requirement/requirement.dart';
 import 'package:tabor/modules/service/service.dart';
+import 'package:tabor/modules/showTecket/showTecket.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 import 'dart:ui' as UI;
@@ -13,7 +15,14 @@ import 'dart:ui' as UI;
 UI.TextDirection direction = UI.TextDirection.rtl;
 
 class FormScheduling extends StatefulWidget {
-  FormScheduling({super.key});
+  FormScheduling(
+      {super.key,
+      required this.bankName,
+      required this.branshName,
+      required this.queueName});
+  String branshName;
+  String queueName;
+  String bankName;
 
   @override
   State<FormScheduling> createState() => _FormSchedulingState();
@@ -52,7 +61,7 @@ class _FormSchedulingState extends State<FormScheduling> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
-
+    var queueCubit = QueueCubit.get(context);
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
       body: Directionality(
@@ -276,7 +285,14 @@ class _FormSchedulingState extends State<FormScheduling> {
                         space: (16 / 390) * screenWidth,
                         widthCard: (158 / 390) * screenWidth,
                         function1: () {
-                          animatedDialog(context: context, width: screenWidth);
+                          animatedDialog(
+                              context: context,
+                              width: screenWidth,
+                              screen: ShowTecketScreen(
+                                  model: queueCubit.createModel,
+                                  bankName: widget.bankName,
+                                  branchName: widget.bankName,
+                                  queueName: widget.queueName));
                         },
                         text1: ' حجز الدور',
                         image1: 'assets/images/vuesax_bold_ticket_expired.svg',

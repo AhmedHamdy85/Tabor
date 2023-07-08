@@ -5,6 +5,7 @@ import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/layout/cubit/states.dart';
 import 'package:tabor/layout/drawer/notifications.dart';
 import 'package:tabor/layout/drawer/setting.dart';
+import 'package:tabor/modules/login/cubit/logic.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
@@ -14,16 +15,18 @@ class layoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final scaffoldKey = GlobalKey<ScaffoldState>();
     double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
     return BlocConsumer<layoutCubit, layoutStates>(
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = layoutCubit.get(context);
+
         return Scaffold(
           key: scaffoldKey,
           drawer: SpecificDrawer(
+              userName: cubit.userData?.username ?? '',
+              usetPhone: cubit.userData?.mobile ?? '',
               screenWidth: screenwidth,
               screenheight: screenheight,
               notifyNumber: cubit.notificationsNumber,

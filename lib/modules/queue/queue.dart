@@ -10,8 +10,9 @@ import '../../shared/componants/constants.dart';
 import 'cubit/queue_logic.dart';
 
 class QueuesScreen extends StatelessWidget {
-  QueuesScreen({super.key, required this.name});
+  QueuesScreen({super.key, required this.name, required this.bankName});
   String name;
+  String bankName;
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +28,7 @@ class QueuesScreen extends StatelessWidget {
       'الاربعاء',
       'الخميس',
     ];
-    List<String> dropDownTitleItem = ['خدمة العملاء', 'استقبال', 'حوالات'];
-    List<String> dropDownService = [
-      '  فتح /غلق حساب',
-      '  شكوى',
-      '  خدمات اخرى'
-    ];
+
     String? selectedValue;
     return BlocConsumer<QueueCubit, QueueState>(
       listener: (context, state) {},
@@ -236,7 +232,11 @@ class QueuesScreen extends StatelessWidget {
                           height: 16,
                         ),
                         SizedBox(
-                          height: 100 * dropDownTitleItem.length.toDouble(),
+                          height: 100 *
+                              QueueCubit.get(context)
+                                  .dropDownTitleItem
+                                  .length
+                                  .toDouble(),
                           child: Directionality(
                             textDirection: TextDirection.rtl,
                             child: ListView.separated(
@@ -287,7 +287,7 @@ class QueuesScreen extends StatelessWidget {
                   space: (16 / 390) * screenWidth,
                   widthCard: (158 / 390) * screenWidth,
                   function1: () {
-                    QueueCubit.get(context).createTeckit(serviceId);
+                    QueueCubit.get(context).createTeckit(serviceId as int);
                     NavigateTo(
                         context,
                         Service_screen(
@@ -299,7 +299,13 @@ class QueuesScreen extends StatelessWidget {
                   text1: ' حجز الان',
                   image1: 'assets/images/vuesax_bold_ticket_expired.svg',
                   function2: () {
-                    NavigateTo(context, FormScheduling());
+                    NavigateTo(
+                        context,
+                        FormScheduling(
+                          bankName: bankName,
+                          branshName: name,
+                          queueName: queueName,
+                        ));
                   },
                   text2: ' حجز مسبق ',
                   image2: 'assets/images/vuesax_bold_calendar_tick.svg'),

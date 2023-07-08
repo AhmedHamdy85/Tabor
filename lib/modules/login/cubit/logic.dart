@@ -21,7 +21,7 @@ class LoginCubit extends Cubit<LoginStates> {
     emit(ChangePasswordVizabiltyState());
   }
 
-  late LoginModel loginModel;
+  LoginModel? loginModel;
 
   void userLogin({required String phoneNumber, required String password}) {
     emit(LogInLoadingState());

@@ -479,6 +479,7 @@ Widget BranshesCard({
   required BuildContext context,
   required String image,
   required String name,
+  required String bankName,
   required String destance,
 }) =>
     Center(
@@ -486,7 +487,12 @@ Widget BranshesCard({
         padding: const EdgeInsets.only(top: 16),
         child: InkWell(
           onTap: () {
-            NavigateTo(context, QueuesScreen(name: name));
+            NavigateTo(
+                context,
+                QueuesScreen(
+                  name: name,
+                  bankName: bankName,
+                ));
           },
           child: Container(
             width: screenWidth - 32,
@@ -1317,6 +1323,8 @@ Color choseToastColor(toastStates state) {
 
 Widget SpecificDrawer(
         {required double screenWidth,
+        required String userName,
+        required String usetPhone,
         required double screenheight,
         required int notifyNumber,
         required bool darktMode,
@@ -1335,7 +1343,7 @@ Widget SpecificDrawer(
             height: (224 / 844) * screenheight,
             child: UserAccountsDrawerHeader(
               accountName: Text(
-                "نادر سيد",
+                userName,
                 style: TextStyle(
                     color: const Color(0xffffffff),
                     fontWeight: FontWeight.w500,
@@ -1344,7 +1352,7 @@ Widget SpecificDrawer(
                     fontSize: 21.0),
                 textAlign: TextAlign.center,
               ),
-              accountEmail: Text("01125229119",
+              accountEmail: Text(usetPhone,
                   style: TextStyle(
                       color: Color(0xffffffff),
                       fontWeight: FontWeight.w300,
@@ -1629,7 +1637,7 @@ Future<void> animatedDialog({
   String text1 = 'الغاء',
   String text2 = 'حسنا',
   String animation = 'done',
-  Widget screen = const ShowTecketScreen(),
+  required Widget screen,
   Color color = const Color(0xff009c7b),
 }) =>
     Dialogs.materialDialog(
@@ -1709,8 +1717,8 @@ Widget Navigation2Button() => MaterialButton(
         ),
       ),
     );
-Widget timeRemain() => SlideCountdown(
-      duration: Duration(minutes: x),
+Widget timeRemain({int hours = 0, int munets = 0}) => SlideCountdown(
+      duration: Duration(hours: hours, minutes: munets),
       textStyle: TextStyle(
         color: const Color(0xff161616),
         fontWeight: FontWeight.w400,
@@ -1725,14 +1733,16 @@ Widget timeRemain() => SlideCountdown(
         color: const Color(0xffffffff),
       ),
     );
-Widget linearIndicator({required double width}) => ProgressBarAnimation(
-    width: width,
-    height: 8,
-    duration: Duration(minutes: x),
-    gradient: const LinearGradient(
-      colors: [
-        Color(0xffbceee3),
-        mainColor,
-      ],
-    ),
-    backgroundColor: Colors.grey.withOpacity(0.4));
+Widget linearIndicator(
+        {required double width, int hours = 0, int munets = 0}) =>
+    ProgressBarAnimation(
+        width: width,
+        height: 8,
+        duration: Duration(hours: hours, minutes: munets),
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xffbceee3),
+            mainColor,
+          ],
+        ),
+        backgroundColor: Colors.grey.withOpacity(0.4));

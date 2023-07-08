@@ -4,14 +4,18 @@ import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/layout/cubit/states.dart';
 import 'package:tabor/layout/drawer/setting.dart';
 import 'package:tabor/layout/layout_screen.dart';
+import 'package:tabor/modules/login/cubit/logic.dart';
 import 'package:tabor/shared/componants/componant.dart';
 
 class Notifications extends StatelessWidget {
   const Notifications({super.key});
   @override
   Widget build(BuildContext context) {
+    var logInCubit = LoginCubit.get(context);
+
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
+
     final scafoldKey = GlobalKey<ScaffoldState>();
     return BlocConsumer<layoutCubit, layoutStates>(
       listener: (context, state) {},
@@ -22,6 +26,8 @@ class Notifications extends StatelessWidget {
           child: Scaffold(
             backgroundColor: Color(0xfff5f5f5),
             drawer: SpecificDrawer(
+                userName: 'احمد',
+                usetPhone: "0123938",
                 screenWidth: screenWidth,
                 screenheight: screenHight,
                 notifyNumber: cubit.notificationsNumber,

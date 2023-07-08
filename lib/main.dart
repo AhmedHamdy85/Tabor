@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/modules/on_bording/on_bording.dart';
+import 'package:tabor/modules/queue/cubit/queue_logic.dart';
 import 'package:tabor/shared/network/local/cashe_helper.dart';
 import 'package:tabor/shared/network/remote/dio_helper.dart';
 
 import 'layout/layout_screen.dart';
+import 'modules/login/cubit/logic.dart';
 import 'shared/componants/constants.dart';
 
 void main() async {
@@ -40,7 +42,12 @@ class MyApp extends StatelessWidget {
               ..getAllBanks()
               ..getFavoretBanks()
               ..getActiveTeckit()
-              ..getCompletedTeckit())
+              ..getCompletedTeckit()),
+        BlocProvider(
+            create: (context) => QueueCubit()
+              ..getQueues()
+              ..getServices()),
+        BlocProvider(create: (context) => LoginCubit())
       ],
       child: MaterialApp(
         theme: ThemeData(

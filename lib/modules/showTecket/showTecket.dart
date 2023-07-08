@@ -2,16 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tabor/layout/layout_screen.dart';
 import 'package:tabor/modules/Home/map/mapscreen.dart';
+import 'package:tabor/modules/queue/cubit/queue_logic.dart';
 import 'package:tabor/shared/componants/componant.dart';
 
-class ShowTecketScreen extends StatelessWidget {
-  const ShowTecketScreen({super.key});
+import '../../model/create_tecit_model.dart';
 
+class ShowTecketScreen extends StatelessWidget {
+  ShowTecketScreen(
+      {super.key,
+      required this.model,
+      required this.bankName,
+      required this.branchName,
+      required this.queueName});
+  CreateTecitModel model;
+  String bankName;
+  String branchName;
+  String queueName;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
     double containrwidth = screenWidth - 64;
+    var queueCubit = QueueCubit.get(context);
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
       body: Directionality(
@@ -91,21 +103,21 @@ class ShowTecketScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 specialtext(
-                                  text: "البنك الاهلى المصرى",
+                                  text: bankName,
                                   fweight: FontWeight.w500,
                                 ),
                                 Padding(
                                   padding:
                                       const EdgeInsets.only(top: 8, bottom: 8),
                                   child: specialtext(
-                                      text: "الفيوم - فرع الجامعة",
+                                      text: branchName,
                                       fweight: FontWeight.w500,
                                       fsize: 12),
                                 ),
                                 Opacity(
                                   opacity: 0.5,
                                   child: specialtext(
-                                    text: "طابور خدمة العملاء",
+                                    text: queueName,
                                     fsize: 12,
                                   ),
                                 ),
@@ -139,7 +151,7 @@ class ShowTecketScreen extends StatelessWidget {
                                   width: screenWidth * 0.22,
                                 ),
                                 specialtext(
-                                  text: " 3 ",
+                                  text: '${model.numOfWaitings}',
                                   fweight: FontWeight.w500,
                                   fsize: 18,
                                 ),
@@ -163,7 +175,10 @@ class ShowTecketScreen extends StatelessWidget {
                             SizedBox(
                               width: screenWidth * 0.38,
                             ),
-                            timeRemain(),
+                            timeRemain(
+                              hours: queueCubit.parsedTime['hours'] ?? 0,
+                              munets: queueCubit.parsedTime['minutes'] ?? 0,
+                            ),
                           ],
                         ),
                       ),
@@ -171,7 +186,11 @@ class ShowTecketScreen extends StatelessWidget {
                         height: 5,
                       ),
                       Center(
-                        child: linearIndicator(width: containrwidth - 32),
+                        child: linearIndicator(
+                          width: containrwidth - 32,
+                          hours: queueCubit.parsedTime['hours'] ?? 0,
+                          munets: queueCubit.parsedTime['minutes'] ?? 0,
+                        ),
                       ),
                       SizedBox(
                         height: 85,

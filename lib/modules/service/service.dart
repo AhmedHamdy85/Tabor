@@ -12,7 +12,13 @@ class Service_screen extends StatelessWidget {
   String? branshName;
   num? serviceId;
   String? queueName;
-  Service_screen({super.key, this.branshName, this.serviceId, this.queueName});
+  String? bankName;
+  Service_screen(
+      {super.key,
+      this.branshName,
+      this.serviceId,
+      this.queueName,
+      this.bankName});
   @override
   TextEditingController phoneController = TextEditingController();
   TextEditingController nationalIDController = TextEditingController();
@@ -262,8 +268,11 @@ class Service_screen extends StatelessWidget {
                       widthCard: (158 / 390) * screenWidth,
                       function1: () {
                         animatedDialog(
-                          screen:
-                              ShowTecketScreen(model: queueCubit.createModel),
+                          screen: ShowTecketScreen(
+                              bankName: '${bankName}',
+                              queueName: '$queueName',
+                              branchName: '$branshName',
+                              model: queueCubit.createModel),
                           context: context,
                           width: screenWidth,
                         );

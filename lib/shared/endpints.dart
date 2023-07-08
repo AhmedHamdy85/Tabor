@@ -13,3 +13,7 @@ String COMPLETEDTICKETS = '/ticket/completed_tickets/';
 String QUEUE = '/queue/all';
 
 String SERVECISE = '/queue/service/all';
+
+String CREATETECITE = '/ticket/create';
+
+String VIWEPROFILE = '/users/show/';

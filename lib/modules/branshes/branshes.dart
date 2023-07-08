@@ -9,6 +9,8 @@ import 'package:tabor/modules/branshes/search/search_branches.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 
+import '../Home/map/map_branches.dart';
+
 class BranshesScreen extends StatelessWidget {
   BranshesScreen({super.key, required this.model});
   final AllBanksModel model;
@@ -27,7 +29,7 @@ class BranshesScreen extends StatelessWidget {
                   screenWidth: screenWidth,
                   text: 'السابق',
                   context: context,
-                  screenMap: MapHome(),
+                  screenMap: MapBranchesScreen(),
                   screenSearch: const SearchBranchesScreen()),
               SizedBox(
                 height: 192,

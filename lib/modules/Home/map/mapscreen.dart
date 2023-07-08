@@ -12,14 +12,14 @@ import 'package:tabor/shared/componants/iconsax_icons.dart';
 
 import '../../../shared/network/helpers/location_helper.dart';
 
-/*class MapHome extends StatefulWidget {
-  const MapHome({super.key});
+/*class MapspecificLocation extends StatefulWidget {
+  const MapspecificLocation({super.key});
 
   @override
-  State<MapHome> createState() => _MapHomeState();
+  State<MapspecificLocation> createState() => _MapspecificLocationState();
 }
 
-class _MapHomeState extends State<MapHome> {
+class _MapspecificLocationState extends State<MapspecificLocation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,14 +35,14 @@ class _MapHomeState extends State<MapHome> {
     );
   }
 }*/
-class MapHome extends StatefulWidget {
-  MapHome({super.key});
+class MapspecificLocation extends StatefulWidget {
+  MapspecificLocation({super.key});
 
   @override
-  State<MapHome> createState() => _MapHomeState();
+  State<MapspecificLocation> createState() => _MapspecificLocationState();
 }
 
-class _MapHomeState extends State<MapHome> {
+class _MapspecificLocationState extends State<MapspecificLocation> {
   @override
   void initState() {
     super.initState();

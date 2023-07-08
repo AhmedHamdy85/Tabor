@@ -176,4 +176,5 @@ class layoutCubit extends Cubit<layoutStates> {
     displayBranchesList=mainBranchesList.where((element) => element.title.contains(value)).toList();
     emit(ListBranchesSearch());
   }
+
 }

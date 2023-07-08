@@ -70,14 +70,13 @@ class QueueCubit extends Cubit<QueueState> {
 
   late CreateTecitModel createModel;
   dynamic parsedTime;
-  void createTeckit(int serviceId) {
-    emit(CreateTeckitSuccesState());
-    DioHelper.postData(
-            url: CREATETECITE, data: {'service': serviceId}, token: token)
+  void createTeckit(num? serviceId) {
+    emit(CreateTeckitLoadingState());
+    DioHelper.postData(url: CREATETECITE, token: token, data: {'service': 3})
         .then((value) {
       createModel = CreateTecitModel.fromJson(value.data);
-      parsedTime = parseTime('${createModel.waitingTime}');
-      print(createModel);
+      // parsedTime = parseTime('${createModel.waitingTime}');
+      //   print(createModel);
       print(value.statusCode);
       print(value.statusMessage);
       emit(CreateTeckitSuccesState());

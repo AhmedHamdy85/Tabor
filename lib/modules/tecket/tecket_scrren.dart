@@ -56,7 +56,10 @@ class TecketScrren extends StatelessWidget {
                       ),
                       ConditionalBuilder(
                           condition: state is! GetActiveTeckitLoadingState,
-                          builder: (context) => ListView.builder(
+                          builder: (context) => ListView.separated(
+                                separatorBuilder: (context, index) => SizedBox(
+                                  height: 15,
+                                ),
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: layoutCubit
@@ -134,7 +137,11 @@ class InActiveTeckt extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 16),
       child: InkWell(
         onTap: () {
-          NavigateTo(context, tecketReloudeScreen());
+          NavigateTo(
+              context,
+              tecketReloudeScreen(
+                model: model,
+              ));
         },
         child: Container(
           width: screenWidth - 40,
@@ -152,7 +159,16 @@ class InActiveTeckt extends StatelessWidget {
               right: 10,
             ),
             child: Row(children: [
-              Center(child: DefoltSvgImage(image: 'assets/images/Googel.svg')),
+              Center(
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              '${banksLogo['${model.service!.queue!.branch!.bank!.name}']}'))),
+                ),
+              ),
               SizedBox(
                 width: 8,
               ),
@@ -232,7 +248,11 @@ class InActiveTeckt extends StatelessWidget {
               ),
               IconButton(
                   onPressed: () {
-                    NavigateTo(context, tecketReloudeScreen());
+                    NavigateTo(
+                        context,
+                        tecketReloudeScreen(
+                          model: model,
+                        ));
                   },
                   icon: Icon(
                     Iconsax.repeat5,
@@ -287,7 +307,15 @@ class ActiveTeckt extends StatelessWidget {
               child: Row(
                 children: [
                   Center(
-                      child: DefoltSvgImage(image: 'assets/images/Googel.svg')),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  '${banksLogo['${model.service!.queue!.branch!.bank!.name}']}'))),
+                    ),
+                  ),
                   SizedBox(
                     width: 8,
                   ),

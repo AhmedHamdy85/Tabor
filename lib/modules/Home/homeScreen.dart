@@ -9,6 +9,7 @@ import 'package:tabor/shared/componants/iconsax_icons.dart';
 import 'package:tabor/modules/Home/map/mapscreen.dart';
 import 'package:tabor/modules/Home/search/search.dart';
 
+import '../../layout/drawer/setting.dart';
 import '../login/cubit/logic.dart';
 import 'map/map_home.dart';
 
@@ -22,7 +23,8 @@ class HomeScreen extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
     var cubit = layoutCubit.get(context);
-
+    Setting.mopile = '${cubit.userData?.mobile ?? ''}';
+    Setting.userName = '${cubit.userData?.username ?? ''}';
     return BlocConsumer<layoutCubit, layoutStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -128,6 +130,17 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         SizedBox(
                           height: screenHight * 0.23,
+                          child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(24),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                        'https://i0.wp.com/followict.news/wp-content/uploads/2022/12/Home-Banner-1700-x-651_-min.jpg?resize=1536%2C588&ssl=1'),
+                                  ),
+                                ),
+                              )),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 16),

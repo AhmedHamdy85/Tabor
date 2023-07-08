@@ -2,7 +2,7 @@ import 'package:geolocator/geolocator.dart';
 
 class HelperClass {
   static Future<Position> determinePosition() async {
-    bool enabledService = Geolocator.isLocationServiceEnabled() as bool;
+    bool enabledService = await Geolocator.isLocationServiceEnabled();
     if (!enabledService) {
       await Geolocator.requestPermission();
     }

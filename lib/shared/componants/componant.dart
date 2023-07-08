@@ -191,8 +191,7 @@ Widget DefoltHorisentalCompanyform(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Image(
-                  image: NetworkImage(model.image ??
-                      'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'),
+                  image: NetworkImage('${banksLogo['${model.name}']}'),
                 ),
               ),
             ),
@@ -249,8 +248,7 @@ Widget VerticalCompanyForm(
                 child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Image(
-                        image: NetworkImage(model.image ??
-                            'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'))),
+                        image: NetworkImage('${banksLogo['${model.name}']}'))),
               ),
               SizedBox(
                 width: 8,
@@ -339,8 +337,7 @@ Widget FavoretIteam(
                 child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Image(
-                        image: NetworkImage(model.image ??
-                            'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'))),
+                        image: NetworkImage('${banksLogo['${model.name}']}'))),
               ),
               SizedBox(
                 width: 8,
@@ -448,11 +445,22 @@ Widget AppBar2({
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            DefoltIcon(width: 40, hight: 40, icon: Iconsax.location5),
+            DefoltIcon(
+              width: 40,
+              hight: 40,
+              icon: Iconsax.location5,
+              page: screenMap,
+              context: context,
+            ),
             SizedBox(
               width: screenWidth * 0.02,
             ),
-            DefoltIcon(width: 40, hight: 40, icon: Iconsax.search_normal_14),
+            DefoltIcon(
+                width: 40,
+                hight: 40,
+                icon: Iconsax.search_normal_14,
+                page: screenSearch,
+                context: context),
             Spacer(),
             specialtext(
                 text: text,

@@ -21,13 +21,14 @@ class Notifications extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = layoutCubit.get(context);
+
         return Directionality(
           textDirection: TextDirection.rtl,
           child: Scaffold(
             backgroundColor: Color(0xfff5f5f5),
             drawer: SpecificDrawer(
-                userName: 'احمد',
-                usetPhone: "0123938",
+                userName: cubit.userData?.username ?? 'احمد',
+                usetPhone: cubit.userData?.username ?? '01146399104',
                 screenWidth: screenWidth,
                 screenheight: screenHight,
                 notifyNumber: cubit.notificationsNumber,

@@ -6,10 +6,12 @@ import 'package:tabor/layout/cubit/states.dart';
 import 'package:tabor/layout/layout_screen.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
+import '../../model/active_teckit_model/active_teckit_model.dart';
 import '../../shared/componants/constants.dart';
 
 class tecketReloudeScreen extends StatelessWidget {
-  const tecketReloudeScreen({super.key});
+  const tecketReloudeScreen({super.key, required this.model});
+  final TeckitModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -117,28 +119,38 @@ class tecketReloudeScreen extends StatelessWidget {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Center(
-                                          child: Image.asset(
-                                              'assets/images/Rectangle 1.png')),
+                                        child: Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      '${banksLogo['${model.service!.queue!.branch!.bank!.name}']}'))),
+                                        ),
+                                      ),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
                                           specialtext(
-                                            text: "البنك الاهلى المصرى",
+                                            text:
+                                                '${model.service!.queue!.branch!.bank!.name}',
                                             fweight: FontWeight.w500,
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
                                                 top: 8, bottom: 8),
                                             child: specialtext(
-                                                text: "الفيوم - فرع الجامعة",
+                                                text:
+                                                    "${model.service!.queue!.branch!.nameOfBranch}",
                                                 fweight: FontWeight.w500,
                                                 fsize: 12),
                                           ),
                                           Opacity(
                                             opacity: 0.5,
                                             child: specialtext(
-                                              text: "طابور خدمة العملاء",
+                                              text:
+                                                  "${model.service!.queue!.nameOfQueue}",
                                               fsize: 12,
                                             ),
                                           ),
@@ -172,7 +184,7 @@ class tecketReloudeScreen extends StatelessWidget {
                                               fsize: 18),
                                           Spacer(),
                                           specialtext(
-                                            text: '18 ساعه',
+                                            text: '${model.waitingTime}',
                                             fweight: FontWeight.w500,
                                             fsize: 18,
                                           ),
@@ -197,7 +209,7 @@ class tecketReloudeScreen extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           specialtext(
-                                              text: "تاريخ التذكرة",
+                                              text: " تاريخ التذكرة",
                                               fweight: FontWeight.w500),
                                           const SizedBox(
                                             height: 16,

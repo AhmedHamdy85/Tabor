@@ -30,7 +30,9 @@ class BranshesScreen extends StatelessWidget {
                   screenWidth: screenWidth,
                   text: 'السابق',
                   context: context,
-                  screenMap: HomeScreen(),
+                  screenMap: MapBranchesScreen(
+                    bankName: '${model.name}',
+                  ),
                   screenSearch: const SearchBranchesScreen()),
               SizedBox(
                 height: 192,

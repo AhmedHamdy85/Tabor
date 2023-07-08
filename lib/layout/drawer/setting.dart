@@ -7,8 +7,11 @@ import 'package:tabor/layout/layout_screen.dart';
 import 'package:tabor/shared/componants/componant.dart';
 
 class Setting extends StatefulWidget {
-  Setting({super.key});
-
+  Setting({
+    super.key,
+  });
+  static String userName = '';
+  static String mopile = '';
   @override
   State<Setting> createState() => _SettingState();
 }
@@ -17,9 +20,9 @@ class _SettingState extends State<Setting> {
   //void compare;
 
   @override
-  String name = 'نادر سيد';
+  String name = Setting.userName;
 
-  String phoneNumber = '01125229119';
+  String phoneNumber = Setting.mopile;
 
   Color saveColor = Color(0xff7d7d7d);
   final formkey = GlobalKey<ScaffoldState>();
@@ -68,8 +71,8 @@ class _SettingState extends State<Setting> {
               key: formkey,
               backgroundColor: Color(0xffe9ebeb),
               drawer: SpecificDrawer(
-                  userName: 'احمد',
-                  usetPhone: "01146399104",
+                  userName: cubit.userData?.username ?? 'احمد',
+                  usetPhone: cubit.userData?.username ?? '01146399104',
                   screenWidth: screenWidth,
                   screenheight: screenHight,
                   notifyNumber: cubit.notificationsNumber,
@@ -157,130 +160,129 @@ class _SettingState extends State<Setting> {
                       ),
                     ),
                   ),
-                  Flexible(
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(24, 32, 24, 0),
-                      width: double.infinity,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Center(
-                              child: Container(
-                                width: 128,
-                                height: 128,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(16)),
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/unknown.png'),
-                                      fit: BoxFit.fill),
-                                ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(24, 32, 24, 0),
+                    width: double.infinity,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Center(
+                            child: Container(
+                              width: 128,
+                              height: 128,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(16)),
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage('assets/images/unknown.png'),
+                                    fit: BoxFit.fill),
                               ),
                             ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: 24,
-                                        height: 24,
-                                        decoration: BoxDecoration(
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 24,
+                                      height: 24,
+                                      decoration: BoxDecoration(
 
-                                            //borderRadius: BorderRadius.all(Radius.circular(16)),
-                                            /* image: DecorationImage(
-                                            image: AssetImage('assets/images/vuesax_linear_gallery_add.png'),
-                                            fit: BoxFit.fill
-                                            ),*/
-                                            ),
-                                        child: Icon(
-                                          Icons.add_photo_alternate_rounded,
-                                          color: const Color(0xff7d7d7d),
-                                        ),
+                                          //borderRadius: BorderRadius.all(Radius.circular(16)),
+                                          /* image: DecorationImage(
+                                          image: AssetImage('assets/images/vuesax_linear_gallery_add.png'),
+                                          fit: BoxFit.fill
+                                          ),*/
+                                          ),
+                                      child: Icon(
+                                        Icons.add_photo_alternate_rounded,
+                                        color: const Color(0xff7d7d7d),
                                       ),
-                                      TextButton(
-                                        onPressed: () {},
-                                        child: specialtext(
-                                            text: ' تغيير الصورة الشخصية',
-                                            fcolor: const Color(0xff7d7d7d),
-                                            talign: TextAlign.right,
-                                            fsize: 14),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {},
+                                      child: specialtext(
+                                          text: ' تغيير الصورة الشخصية',
+                                          fcolor: const Color(0xff7d7d7d),
+                                          talign: TextAlign.right,
+                                          fsize: 14),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 32,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                specialtext(
-                                  text: 'الاسم',
-                                  fsize: 16,
-                                  fcolor: Color(0xff7d7d7d),
-                                  fweight: FontWeight.w400,
-                                  talign: TextAlign.right,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            defaultFormFieldSetting(
-                              width: double.infinity,
-                              controller: nameControlar,
-                              type: TextInputType.name,
-                              validate: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'الرجاء ادخال اسم صحيح';
-                                }
-                              },
-                            ),
-                            SizedBox(
-                              height: 16,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                specialtext(
-                                  text: 'رقم الهاتف',
-                                  fsize: 16,
-                                  fcolor: Color(0xff7d7d7d),
-                                  fweight: FontWeight.w400,
-                                  talign: TextAlign.right,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            defaultFormFieldSetting(
-                              width: double.infinity,
-                              controller: phoneControlar,
-                              type: TextInputType.phone,
-                              validate: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return ' الرجاء ادخال رقم الهاتف';
-                                }
-                              },
-                              //fsize: 16,
-                              //fcolor: Color(0xff161616),
-                            ),
-                          ],
-                        ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 32,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              specialtext(
+                                text: 'الاسم',
+                                fsize: 16,
+                                fcolor: Color(0xff7d7d7d),
+                                fweight: FontWeight.w400,
+                                talign: TextAlign.right,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          defaultFormFieldSetting(
+                            width: double.infinity,
+                            controller: nameControlar,
+                            type: TextInputType.name,
+                            validate: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'الرجاء ادخال اسم صحيح';
+                              }
+                            },
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              specialtext(
+                                text: 'رقم الهاتف',
+                                fsize: 16,
+                                fcolor: Color(0xff7d7d7d),
+                                fweight: FontWeight.w400,
+                                talign: TextAlign.right,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          defaultFormFieldSetting(
+                            width: double.infinity,
+                            controller: phoneControlar,
+                            type: TextInputType.phone,
+                            validate: (value) {
+                              if (value == null || value.isEmpty) {
+                                return ' الرجاء ادخال رقم الهاتف';
+                              }
+                            },
+                            //fsize: 16,
+                            //fcolor: Color(0xff161616),
+                          ),
+                        ],
                       ),
                     ),
                   ),
+                  const Spacer(),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 24, vertical: 32),

@@ -16,7 +16,11 @@ void main() async {
   await CasheHelper.init();
   DioHelper.init();
   token = CasheHelper.getData(Key: 'token');
-  print(token);
+  id = CasheHelper.getData(Key: 'id');
+  refreshToken = CasheHelper.getData(Key: 'refreshToken');
+  print('token' + token);
+  print('userid' + '$id');
+  print('refresh' + refreshToken);
   Widget widget;
   if (token != null) {
     widget = const layoutScreen();
@@ -42,7 +46,8 @@ class MyApp extends StatelessWidget {
               ..getAllBanks()
               ..getFavoretBanks()
               ..getActiveTeckit()
-              ..getCompletedTeckit()),
+              ..getCompletedTeckit()
+              ..getUserData(id)),
         BlocProvider(
             create: (context) => QueueCubit()
               ..getQueues()

@@ -7,7 +7,6 @@ import 'package:tabor/shared/componants/iconsax_icons.dart';
 
 import '../../../layout/layout_screen.dart';
 import '../../../shared/componants/constants.dart';
-import '../../branshes/branshes.dart';
 import '../../queue/queue.dart';
 
 class SearchBranchesScreen extends StatefulWidget {
@@ -25,11 +24,12 @@ class _SearchBranchesScreenState extends State<SearchBranchesScreen> {
     // filterList('kl');
   }
 
+  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xfff5f5f5),
+      backgroundColor: const Color(0xfff5f5f5),
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: BlocProvider(
@@ -45,7 +45,7 @@ class _SearchBranchesScreenState extends State<SearchBranchesScreen> {
                       Container(
                         height: screenHight * 0.17,
                         width: double.infinity,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xffffffff),
                           boxShadow: [
                             BoxShadow(blurRadius: 4, color: Color(0xff40000000))
@@ -72,27 +72,27 @@ class _SearchBranchesScreenState extends State<SearchBranchesScreen> {
                                           'assets/images/vuesax_bulk_arrow_square_right.svg'),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               Container(
                                 width: screenWidth - 72,
                                 height: 40,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     color: Color(0xffbceee3),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20))),
                                 child: TextField(
                                   onChanged: (value) =>
                                       cubit.filterBranchesList(value),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,
                                     color: mainColor,
                                     fontFamily: "ReadexPro",
                                     fontStyle: FontStyle.normal,
                                   ),
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     contentPadding:
                                         EdgeInsets.symmetric(horizontal: 16),
                                     suffixIcon: Icon(Iconsax.search_normal),
@@ -133,7 +133,7 @@ class _SearchBranchesScreenState extends State<SearchBranchesScreen> {
                                               textDirection: TextDirection.rtl,
                                               child: QueuesScreen(
                                                 bankName: '',
-                                                name: 'خدمة العملاء',
+                                                branchName: 'خدمة العملاء',
                                               ))); ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                     },
                                     child: Padding(

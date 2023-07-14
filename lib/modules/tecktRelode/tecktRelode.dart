@@ -17,9 +17,9 @@ class tecketReloudeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
-    double containrwidth = screenWidth - 64;
+    //  double containrwidth = screenWidth - 64;
     return Scaffold(
-      backgroundColor: Color(0xfff5f5f5),
+      backgroundColor: const Color(0xfff5f5f5),
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: BlocProvider(
@@ -34,7 +34,7 @@ class tecketReloudeScreen extends StatelessWidget {
                       Container(
                         height: screenHight * 0.17,
                         width: double.infinity,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xffffffff),
                           boxShadow: [
                             BoxShadow(blurRadius: 4, color: Color(0xff40000000))
@@ -61,7 +61,7 @@ class tecketReloudeScreen extends StatelessWidget {
                                           'assets/images/vuesax_bulk_arrow_square_right.svg'),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
                               Padding(
@@ -72,18 +72,18 @@ class tecketReloudeScreen extends StatelessWidget {
                                     fweight: FontWeight.w500,
                                     fcolor: mainColor),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               CircleAvatar(
-                                backgroundColor: Color(0xffbceee3),
+                                backgroundColor: const Color(0xffbceee3),
                                 child: InkWell(
                                     onTap: () {
                                       NavigateAndFinsh(
                                           context,
-                                          Directionality(
+                                          const Directionality(
                                               textDirection: TextDirection.rtl,
                                               child: layoutScreen()));
                                     },
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.close,
                                       shadows: [
                                         Shadow(
@@ -162,7 +162,7 @@ class tecketReloudeScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 24,
                                 ),
                                 Center(
@@ -172,7 +172,7 @@ class tecketReloudeScreen extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
                                         border: Border.all(
-                                            color: Color(0xff19161616))),
+                                            color: const Color(0xff19161616))),
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 16),
@@ -182,7 +182,7 @@ class tecketReloudeScreen extends StatelessWidget {
                                               text: 'الانتظار',
                                               fweight: FontWeight.w500,
                                               fsize: 18),
-                                          Spacer(),
+                                          const Spacer(),
                                           specialtext(
                                             text: '${model.waitingTime}',
                                             fweight: FontWeight.w500,
@@ -193,7 +193,7 @@ class tecketReloudeScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 16,
                                 ),
                                 Container(
@@ -267,7 +267,7 @@ class tecketReloudeScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 32),
                         child: MaterialButton(
-                          color: Color(0xff009c7b),
+                          color: const Color(0xff009c7b),
                           minWidth: double.infinity,
                           height: 52,
                           shape: RoundedRectangleBorder(
@@ -275,7 +275,7 @@ class tecketReloudeScreen extends StatelessWidget {
                           onPressed: () {
                             NavigateAndFinsh(
                                 context,
-                                Directionality(
+                                const Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: layoutScreen()));
                           },
@@ -284,9 +284,9 @@ class tecketReloudeScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
+                                const Icon(
                                   Iconsax.repeat,
-                                  color: const Color(0xffffffff),
+                                  color: Color(0xffffffff),
                                 ),
                                 const SizedBox(
                                   width: 8,

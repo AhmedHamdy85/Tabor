@@ -9,21 +9,21 @@ import 'package:tabor/modules/showTecket/showTecket.dart';
 import 'package:tabor/shared/componants/componant.dart';
 
 class Service_screen extends StatelessWidget {
-  String? branshName;
-  num? serviceId;
-  String? queueName;
-  String? bankName;
+  final String? branshName;
+  final num? serviceId;
+  final String? queueName;
+  final String? bankName;
   Service_screen(
       {super.key,
       this.branshName,
       this.serviceId,
       this.queueName,
       this.bankName});
-  @override
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController nationalIDController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    TextEditingController phoneController = TextEditingController();
+    TextEditingController nationalIDController = TextEditingController();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
     List<String> itemTitle = ['سيارة', 'دراجة', 'سير'];
@@ -35,9 +35,8 @@ class Service_screen extends StatelessWidget {
       "$bikeTime دقيقة",
       "$walkTime دقيقة"
     ];
-    bool _titleColor = false;
     return Scaffold(
-      backgroundColor: Color(0xfff5f5f5),
+      backgroundColor: const Color(0xfff5f5f5),
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: BlocConsumer<layoutCubit, layoutStates>(
@@ -78,7 +77,7 @@ class Service_screen extends StatelessWidget {
                                       'assets/images/vuesax_bulk_arrow_square_right.svg'),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 4,
                           ),
                           Column(
@@ -89,7 +88,7 @@ class Service_screen extends StatelessWidget {
                                   text: '$branshName',
                                   fsize: 18,
                                   fweight: FontWeight.w600),
-                              SizedBox(
+                              const SizedBox(
                                 height: 8,
                               ),
                               Opacity(
@@ -100,25 +99,25 @@ class Service_screen extends StatelessWidget {
                               )
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           CircleAvatar(
-                            backgroundColor: Color(0xffbceee3),
+                            backgroundColor: const Color(0xffbceee3),
                             child: InkWell(
                                 onTap: () {
                                   NavigateAndFinsh(
                                       context,
-                                      Directionality(
+                                      const Directionality(
                                           textDirection: TextDirection.rtl,
                                           child: layoutScreen()));
                                 },
-                                child: Icon(Icons.close)),
+                                child: const Icon(Icons.close)),
                           ),
                         ],
                       ),
                     ),
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
                       child: Padding(
                         padding: const EdgeInsetsDirectional.only(
@@ -131,12 +130,12 @@ class Service_screen extends StatelessWidget {
                                 opacity: 0.699999988079071,
                                 child: specialtext(
                                     text: 'وسيلة النقل',
-                                    fcolor: Color(0xff161616),
+                                    fcolor: const Color(0xff161616),
                                     fweight: FontWeight.w500,
                                     fsize: 21,
                                     talign: TextAlign.right),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 16,
                               ),
                               Container(
@@ -152,21 +151,24 @@ class Service_screen extends StatelessWidget {
                                     itemBuilder: (BuildContext context,
                                             int index) =>
                                         Padding(
-                                          padding: EdgeInsetsDirectional.only(
-                                              end: 8, top: 8),
+                                          padding:
+                                              const EdgeInsetsDirectional.only(
+                                                  end: 8, top: 8),
                                           child: Container(
                                             alignment: Alignment.topCenter,
                                             height: 40,
                                             decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(8)),
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(8)),
                                                 color: serviceCubit
                                                             .currentTransport ==
                                                         itemTitle[index]
-                                                    ? Color(0xffd1ede7)
+                                                    ? const Color(0xffd1ede7)
                                                     : null),
                                             child: RadioListTile(
-                                              activeColor: Color(0xff009c7b),
+                                              activeColor:
+                                                  const Color(0xff009c7b),
                                               value: itemTitle[index],
                                               groupValue:
                                                   serviceCubit.currentTransport,
@@ -181,15 +183,17 @@ class Service_screen extends StatelessWidget {
                                                   fcolor: serviceCubit
                                                               .currentTransport ==
                                                           itemTitle[index]
-                                                      ? Color(0xff009c7b)
-                                                      : Color(0xff161616)),
+                                                      ? const Color(0xff009c7b)
+                                                      : const Color(
+                                                          0xff161616)),
                                               secondary: specialtext(
                                                   text: itemSecondary[index],
                                                   fcolor: serviceCubit
                                                               .currentTransport ==
                                                           itemTitle[index]
-                                                      ? Color(0xff009c7b)
-                                                      : Color(0xff161616)),
+                                                      ? const Color(0xff009c7b)
+                                                      : const Color(
+                                                          0xff161616)),
                                               toggleable: true,
                                             ),
                                           ),
@@ -209,7 +213,7 @@ class Service_screen extends StatelessWidget {
                                 height: 16,
                               ),
                               Container(
-                                padding: EdgeInsetsDirectional.only(
+                                padding: const EdgeInsetsDirectional.only(
                                     start: 16, end: 16, top: 8),
                                 width: double.infinity,
                                 height: 172,
@@ -226,7 +230,7 @@ class Service_screen extends StatelessWidget {
                                       height: 4,
                                     ),
                                     defaultFormFieldReservation(
-                                        fcolor: Color(0xff161616),
+                                        fcolor: const Color(0xff161616),
                                         hintText: 'ادخل رقم الهاتف',
                                         controller: phoneController,
                                         type: TextInputType.phone,
@@ -234,6 +238,7 @@ class Service_screen extends StatelessWidget {
                                           if (value == null || value.isEmpty) {
                                             return 'الرجاء ادخال رقم هاتف صحيح';
                                           }
+                                          return null;
                                         },
                                         width: double.infinity),
                                     const SizedBox(
@@ -244,7 +249,7 @@ class Service_screen extends StatelessWidget {
                                       height: 4,
                                     ),
                                     defaultFormFieldReservation(
-                                        fcolor: Color(0xff161616),
+                                        fcolor: const Color(0xff161616),
                                         hintText: "ادخل الرقم القومي",
                                         controller: nationalIDController,
                                         type: TextInputType.number,
@@ -252,6 +257,7 @@ class Service_screen extends StatelessWidget {
                                           if (value == null || value.isEmpty) {
                                             return 'الرجاء ادخال رقم قومي صحيح';
                                           }
+                                          return null;
                                         },
                                         width: double.infinity),
                                   ],
@@ -269,7 +275,7 @@ class Service_screen extends StatelessWidget {
                       function1: () {
                         animatedDialog(
                           screen: ShowTecketScreen(
-                              bankName: '${bankName}',
+                              bankName: '$bankName',
                               queueName: '$queueName',
                               branchName: '$branshName',
                               model: queueCubit.createModel),

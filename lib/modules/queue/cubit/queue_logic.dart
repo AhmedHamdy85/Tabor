@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tabor/shared/endpints.dart';
@@ -22,16 +22,16 @@ class QueueCubit extends Cubit<QueueState> {
           .addAll((value.data as List).map(((e) => QueueModel.fromJson(e))));
 
       if (queuesModel.isNotEmpty) {
-        queuesModel.forEach((element) {
+        for (var element in queuesModel) {
           dropDownTitleItem.add('${element.nameOfQueue}');
-        });
+        }
       }
       //   print('serveses $dropDownService');
       print('queues is ${dropDownTitleItem[0]}');
       print('queue 1 is ${queuesModel[0].nameOfQueue}');
       emit(GetQueueSuccesState());
     }).catchError((erorr) {
-      print('queue error is ' + erorr.toString());
+      print('queue error is $erorr');
       emit(GetQueueErorrState());
     });
   }
@@ -46,9 +46,9 @@ class QueueCubit extends Cubit<QueueState> {
           .addAll((value.data as List).map(((e) => ServesesModel.fromJson(e))));
 
       if (servecModel.isNotEmpty) {
-        servecModel.forEach((element) {
+        for (var element in servecModel) {
           dropDownService.add('${element.name}');
-        });
+        }
 
         for (var element in servecModel) {
           String name = '${element.name}';
@@ -63,22 +63,27 @@ class QueueCubit extends Cubit<QueueState> {
       print('service 1 is ${servecModel[0].name}');
       emit(GetServicesSuccesState());
     }).catchError((erorr) {
-      print('service error is ' + erorr.toString());
+      print('service error is $erorr');
       emit(GetServicesErorrState());
     });
   }
 
-  late CreateTecitModel createModel;
+  CreateTecitModel? createModel;
   dynamic parsedTime;
   void createTeckit(num? serviceId) {
     emit(CreateTeckitLoadingState());
-    DioHelper.postData(url: CREATETECITE, token: token, data: {'service': 3})
-        .then((value) {
-      createModel = CreateTecitModel.fromJson(value.data);
+    DioHelper.postData(
+        url: CREATETECITE,
+        token: token,
+        data: {'service': servicesId}).then((value) async {
+      var data = json.encode(value.data);
+      var data2 = await json.decode(data);
+      // var model = CreateTecitModel.fromJson(data2);
       // parsedTime = parseTime('${createModel.waitingTime}');
       //   print(createModel);
-      print(value.statusCode);
-      print(value.statusMessage);
+      print('status ${value.statusCode}');
+      print('message ${value.statusMessage}');
+      print(data2);
       emit(CreateTeckitSuccesState());
     }).catchError((erorr) {
       print('create tickit error is ${erorr.toString()}');

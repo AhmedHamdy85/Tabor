@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tabor/shared/componants/componant.dart';
 
 class CodeWidget extends StatelessWidget {
-  CodeWidget({super.key});
+  const CodeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +23,18 @@ class CodeWidget extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(
                       top: 60, right: screenWidth * (356 / 390)),
-                  child: Container(
+                  child: SizedBox(
                     height: 24,
                     width: screenWidth * (12 / 390),
                     child: IconButton(
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(Icons.arrow_forward_ios),
+                      icon: const Icon(Icons.arrow_forward_ios),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 84,
                 ),
                 Container(
@@ -55,7 +55,7 @@ class CodeWidget extends StatelessWidget {
                     child: specialtext(
                       text: "لقد تم ارسال كود تفعيل الى الايميل الخاص بك",
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 Center(
@@ -70,7 +70,7 @@ class CodeWidget extends StatelessWidget {
                       return null;
                     },
                     label: 'ادخل الكود المكون من 4 ارقام',
-                    fcolor: Color(0xff161616),
+                    fcolor: const Color(0xff161616),
                     onChanged: (value) {
                       print(value);
                     },
@@ -88,16 +88,16 @@ class CodeWidget extends StatelessWidget {
                     height: 48,
                     radius: 8,
                     fsize: 18,
-                    backgroundColor: Color(0xff009c7b),
+                    backgroundColor: const Color(0xff009c7b),
                     fweight: FontWeight.w500,
-                    fcolor: Color(0xffffffff),
+                    fcolor: const Color(0xffffffff),
                     text: "تأكيد",
                     function: (() {
                       print(codeController);
                     }),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 24,
                 ),
                 Opacity(
@@ -106,7 +106,7 @@ class CodeWidget extends StatelessWidget {
                     text: "الم تستلم الكود ؟",
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 defaultTextButton(

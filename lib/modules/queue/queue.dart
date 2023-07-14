@@ -10,14 +10,14 @@ import '../../shared/componants/constants.dart';
 import 'cubit/queue_logic.dart';
 
 class QueuesScreen extends StatelessWidget {
-  QueuesScreen({super.key, required this.name, required this.bankName});
-  String name;
-  String bankName;
+  QueuesScreen({super.key, required this.branchName, required this.bankName});
+  final String branchName;
+  final String bankName;
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHight = MediaQuery.of(context).size.height;
+    //  double screenHight = MediaQuery.of(context).size.height;
     num? serviceId;
     String queueName = 'null';
     List<String> dayItems = [
@@ -73,7 +73,9 @@ class QueuesScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 3),
                           child: specialtext(
-                              text: name, fsize: 18, fweight: FontWeight.w600),
+                              text: branchName,
+                              fsize: 18,
+                              fweight: FontWeight.w600),
                         ),
                         Spacer(),
                         Padding(
@@ -291,7 +293,8 @@ class QueuesScreen extends StatelessWidget {
                     NavigateTo(
                         context,
                         Service_screen(
-                          branshName: name,
+                          branshName: branchName,
+                          bankName: bankName,
                           serviceId: serviceId,
                           queueName: queueName,
                         ));
@@ -303,7 +306,7 @@ class QueuesScreen extends StatelessWidget {
                         context,
                         FormScheduling(
                           bankName: bankName,
-                          branshName: name,
+                          branshName: branchName,
                           queueName: queueName,
                         ));
                   },

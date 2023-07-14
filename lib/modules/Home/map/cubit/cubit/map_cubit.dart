@@ -11,7 +11,7 @@ class MapsCubit extends Cubit<MapsState> {
 
   MapsCubit(this.mapsRepository) : super(MapsInitial());
 
-   void emitPlaceLocation(String placeId, String sessionToken) {
+  void emitPlaceLocation(String placeId, String sessionToken) {
     mapsRepository.getPlaceLocation(placeId, sessionToken).then((place) {
       emit(PlaceLocationLoaded(place));
     });

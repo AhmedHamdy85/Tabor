@@ -13,7 +13,7 @@ class PhoneScreen extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: Color(0xfff5f5f5),
+        backgroundColor: const Color(0xfff5f5f5),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -25,18 +25,18 @@ class PhoneScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(
                     top: 60,
                   ),
-                  child: Container(
+                  child: SizedBox(
                     height: 24,
                     width: screenWidth * (12 / 390),
                     child: IconButton(
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(Icons.arrow_forward_ios),
+                      icon: const Icon(Icons.arrow_forward_ios),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 84,
                 ),
                 Container(
@@ -49,14 +49,14 @@ class PhoneScreen extends StatelessWidget {
                   child: DefoltSvgImage(
                       image: 'assets/images/Tabor_Horsintal.svg'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 66,
                 ),
                 Center(
                   child: specialtext(
                     text: "هل نسيت كلمة المرور؟",
                     fweight: FontWeight.w500,
-                    fcolor: Color(0xff009c7b),
+                    fcolor: const Color(0xff009c7b),
                     talign: TextAlign.center,
                     fsize: 18,
                   ),
@@ -67,7 +67,7 @@ class PhoneScreen extends StatelessWidget {
                 Center(
                   child: specialtext(
                     text: 'لا تقلق هذا يحدث ',
-                    fcolor: Color(0xff009c7b),
+                    fcolor: const Color(0xff009c7b),
                     talign: TextAlign.center,
                   ),
                 ),
@@ -85,7 +85,7 @@ class PhoneScreen extends StatelessWidget {
                       return null;
                     },
                     label: "رقم الهاتف",
-                    fcolor: Color(0xff161616),
+                    fcolor: const Color(0xff161616),
                     onChanged: (value) {
                       print(value);
                     },
@@ -104,13 +104,13 @@ class PhoneScreen extends StatelessWidget {
                     height: 48,
                     radius: 8,
                     fsize: 18,
-                    backgroundColor: Color(0xff009c7b),
+                    backgroundColor: const Color(0xff009c7b),
                     fweight: FontWeight.w500,
-                    fcolor: Color(0xffffffff),
+                    fcolor: const Color(0xffffffff),
                     text: "تأكيد",
                     function: (() {
                       print(phoneController);
-                      NavigateTo(context, CodeWidget());
+                      NavigateTo(context, const CodeWidget());
                     }),
                   ),
                 ),

@@ -1,25 +1,24 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/layout/layout_screen.dart';
 import 'package:tabor/modules/login/cubit/logic.dart';
 import 'package:tabor/modules/login/cubit/states.dart';
 import 'package:tabor/modules/phoneScreen/phone.dart';
-import 'package:tabor/modules/resiveCode/code.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/network/local/cashe_helper.dart';
 
 class logInScreen extends StatelessWidget {
   logInScreen({super.key});
-  TextEditingController phoneControlar = TextEditingController();
-  TextEditingController passwordControlar = TextEditingController();
-  var formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController phoneControlar = TextEditingController();
+    TextEditingController passwordControlar = TextEditingController();
+    var formkey = GlobalKey<FormState>();
+    var cubit = layoutCubit.get(context);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: BlocProvider(
@@ -33,21 +32,27 @@ class logInScreen extends StatelessWidget {
                   .then((value) {
                 id = state.loginModel!.data.id;
               });
-              CasheHelper.saveData(
-                      key: 'refreshToken',
-                      value: state.loginModel!.refreshToken)
-                  .then((value) {
-                refreshToken = state.loginModel!.refreshToken;
-              });
               CasheHelper.saveData(key: 'token', value: state.loginModel!.token)
                   .then((value) {
                 token = state.loginModel!.token;
+                cubit
+                  ..getAllBanks()
+                  ..getActiveTeckit()
+                  ..getFavoretBanks()
+                  ..getUserData(id)
+                  ..getCompletedTeckit();
+                CasheHelper.saveData(
+                        key: 'refreshToken',
+                        value: state.loginModel!.refreshToken)
+                    .then((value) {
+                  refreshToken = state.loginModel!.refreshToken;
 
-                NavigateAndFinsh(
-                    context,
-                    const Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: layoutScreen()));
+                  NavigateAndFinsh(
+                      context,
+                      const Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: layoutScreen()));
+                });
               });
             } else if (state is LogInErrorState) {
               showToast(
@@ -68,7 +73,7 @@ class logInScreen extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 60, left: 20),
-                        child: Container(
+                        child: SizedBox(
                           height: 24,
                           width: 24,
                           child: IconButton(
@@ -132,7 +137,7 @@ class logInScreen extends StatelessWidget {
                             }
                           },
                           label: '  رقم الهاتف',
-                          fcolor: Color(0xff161616),
+                          fcolor: const Color(0xff161616),
                         ),
                       ),
                       Padding(

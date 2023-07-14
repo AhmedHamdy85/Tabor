@@ -1,12 +1,9 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/layout/cubit/states.dart';
 import 'package:tabor/shared/componants/componant.dart';
-import 'package:tabor/shared/componants/iconsax_icons.dart';
 
 class FavoretScreen extends StatelessWidget {
   const FavoretScreen({super.key});
@@ -14,7 +11,7 @@ class FavoretScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHight = MediaQuery.of(context).size.height;
+    //  double screenHight = MediaQuery.of(context).size.height;
     return BlocConsumer<layoutCubit, layoutStates>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -23,7 +20,7 @@ class FavoretScreen extends StatelessWidget {
             CustomAppBar(
                 text: 'المفضلة', screenWidth: screenWidth, context: context),
             Expanded(
-              child: Container(
+              child: SizedBox(
                   width: double.infinity,
                   child: ConditionalBuilder(
                     condition: state is! GetFavoretBanksLoadingState,

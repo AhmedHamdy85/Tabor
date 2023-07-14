@@ -7,7 +7,7 @@ import 'package:tabor/layout/layout_screen.dart';
 import 'package:tabor/shared/componants/componant.dart';
 
 class Setting extends StatefulWidget {
-  Setting({
+  const Setting({
     super.key,
   });
   static String userName = '';
@@ -19,12 +19,11 @@ class Setting extends StatefulWidget {
 class _SettingState extends State<Setting> {
   //void compare;
 
-  @override
   String name = Setting.userName;
 
   String phoneNumber = Setting.mopile;
 
-  Color saveColor = Color(0xff7d7d7d);
+  Color saveColor = const Color(0xff7d7d7d);
   final formkey = GlobalKey<ScaffoldState>();
 
   var phoneControlar = TextEditingController();
@@ -36,11 +35,13 @@ class _SettingState extends State<Setting> {
 
     if (newName != name || newPhoneNumber != phoneNumber) {
       setState(() {
-        saveColor = Color(0xff009c7b); // Change the color to the desired color
+        saveColor =
+            const Color(0xff009c7b); // Change the color to the desired color
       });
     } else {
       setState(() {
-        saveColor = Color(0xff7d7d7d); // Change the color to the default color
+        saveColor =
+            const Color(0xff7d7d7d); // Change the color to the default color
       });
     }
   }
@@ -69,8 +70,9 @@ class _SettingState extends State<Setting> {
             textDirection: TextDirection.rtl,
             child: Scaffold(
               key: formkey,
-              backgroundColor: Color(0xffe9ebeb),
+              backgroundColor: const Color(0xffe9ebeb),
               drawer: SpecificDrawer(
+                  context: context,
                   userName: cubit.userData?.username ?? 'احمد',
                   usetPhone: cubit.userData?.username ?? '01146399104',
                   screenWidth: screenWidth,
@@ -82,7 +84,7 @@ class _SettingState extends State<Setting> {
                     // NavigateTo(context, Setting());
                   },
                   navigyNotify: () {
-                    NavigateTo(context, Notifications());
+                    NavigateTo(context, const Notifications());
                   },
                   darkfunction: () {
                     cubit.toggleDarkMode();
@@ -98,7 +100,7 @@ class _SettingState extends State<Setting> {
                   Container(
                     height: 120,
                     width: double.infinity,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color(0xffffffff),
                       boxShadow: [
                         BoxShadow(blurRadius: 4, color: Color(0xff40000000))
@@ -123,7 +125,7 @@ class _SettingState extends State<Setting> {
                               child: DefoltSvgImage(
                                   image: 'assets/images/frame_138.svg'),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 8,
                             ),
                             Padding(
@@ -135,7 +137,7 @@ class _SettingState extends State<Setting> {
                                 fweight: FontWeight.w500,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             InkWell(
                               onTap: () {
                                 if ((nameControlar.text != name ||
@@ -161,7 +163,7 @@ class _SettingState extends State<Setting> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(24, 32, 24, 0),
+                    padding: const EdgeInsets.fromLTRB(24, 32, 24, 0),
                     width: double.infinity,
                     child: SingleChildScrollView(
                       child: Column(
@@ -172,7 +174,7 @@ class _SettingState extends State<Setting> {
                             child: Container(
                               width: 128,
                               height: 128,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(16)),
                                 image: DecorationImage(
@@ -182,7 +184,7 @@ class _SettingState extends State<Setting> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           Row(
@@ -194,7 +196,7 @@ class _SettingState extends State<Setting> {
                                     Container(
                                       width: 24,
                                       height: 24,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
 
                                           //borderRadius: BorderRadius.all(Radius.circular(16)),
                                           /* image: DecorationImage(
@@ -202,9 +204,9 @@ class _SettingState extends State<Setting> {
                                           fit: BoxFit.fill
                                           ),*/
                                           ),
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.add_photo_alternate_rounded,
-                                        color: const Color(0xff7d7d7d),
+                                        color: Color(0xff7d7d7d),
                                       ),
                                     ),
                                     TextButton(
@@ -220,7 +222,7 @@ class _SettingState extends State<Setting> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 32,
                           ),
                           Row(
@@ -229,13 +231,13 @@ class _SettingState extends State<Setting> {
                               specialtext(
                                 text: 'الاسم',
                                 fsize: 16,
-                                fcolor: Color(0xff7d7d7d),
+                                fcolor: const Color(0xff7d7d7d),
                                 fweight: FontWeight.w400,
                                 talign: TextAlign.right,
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           defaultFormFieldSetting(
@@ -246,9 +248,10 @@ class _SettingState extends State<Setting> {
                               if (value == null || value.isEmpty) {
                                 return 'الرجاء ادخال اسم صحيح';
                               }
+                              return null;
                             },
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 16,
                           ),
                           Row(
@@ -257,13 +260,13 @@ class _SettingState extends State<Setting> {
                               specialtext(
                                 text: 'رقم الهاتف',
                                 fsize: 16,
-                                fcolor: Color(0xff7d7d7d),
+                                fcolor: const Color(0xff7d7d7d),
                                 fweight: FontWeight.w400,
                                 talign: TextAlign.right,
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           defaultFormFieldSetting(
@@ -274,6 +277,7 @@ class _SettingState extends State<Setting> {
                               if (value == null || value.isEmpty) {
                                 return ' الرجاء ادخال رقم الهاتف';
                               }
+                              return null;
                             },
                             //fsize: 16,
                             //fcolor: Color(0xff161616),

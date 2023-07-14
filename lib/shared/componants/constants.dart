@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tabor/layout/cubit/logic.dart';
+import 'package:tabor/modules/on_bording/on_bording.dart';
+import 'package:tabor/shared/componants/componant.dart';
+
+import '../network/local/cashe_helper.dart';
 
 final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -29,3 +32,11 @@ Map<String, String> banksLogo = {
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
  */
+
+void LogOut(context) {
+  CasheHelper.removeData(key: 'token').then((value) {
+    if (value) {
+      NavigateAndFinsh(context, const onBoardingScreen());
+    }
+  });
+}

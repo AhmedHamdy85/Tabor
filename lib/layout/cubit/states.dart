@@ -1,4 +1,3 @@
-import '../../model/bankmodels/all_banks_model/all_banks_model.dart';
 
 abstract class layoutStates {}
 

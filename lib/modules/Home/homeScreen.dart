@@ -10,19 +10,18 @@ import 'package:tabor/shared/componants/iconsax_icons.dart';
 import 'package:tabor/modules/Home/search/search.dart';
 
 import '../../layout/drawer/setting.dart';
-import '../login/cubit/logic.dart';
 import 'map/map_home.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
     var cubit = layoutCubit.get(context);
-    Setting.mopile = '${cubit.userData?.mobile ?? ''}';
-    Setting.userName = '${cubit.userData?.username ?? ''}';
+    Setting.mopile = cubit.userData?.mobile ?? '';
+    Setting.userName = cubit.userData?.username ?? '';
 
     return BlocConsumer<layoutCubit, layoutStates>(
         listener: (context, state) {},
@@ -33,7 +32,7 @@ class HomeScreen extends StatelessWidget {
               Container(
                 height: screenHight * 0.17,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0xffffffff),
                   boxShadow: [BoxShadow(color: Color(0xff40000000))],
                   borderRadius: BorderRadius.only(
@@ -55,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                             Container(
                               width: 56,
                               height: 56,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(
                                     'assets/images/unknown.png',
@@ -78,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       Column(
@@ -90,13 +89,13 @@ class HomeScreen extends StatelessWidget {
                               fsize: 16,
                               fweight: FontWeight.w500,
                               talign: TextAlign.right),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           specialtext(
                             text: " كيف يمكننا مساعدتك",
                             fweight: FontWeight.w300,
-                            fcolor: Color(0xff7d7d7d),
+                            fcolor: const Color(0xff7d7d7d),
                           ),
                         ],
                       ),
@@ -115,13 +114,13 @@ class HomeScreen extends StatelessWidget {
                           hight: 40,
                           icon: Iconsax.location5,
                           context: context,
-                          page: MapHomescreen())
+                          page: const MapHomescreen())
                     ],
                   ),
                 ),
               ),
               Expanded(
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   child: SingleChildScrollView(
                     child: Column(
@@ -134,7 +133,7 @@ class HomeScreen extends StatelessWidget {
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(24),
-                                  image: DecorationImage(
+                                  image: const DecorationImage(
                                     image: NetworkImage(
                                         'https://i0.wp.com/followict.news/wp-content/uploads/2022/12/Home-Banner-1700-x-651_-min.jpg?resize=1536%2C588&ssl=1'),
                                   ),
@@ -152,7 +151,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           height: (screenHight * 0.11) + 76,
                           child: ConditionalBuilder(
                             condition:
@@ -196,7 +195,7 @@ class HomeScreen extends StatelessWidget {
                               layoutCubit.get(context).bankModel.isNotEmpty,
                           builder: (context) => ListView.builder(
                             shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             itemCount:
                                 layoutCubit.get(context).bankModel.length,
                             itemBuilder: (context, index) =>

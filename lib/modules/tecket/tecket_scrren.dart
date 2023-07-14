@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tabor/layout/layout_screen.dart';
 import 'package:tabor/modules/Home/map/mapscreen.dart';
-import 'package:tabor/modules/showTecket/showTecket.dart';
 import 'package:tabor/modules/tecktRelode/tecktRelode.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/constants.dart';
@@ -12,8 +11,6 @@ import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/layout/cubit/states.dart';
 import 'package:flutter/rendering.dart';
 import 'package:tabor/model/active_teckit_model/active_teckit_model.dart';
-import 'package:tabor/modules/on_bording/on_bording.dart';
-import 'package:tabor/modules/queue/queue.dart';
 
 class TecketScrren extends StatelessWidget {
   const TecketScrren({super.key});
@@ -35,7 +32,7 @@ class TecketScrren extends StatelessWidget {
                 text: 'التذاكر' '    ',
                 context: context),
             Expanded(
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 child: SingleChildScrollView(
                   child: Column(
@@ -54,7 +51,8 @@ class TecketScrren extends StatelessWidget {
                       ConditionalBuilder(
                           condition: state is! GetActiveTeckitLoadingState,
                           builder: (context) => ListView.separated(
-                                separatorBuilder: (context, index) => SizedBox(
+                                separatorBuilder: (context, index) =>
+                                    const SizedBox(
                                   height: 15,
                                 ),
                                 shrinkWrap: true,
@@ -145,9 +143,9 @@ class InActiveTeckt extends StatelessWidget {
           height: 90,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
-                  color: const Color(0x40000000),
+                  color: Color(0x40000000),
                 )
               ],
               color: const Color(0xffffffff)),
@@ -166,7 +164,7 @@ class InActiveTeckt extends StatelessWidget {
                               '${banksLogo['${model.service!.queue!.branch!.bank!.name}']}'))),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               Padding(
@@ -202,7 +200,7 @@ class InActiveTeckt extends StatelessWidget {
                   Container(
                     width: 30,
                     height: 20,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Color(0xffE9EBEB),
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(50),
@@ -223,7 +221,7 @@ class InActiveTeckt extends StatelessWidget {
                                       child: Container(
                                         width: 3,
                                         height: 6,
-                                        color: Color(0xffE9EBEB),
+                                        color: const Color(0xffE9EBEB),
                                       ),
                                     )));
                       },
@@ -232,7 +230,7 @@ class InActiveTeckt extends StatelessWidget {
                   Container(
                     width: 30,
                     height: 20,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Color(0xffE9EBEB),
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(50),
@@ -240,7 +238,7 @@ class InActiveTeckt extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               IconButton(
@@ -251,7 +249,7 @@ class InActiveTeckt extends StatelessWidget {
                           model: model,
                         ));
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Iconsax.repeat5,
                     size: 32,
                   ))
@@ -311,7 +309,7 @@ class ActiveTeckt extends StatelessWidget {
                                   '${banksLogo['${model.service!.queue!.branch!.bank!.name}']}'))),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Column(
@@ -344,14 +342,14 @@ class ActiveTeckt extends StatelessWidget {
                       height: 32,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Color(0xffffffff),
-                          boxShadow: [
+                          color: const Color(0xffffffff),
+                          boxShadow: const [
                             BoxShadow(
                                 color: Color(0xff40000000), blurRadius: 4),
                           ]),
                       child: InkWell(
                           onTap: () {
-                            NavigateTo(context, MapspecificLocation());
+                            NavigateTo(context, const MapspecificLocation());
                           },
                           child: Image.asset('assets/images/Frame 70.png')),
                     ),
@@ -377,9 +375,9 @@ class ActiveTeckt extends StatelessWidget {
                         height: 32,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Color(0xff161616),
+                          color: const Color(0xff161616),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.close,
                           color: Color(0xffffffff),
                         ),
@@ -398,7 +396,7 @@ class ActiveTeckt extends StatelessWidget {
                 height: cotanrhigt * 0.12,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Color(0xff19161616))),
+                    border: Border.all(color: const Color(0xff19161616))),
                 child: Padding(
                   padding: const EdgeInsets.only(right: 16, left: 16),
                   child: Row(
@@ -435,13 +433,13 @@ class ActiveTeckt extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Center(
               child: linearIndicator(width: containrwidth - 32),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Row(
@@ -449,7 +447,7 @@ class ActiveTeckt extends StatelessWidget {
                 Container(
                   width: 25,
                   height: 35,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Color(0xffE9EBEB),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(20),
@@ -464,7 +462,7 @@ class ActiveTeckt extends StatelessWidget {
                           direction: Axis.horizontal,
                           children: List.generate(
                               (constraints.constrainWidth() / 13).floor(),
-                              (index) => Text(
+                              (index) => const Text(
                                     '-',
                                     style: TextStyle(
                                         color: Color(0xffE9EBEB), fontSize: 30),
@@ -475,7 +473,7 @@ class ActiveTeckt extends StatelessWidget {
                 Container(
                   width: 25,
                   height: 35,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Color(0xffE9EBEB),
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(20),

@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tabor/layout/cubit/states.dart';
@@ -13,7 +12,6 @@ import 'package:tabor/shared/network/remote/dio_helper.dart';
 
 import '../../model/active_teckit_model/active_teckit_model.dart';
 import '../../model/bankmodels/all_banks_model/all_banks_model.dart';
-import '../../model/favoret_model/favoret_model.dart';
 import '../../model/profileModel/profile_model.dart';
 import '../../modules/branshes/search/search_branches.dart';
 
@@ -28,13 +26,13 @@ class layoutCubit extends Cubit<layoutStates> {
   int notificationsNumber = 1;
   bool lightMode = true;
   bool darktMode = false;
-  Color t1 = Color(0xffbceee3);
-  Color t2 = Color(0xffbceee3);
-  Color t3 = Color(0xffbceee3);
+  Color t1 = const Color(0xffbceee3);
+  Color t2 = const Color(0xffbceee3);
+  Color t3 = const Color(0xffbceee3);
   bool b1 = false;
   bool b2 = false;
   bool b3 = false;
-  List<Widget> bottmScreen = [HomeScreen(), TecketScrren(), FavoretScreen()];
+  List<Widget> bottmScreen = [const HomeScreen(), const TecketScrren(), const FavoretScreen()];
 
   void changeNaveBar(int index) {
     curentIndex = index;
@@ -71,17 +69,17 @@ class layoutCubit extends Cubit<layoutStates> {
       bankModel
           .addAll((value.data as List).map(((e) => AllBanksModel.fromJson(e))));
 
-      bankModel.forEach((element) {
+      for (var element in bankModel) {
         favoret.addAll({
           element.id: element.favorite,
         });
-      });
+      }
 
       //  print(favoret.toString());
       //print(favoretIteams.length);
       emit(GetAllBanksSuccesState());
     }).catchError((erorr) {
-      print('error is ' + erorr.toString());
+      print('error is $erorr');
       emit(GetAllBanksErorrState());
     });
   }
@@ -94,10 +92,10 @@ class layoutCubit extends Cubit<layoutStates> {
       favoretModel
           .addAll((value.data as List).map(((e) => AllBanksModel.fromJson(e))));
 
-      print('favoret 1 is ${favoretModel}');
+      print('favoret 1 is $favoretModel');
       emit(GetFavoretBanksSuccesState());
     }).catchError((erorr) {
-      print('favoret error is ' + erorr.toString());
+      print('favoret error is $erorr');
       emit(GetFavoretBanksErorrState());
     });
   }
@@ -135,7 +133,7 @@ class layoutCubit extends Cubit<layoutStates> {
       print(parsedTime);
       emit(GetActiveTeckitSuccesState());
     }).catchError((erorr) {
-      print('Teckit error is ' + erorr.toString());
+      print('Teckit error is $erorr');
       emit(GetActiveTeckitErorrState());
     });
   }
@@ -151,7 +149,7 @@ class layoutCubit extends Cubit<layoutStates> {
       print(' completed tecits ${completedTeckit[0].active}');
       emit(GetCompletedTeckitSuccesState());
     }).catchError((erorr) {
-      print('Teckit error is ' + erorr.toString());
+      print('Teckit error is $erorr');
       emit(GetCompletedTeckitErorrState());
     });
   }

@@ -6,7 +6,6 @@ import 'package:tabor/layout/cubit/states.dart';
 import 'package:tabor/layout/layout_screen.dart';
 import 'package:tabor/modules/queue/cubit/queue_logic.dart';
 import 'package:tabor/modules/requirement/requirement.dart';
-import 'package:tabor/modules/service/service.dart';
 import 'package:tabor/modules/showTecket/showTecket.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
@@ -20,20 +19,19 @@ class FormScheduling extends StatefulWidget {
       required this.bankName,
       required this.branshName,
       required this.queueName});
-  String branshName;
-  String queueName;
-  String bankName;
+  final String branshName;
+  final String queueName;
+  final String bankName;
 
   @override
   State<FormScheduling> createState() => _FormSchedulingState();
 }
 
 class _FormSchedulingState extends State<FormScheduling> {
-  @override
   TextEditingController phoneController = TextEditingController();
   TextEditingController nationalIDController = TextEditingController();
   TextEditingController nameController = TextEditingController();
-  TimeOfDay timeDay = TimeOfDay(hour: 11, minute: 30);
+  TimeOfDay timeDay = const TimeOfDay(hour: 11, minute: 30);
   DateTime date = DateTime.now();
   void showTimeOfPicker() {
     showTimePicker(context: context, initialTime: TimeOfDay.now())
@@ -63,7 +61,7 @@ class _FormSchedulingState extends State<FormScheduling> {
     double screenHight = MediaQuery.of(context).size.height;
     var queueCubit = QueueCubit.get(context);
     return Scaffold(
-      backgroundColor: Color(0xfff5f5f5),
+      backgroundColor: const Color(0xfff5f5f5),
       body: Directionality(
         textDirection: direction,
         child: BlocProvider(
@@ -76,7 +74,7 @@ class _FormSchedulingState extends State<FormScheduling> {
                     Container(
                       height: screenHight * 0.17,
                       width: double.infinity,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Color(0xffffffff),
                         boxShadow: [
                           BoxShadow(blurRadius: 4, color: Color(0xff40000000))
@@ -103,7 +101,7 @@ class _FormSchedulingState extends State<FormScheduling> {
                                         'assets/images/vuesax_bulk_arrow_square_right.svg'),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 4,
                             ),
                             Column(
@@ -114,7 +112,7 @@ class _FormSchedulingState extends State<FormScheduling> {
                                     text: 'الفيوم-فرع الجامعة',
                                     fsize: 18,
                                     fweight: FontWeight.w600),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 Opacity(
@@ -125,25 +123,25 @@ class _FormSchedulingState extends State<FormScheduling> {
                                 )
                               ],
                             ),
-                            Spacer(),
+                            const Spacer(),
                             CircleAvatar(
-                              backgroundColor: Color(0xffbceee3),
+                              backgroundColor: const Color(0xffbceee3),
                               child: InkWell(
                                   onTap: () {
                                     NavigateAndFinsh(
                                         context,
                                         Directionality(
                                             textDirection: direction,
-                                            child: layoutScreen()));
+                                            child: const layoutScreen()));
                                   },
-                                  child: Icon(Icons.close)),
+                                  child: const Icon(Icons.close)),
                             ),
                           ],
                         ),
                       ),
                     ),
                     Expanded(
-                      child: Container(
+                      child: SizedBox(
                         width: double.infinity,
                         child: Padding(
                           padding: const EdgeInsetsDirectional.only(
@@ -154,15 +152,15 @@ class _FormSchedulingState extends State<FormScheduling> {
                               children: [
                                 specialtext(
                                   text: 'الوقت و التاريخ',
-                                  fcolor: Color(0xff7d7d7d),
+                                  fcolor: const Color(0xff7d7d7d),
                                   fweight: FontWeight.w500,
                                   fsize: 18,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 16,
                                 ),
                                 Container(
-                                  padding: EdgeInsetsDirectional.all(16),
+                                  padding: const EdgeInsetsDirectional.all(16),
                                   width: double.infinity,
                                   height: 144,
                                   decoration: BoxDecoration(
@@ -205,7 +203,7 @@ class _FormSchedulingState extends State<FormScheduling> {
                                   height: 16,
                                 ),
                                 Container(
-                                  padding: EdgeInsetsDirectional.only(
+                                  padding: const EdgeInsetsDirectional.only(
                                       start: 16, end: 16, top: 8),
                                   width: double.infinity,
                                   height: 250,
@@ -223,7 +221,7 @@ class _FormSchedulingState extends State<FormScheduling> {
                                         height: 4,
                                       ),
                                       defaultFormFieldReservation(
-                                          fcolor: Color(0xff161616),
+                                          fcolor: const Color(0xff161616),
                                           hintText: 'ادخل رقم الهاتف',
                                           controller: phoneController,
                                           type: TextInputType.phone,
@@ -232,6 +230,7 @@ class _FormSchedulingState extends State<FormScheduling> {
                                                 value.isEmpty) {
                                               return 'الرجاء ادخال رقم هاتف صحيح';
                                             }
+                                            return null;
                                           },
                                           width: double.infinity),
                                       const SizedBox(
@@ -242,7 +241,7 @@ class _FormSchedulingState extends State<FormScheduling> {
                                         height: 4,
                                       ),
                                       defaultFormFieldReservation(
-                                          fcolor: Color(0xff161616),
+                                          fcolor: const Color(0xff161616),
                                           hintText: 'اادخل ااسمك',
                                           controller: nameController,
                                           type: TextInputType.name,
@@ -251,6 +250,7 @@ class _FormSchedulingState extends State<FormScheduling> {
                                                 value.isEmpty) {
                                               return 'الرجاء ادخال اسما صحيحا';
                                             }
+                                            return null;
                                           },
                                           width: double.infinity),
                                       const SizedBox(
@@ -261,7 +261,7 @@ class _FormSchedulingState extends State<FormScheduling> {
                                         height: 4,
                                       ),
                                       defaultFormFieldReservation(
-                                          fcolor: Color(0xff161616),
+                                          fcolor: const Color(0xff161616),
                                           hintText: "ادخل الرقم القومي",
                                           controller: nationalIDController,
                                           type: TextInputType.number,
@@ -270,6 +270,7 @@ class _FormSchedulingState extends State<FormScheduling> {
                                                 value.isEmpty) {
                                               return 'الرجاء ادخال رقم قومي صحيح';
                                             }
+                                            return null;
                                           },
                                           width: double.infinity),
                                     ],
@@ -301,7 +302,7 @@ class _FormSchedulingState extends State<FormScheduling> {
                               context,
                               Directionality(
                                   textDirection: direction,
-                                  child: RequirementScreen()));
+                                  child: const RequirementScreen()));
                         },
                         text2: ' المطلوب',
                         image2: 'assets/images/vuesax_bold_info_circle.svg'),

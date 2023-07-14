@@ -1,11 +1,8 @@
-import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tabor/model/favoret_model/favoret_model.dart';
 import 'package:tabor/modules/branshes/branshes.dart';
 import 'package:tabor/modules/queue/queue.dart';
-import 'package:tabor/modules/showTecket/showTecket.dart';
-import 'package:tabor/modules/tecket/tecket_scrren.dart';
+
 import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 import 'package:material_dialogs/material_dialogs.dart';
@@ -14,14 +11,10 @@ import 'package:lottie/lottie.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/model/bankmodels/all_banks_model/all_banks_model.dart';
-import 'package:tabor/modules/service/service.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import 'package:simple_progress_indicators/simple_progress_indicators.dart';
 import 'package:slide_countdown/slide_countdown.dart';
-import 'package:tabor/layout/layout_screen.dart';
-import 'package:tabor/modules/Home/map/mapscreen.dart';
-import 'package:tabor/modules/Home/search/search.dart';
 
 Widget DefoltButon({
   double width = double.infinity,
@@ -38,7 +31,7 @@ Widget DefoltButon({
         child: Text(
           text,
           style: const TextStyle(
-            color: const Color(0xffffffff),
+            color: Color(0xffffffff),
             fontWeight: FontWeight.w500,
             fontFamily: "ReadexPro",
             fontStyle: FontStyle.normal,
@@ -56,7 +49,7 @@ Widget DefoltTextButton(
       onPressed: function,
       child: Text(text.toUpperCase(),
           style: const TextStyle(
-              color: const Color(0xff161616),
+              color: Color(0xff161616),
               fontWeight: FontWeight.w400,
               fontFamily: "ReadexPro",
               fontStyle: FontStyle.normal,
@@ -106,7 +99,7 @@ Widget DefoltFormFilde({
         //border: OutlineInputBorder(),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: Colors.red),
+          borderSide: const BorderSide(color: Colors.red),
         ),
       ),
     );
@@ -147,11 +140,11 @@ Widget DefoltIcon(
           width: width,
           height: hight,
           decoration: BoxDecoration(
-              color: Color(0xffbceee3),
+              color: const Color(0xffbceee3),
               borderRadius: BorderRadius.circular(50)),
           child: Icon(
             icon,
-            color: Color.fromARGB(255, 10, 90, 12),
+            color: const Color.fromARGB(255, 10, 90, 12),
           )),
     );
 
@@ -182,9 +175,9 @@ Widget DefoltHorisentalCompanyform(
               width: width,
               height: hight,
               decoration: BoxDecoration(
-                color: Color(0xffffffff),
+                color: const Color(0xffffffff),
                 borderRadius: BorderRadius.circular(16),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(blurRadius: 4, color: Color(0xff40000000))
                 ],
               ),
@@ -196,12 +189,12 @@ Widget DefoltHorisentalCompanyform(
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Text('${model.name}',
               style: const TextStyle(
-                  color: const Color(0xff161616),
+                  color: Color(0xff161616),
                   fontWeight: FontWeight.w400,
                   fontFamily: "ReadexPro",
                   fontStyle: FontStyle.normal,
@@ -239,7 +232,7 @@ Widget VerticalCompanyForm(
               Container(
                 width: 80,
                 height: 80,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(16)),
                     color: Color(0xffffffff),
                     boxShadow: [
@@ -250,7 +243,7 @@ Widget VerticalCompanyForm(
                     child: Image(
                         image: NetworkImage('${banksLogo['${model.name}']}'))),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               Column(
@@ -259,15 +252,15 @@ Widget VerticalCompanyForm(
                 children: [
                   Text('${model.name}',
                       style: const TextStyle(
-                          color: const Color(0xff161616),
+                          color: Color(0xff161616),
                           fontWeight: FontWeight.w500,
                           fontFamily: "ReadexPro",
                           fontStyle: FontStyle.normal,
                           fontSize: 16.0),
                       textAlign: TextAlign.right),
-                  Text("${model.branchs!.length}" + ' ' + 'فرع',
+                  Text("${model.branchs!.length}" ' ' 'فرع',
                       style: const TextStyle(
-                          color: const Color(0xff161616),
+                          color: Color(0xff161616),
                           fontWeight: FontWeight.w400,
                           fontFamily: "ReadexPro",
                           fontStyle: FontStyle.normal,
@@ -328,7 +321,7 @@ Widget FavoretIteam(
               Container(
                 width: 80,
                 height: 80,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(16)),
                     color: Color(0xffffffff),
                     boxShadow: [
@@ -339,7 +332,7 @@ Widget FavoretIteam(
                     child: Image(
                         image: NetworkImage('${banksLogo['${model.name}']}'))),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               Column(
@@ -348,15 +341,15 @@ Widget FavoretIteam(
                 children: [
                   Text('${model.name}',
                       style: const TextStyle(
-                          color: const Color(0xff161616),
+                          color: Color(0xff161616),
                           fontWeight: FontWeight.w500,
                           fontFamily: "ReadexPro",
                           fontStyle: FontStyle.normal,
                           fontSize: 16.0),
                       textAlign: TextAlign.right),
-                  Text("${model.branchs!.length}" + ' ' + 'فرع',
+                  Text("${model.branchs!.length}" ' ' 'فرع',
                       style: const TextStyle(
-                          color: const Color(0xff161616),
+                          color: Color(0xff161616),
                           fontWeight: FontWeight.w400,
                           fontFamily: "ReadexPro",
                           fontStyle: FontStyle.normal,
@@ -395,7 +388,7 @@ Widget CustomAppBar(
     Container(
       height: 120,
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color(0xffffffff),
         boxShadow: [BoxShadow(color: Color(0xff40000000))],
         borderRadius: BorderRadius.only(
@@ -411,9 +404,9 @@ Widget CustomAppBar(
               fweight: FontWeight.w600,
               fsize: 21,
             ),
-            Spacer(),
+            const Spacer(),
             DefoltIcon(width: 40, hight: 40, icon: Iconsax.search_normal_14),
-            SizedBox(
+            const SizedBox(
               width: 16,
             ),
             DefoltIcon(width: 40, hight: 40, icon: Iconsax.location5)
@@ -433,7 +426,7 @@ Widget AppBar2({
     Container(
       height: 120,
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color(0xffffffff),
         boxShadow: [BoxShadow(blurRadius: 4, color: Color(0xff40000000))],
         borderRadius: BorderRadius.only(
@@ -461,13 +454,13 @@ Widget AppBar2({
                 icon: Iconsax.search_normal_14,
                 page: screenSearch,
                 context: context),
-            Spacer(),
+            const Spacer(),
             specialtext(
                 text: text,
                 fsize: 21,
-                fcolor: Color(0xff009c7b),
+                fcolor: const Color(0xff009c7b),
                 fweight: FontWeight.w600),
-            SizedBox(
+            const SizedBox(
               width: 4,
             ),
             InkWell(
@@ -486,7 +479,7 @@ Widget BranshesCard({
   required double screenWidth,
   required BuildContext context,
   required String image,
-  required String name,
+  required String branshName,
   required String bankName,
   required String destance,
 }) =>
@@ -498,14 +491,14 @@ Widget BranshesCard({
             NavigateTo(
                 context,
                 QueuesScreen(
-                  name: name,
+                  branchName: branshName,
                   bankName: bankName,
                 ));
           },
           child: Container(
             width: screenWidth - 32,
             height: 81,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(16)),
               color: Color(0xffffffff),
               boxShadow: [BoxShadow(color: Color(0xff40000000), blurRadius: 4)],
@@ -519,30 +512,30 @@ Widget BranshesCard({
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(name,
+                      Text(branshName,
                           style: const TextStyle(
-                              color: const Color(0xff161616),
+                              color: Color(0xff161616),
                               fontWeight: FontWeight.w500,
                               fontFamily: "ReadexPro",
                               fontStyle: FontStyle.normal,
                               fontSize: 16.0),
                           textAlign: TextAlign.right),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       Row(
                         children: [
-                          Text("كم",
-                              style: const TextStyle(
-                                  color: const Color(0xff161616),
+                          const Text("كم",
+                              style: TextStyle(
+                                  color: Color(0xff161616),
                                   fontWeight: FontWeight.w400,
                                   fontFamily: "ReadexPro",
                                   fontStyle: FontStyle.normal,
                                   fontSize: 14.0),
                               textAlign: TextAlign.right),
-                          Text(" " + "$destance",
+                          Text(" " + destance,
                               style: const TextStyle(
-                                  color: const Color(0xff161616),
+                                  color: Color(0xff161616),
                                   fontWeight: FontWeight.w400,
                                   fontFamily: "ReadexPro",
                                   fontStyle: FontStyle.normal,
@@ -572,7 +565,7 @@ Widget SirviceForm({
         height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: Color(0xffffffff),
+          color: const Color(0xffffffff),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -588,7 +581,7 @@ Widget SirviceForm({
             Expanded(
               child: Text(Service,
                   style: const TextStyle(
-                      color: const Color(0xff161616),
+                      color: Color(0xff161616),
                       fontWeight: FontWeight.w500,
                       fontFamily: "ReadexPro",
                       fontStyle: FontStyle.normal,
@@ -602,12 +595,12 @@ Widget SirviceForm({
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(
+                        return const AlertDialog(
                           title: Opacity(
                             opacity: 0.699999988079071,
                             child: Text("الاوراق المطلوبة",
-                                style: const TextStyle(
-                                    color: const Color(0xff161616),
+                                style: TextStyle(
+                                    color: Color(0xff161616),
                                     fontWeight: FontWeight.w500,
                                     fontFamily: "ReadexPro",
                                     fontStyle: FontStyle.normal,
@@ -660,7 +653,7 @@ Widget TransportForm({
           Expanded(
             child: Text(TransportTool,
                 style: const TextStyle(
-                    color: const Color(0xff161616),
+                    color: Color(0xff161616),
                     fontWeight: FontWeight.w500,
                     fontFamily: "ReadexPro",
                     fontStyle: FontStyle.normal,
@@ -669,9 +662,9 @@ Widget TransportForm({
           ),
           Padding(
             padding: const EdgeInsets.only(left: 16),
-            child: Text("$time" + " " + "دقيقة",
+            child: Text("$time دقيقة",
                 style: const TextStyle(
-                    color: const Color(0xff161616),
+                    color: Color(0xff161616),
                     fontWeight: FontWeight.w400,
                     fontFamily: "ReadexPro",
                     fontStyle: FontStyle.normal,
@@ -815,13 +808,16 @@ Widget serviceContainer({
           NavigateTo(contex, page);
         },
         child: Container(
-          padding: EdgeInsets.only(right: 16, left: 16, top: 12, bottom: 12),
+          padding:
+              const EdgeInsets.only(right: 16, left: 16, top: 12, bottom: 12),
           width: width - 16,
           height: 56,
           decoration: BoxDecoration(
-            boxShadow: [BoxShadow(blurRadius: 4, color: Color(0xff40000000))],
+            boxShadow: const [
+              BoxShadow(blurRadius: 4, color: Color(0xff40000000))
+            ],
             borderRadius: BorderRadius.circular(16),
-            color: Color(0xffffffff),
+            color: const Color(0xffffffff),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -877,7 +873,7 @@ Widget defaultFormFieldReservation(
         FontStyle fstyle = FontStyle.normal,
         required double width,
         String? hintText}) =>
-    Container(
+    SizedBox(
       height: 40,
       child: TextFormField(
         textDirection: TextDirection.rtl,
@@ -887,8 +883,8 @@ Widget defaultFormFieldReservation(
         onFieldSubmitted: (s) {
           print(s);
         },
-        style: TextStyle(
-            color: const Color(0xff161616),
+        style: const TextStyle(
+            color: Color(0xff161616),
             fontWeight: FontWeight.w500,
             fontStyle: FontStyle.normal,
             fontSize: 16.0),
@@ -913,7 +909,7 @@ Widget defaultFormFieldReservation(
             //borderSide: BorderSide(color: Colors.red),
           ),
           filled: true,
-          fillColor: Color(0xffffffff),
+          fillColor: const Color(0xffffffff),
         ),
       ),
     );
@@ -947,8 +943,8 @@ Widget defaultFormFieldSetting({
         onFieldSubmitted: (s) {
           print(s);
         },
-        style: TextStyle(
-            color: const Color(0xff161616),
+        style: const TextStyle(
+            color: Color(0xff161616),
             fontWeight: FontWeight.w500,
             fontStyle: FontStyle.normal,
             fontSize: 16.0),
@@ -965,7 +961,7 @@ Widget defaultFormFieldSetting({
             //borderSide: BorderSide(color: Colors.red),
           ),
           filled: true,
-          fillColor: Color(0xffffffff),
+          fillColor: const Color(0xffffffff),
         ),
       ),
     );
@@ -1016,7 +1012,7 @@ Widget defaultFormField2({
               : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(Radiu)),
-            borderSide: BorderSide(color: Colors.red),
+            borderSide: const BorderSide(color: Colors.red),
           ),
         ),
       ),
@@ -1101,7 +1097,7 @@ Widget BottomCard({
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: cardcolor,
-            border: Border.all(color: Color(0xff009c7b), width: 2),
+            border: Border.all(color: const Color(0xff009c7b), width: 2),
           ),
           width: widthCard,
           height: 52,
@@ -1110,7 +1106,7 @@ Widget BottomCard({
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 DefoltSvgImage(image: image, width: 24, hight: 24),
-                SizedBox(
+                const SizedBox(
                   width: 4,
                 ),
                 specialtext(
@@ -1184,7 +1180,7 @@ Widget itemDropdown({
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             specialtext(text: '$day'),
-            Spacer(),
+            const Spacer(),
             specialtext(text: '$time')
           ],
         ),
@@ -1198,7 +1194,7 @@ Widget richRequireText({
       text: TextSpan(children: <TextSpan>[
         TextSpan(
           text: tex1,
-          style: TextStyle(
+          style: const TextStyle(
               color: Color(0xff161616),
               fontWeight: FontWeight.w400,
               fontFamily: "ReadexPro",
@@ -1207,8 +1203,8 @@ Widget richRequireText({
         ),
         TextSpan(
           text: tex2,
-          style: TextStyle(
-              color: const Color(0xff7d7d7d),
+          style: const TextStyle(
+              color: Color(0xff7d7d7d),
               fontWeight: FontWeight.w400,
               fontFamily: "ReadexPro",
               fontStyle: FontStyle.normal,
@@ -1244,7 +1240,7 @@ Widget MixedText({
         text: TextSpan(children: [
       TextSpan(
           style: const TextStyle(
-              color: const Color(0xff7d7d7d),
+              color: Color(0xff7d7d7d),
               fontWeight: FontWeight.w400,
               fontFamily: "ReadexPro",
               fontStyle: FontStyle.normal,
@@ -1252,7 +1248,7 @@ Widget MixedText({
           text: text1),
       TextSpan(
           style: const TextStyle(
-              color: const Color(0xffe11a1a),
+              color: Color(0xffe11a1a),
               fontWeight: FontWeight.w500,
               fontFamily: "ReadexPro",
               fontStyle: FontStyle.normal,
@@ -1267,10 +1263,10 @@ Widget ContainerPicker({
     Container(
       height: 48,
       width: double.infinity,
-      padding: EdgeInsetsDirectional.only(start: 16),
+      padding: const EdgeInsetsDirectional.only(start: 16),
       decoration: BoxDecoration(
-        color: Color(0xffffffff),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+        color: const Color(0xffffffff),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
         border: Border.all(color: const Color(0xffd8d8d8)),
       ),
       child: Row(
@@ -1284,8 +1280,8 @@ Widget ContainerPicker({
               height: 48,
               width: 56,
               decoration: BoxDecoration(
-                color: Color(0xff009c7b),
-                borderRadius: BorderRadius.only(
+                color: const Color(0xff009c7b),
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(8),
                     bottomLeft: Radius.circular(8)),
                 border: Border.all(color: const Color(0xff009c7b)),
@@ -1293,7 +1289,7 @@ Widget ContainerPicker({
               child: Icon(
                 icon,
                 size: 24,
-                color: Color(0xffffffff),
+                color: const Color(0xffffffff),
               ),
             ),
           ),
@@ -1330,7 +1326,8 @@ Color choseToastColor(toastStates state) {
 }
 
 Widget SpecificDrawer(
-        {required double screenWidth,
+        {required BuildContext context,
+        required double screenWidth,
         required String userName,
         required String usetPhone,
         required double screenheight,
@@ -1347,13 +1344,13 @@ Widget SpecificDrawer(
       color: Colors.white,
       child: ListView(
         children: [
-          Container(
+          SizedBox(
             height: (224 / 844) * screenheight,
             child: UserAccountsDrawerHeader(
               accountName: Text(
                 userName,
-                style: TextStyle(
-                    color: const Color(0xffffffff),
+                style: const TextStyle(
+                    color: Color(0xffffffff),
                     fontWeight: FontWeight.w500,
                     fontFamily: "ReadexPro",
                     fontStyle: FontStyle.normal,
@@ -1361,7 +1358,7 @@ Widget SpecificDrawer(
                 textAlign: TextAlign.center,
               ),
               accountEmail: Text(usetPhone,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Color(0xffffffff),
                       fontWeight: FontWeight.w300,
                       fontFamily: "ReadexPro",
@@ -1375,14 +1372,14 @@ Widget SpecificDrawer(
                   width: 64,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      image: DecorationImage(
+                      image: const DecorationImage(
                           image: AssetImage(
                             'assets/images/unknown.png',
                           ),
                           fit: BoxFit.fill)),
                 ),
               ),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
                     "https://images.unsplash.com/photo-1553095066-5014bc7b7f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2FsbCUyMGJhY2tncm91bmR8ZW58MHx8MHx8&w=1000&q=80",
@@ -1392,20 +1389,20 @@ Widget SpecificDrawer(
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 8, bottom: 8),
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(16)),
-                color: notifyNumber > 0 ? Color(0xffe9ebeb) : null,
+                borderRadius: const BorderRadius.all(Radius.circular(16)),
+                color: notifyNumber > 0 ? const Color(0xffe9ebeb) : null,
               ),
               child: ListTile(
                 selectedColor: Colors.grey,
                 horizontalTitleGap: 0,
-                leading: Container(
+                leading: SizedBox(
                   width: 24,
                   height: 24,
                   child: DefoltSvgImage(
@@ -1417,10 +1414,10 @@ Widget SpecificDrawer(
                 trailing: CircleAvatar(
                   radius: 10,
                   backgroundColor:
-                      notifyNumber > 0 ? Color(0xff009c7b) : Colors.white,
+                      notifyNumber > 0 ? const Color(0xff009c7b) : Colors.white,
                   child: specialtext(
                     text: '$notifyNumber',
-                    fcolor: Color(0xffe9ebeb),
+                    fcolor: const Color(0xffe9ebeb),
                   ),
                 ),
                 onTap: navigyNotify,
@@ -1432,7 +1429,7 @@ Widget SpecificDrawer(
             child: ListTile(
               selectedColor: Colors.grey,
               horizontalTitleGap: 0,
-              leading: Container(
+              leading: SizedBox(
                 width: 24,
                 height: 24,
                 child: DefoltSvgImage(
@@ -1449,7 +1446,7 @@ Widget SpecificDrawer(
             child: ListTile(
               selectedColor: Colors.grey,
               horizontalTitleGap: 0,
-              leading: Container(
+              leading: SizedBox(
                 width: 24,
                 height: 24,
                 child: DefoltSvgImage(
@@ -1460,12 +1457,12 @@ Widget SpecificDrawer(
               ),
               subtitle: specialtext(
                 text: 'العربية',
-                fcolor: Color(0xff7d7d7d),
+                fcolor: const Color(0xff7d7d7d),
               ),
               onTap: () {},
             ),
           ),
-          Divider(
+          const Divider(
             thickness: 2,
             indent: 20,
             endIndent: 20,
@@ -1475,7 +1472,7 @@ Widget SpecificDrawer(
             child: ListTile(
               selectedColor: Colors.grey,
               horizontalTitleGap: 0,
-              leading: Container(
+              leading: SizedBox(
                 width: 24,
                 height: 24,
                 child: DefoltSvgImage(
@@ -1492,7 +1489,7 @@ Widget SpecificDrawer(
             child: ListTile(
               selectedColor: Colors.grey,
               horizontalTitleGap: 0,
-              leading: Container(
+              leading: SizedBox(
                 width: 24,
                 height: 24,
                 child: DefoltSvgImage(
@@ -1509,7 +1506,7 @@ Widget SpecificDrawer(
             child: ListTile(
               selectedColor: Colors.grey,
               horizontalTitleGap: 0,
-              leading: Container(
+              leading: SizedBox(
                 width: 24,
                 height: 24,
                 child: DefoltSvgImage(
@@ -1521,12 +1518,12 @@ Widget SpecificDrawer(
               onTap: () {},
             ),
           ),
-          Divider(
+          const Divider(
             thickness: 2,
             indent: 20,
             endIndent: 20,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Padding(
@@ -1534,7 +1531,7 @@ Widget SpecificDrawer(
             child: ListTile(
               selectedColor: Colors.grey,
               horizontalTitleGap: 0,
-              leading: Container(
+              leading: SizedBox(
                 width: 24,
                 height: 24,
                 child: DefoltSvgImage(
@@ -1543,18 +1540,20 @@ Widget SpecificDrawer(
               title: specialtext(
                 text: 'تسجيل الخروج',
               ),
-              onTap: () {},
+              onTap: () {
+                LogOut(context);
+              },
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: (25 / 390) * screenWidth),
             child: Container(
               width: (242 / 390) * screenWidth,
               height: 40,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                color: darktMode ? Colors.black : Color(0xffe9e9e9),
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                color: darktMode ? Colors.black : const Color(0xffe9e9e9),
               ),
               child: Row(
                 children: [
@@ -1564,16 +1563,19 @@ Widget SpecificDrawer(
                       width: (117 / 390) * screenWidth,
                       height: 32,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                        color: darktMode ? Colors.black : Color(0xffe9e9e9),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(16)),
+                        color:
+                            darktMode ? Colors.black : const Color(0xffe9e9e9),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           specialtext(
                               text: 'Dark',
-                              fcolor:
-                                  darktMode ? Colors.orange : Color(0xff8c8c8c),
+                              fcolor: darktMode
+                                  ? Colors.orange
+                                  : const Color(0xff8c8c8c),
                               fsize: 16,
                               ffamily: 'Roboto-Medium',
                               fweight: FontWeight.w500,
@@ -1584,8 +1586,9 @@ Widget SpecificDrawer(
                           Icon(
                             Iconsax.moon5,
                             size: 25,
-                            color:
-                                darktMode ? Colors.orange : Color(0xff8c8c8c),
+                            color: darktMode
+                                ? Colors.orange
+                                : const Color(0xff8c8c8c),
                           ),
                         ],
                       ),
@@ -1597,11 +1600,13 @@ Widget SpecificDrawer(
                       width: (117 / 390) * screenWidth,
                       height: 32,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                        boxShadow: [
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(16)),
+                        boxShadow: const [
                           BoxShadow(color: Color(0xff40000000), blurRadius: 4),
                         ],
-                        color: lightMode ? Color(0xffffffff) : Colors.black,
+                        color:
+                            lightMode ? const Color(0xffffffff) : Colors.black,
                         //Color(0xffffffff),
                       ),
                       child: Row(
@@ -1610,8 +1615,8 @@ Widget SpecificDrawer(
                           specialtext(
                               text: 'Light',
                               fcolor: lightMode
-                                  ? Color(0xff3e3e3e)
-                                  : Color(0xff8c8c8c),
+                                  ? const Color(0xff3e3e3e)
+                                  : const Color(0xff8c8c8c),
                               fsize: 16,
                               ffamily: 'Roboto-Medium',
                               fweight: FontWeight.w500,
@@ -1623,8 +1628,8 @@ Widget SpecificDrawer(
                             Iconsax.sun_15,
                             size: 22.5,
                             color: lightMode
-                                ? Color(0xff3e3e3e)
-                                : Color(0xff8c8c8c),
+                                ? const Color(0xff3e3e3e)
+                                : const Color(0xff8c8c8c),
                           ),
                         ],
                       ),
@@ -1655,7 +1660,7 @@ Future<void> animatedDialog({
         color: Colors.white,
         msg: massege,
         title: title,
-        msgStyle: TextStyle(
+        msgStyle: const TextStyle(
           fontSize: 20,
           color: Color(0xff161616),
           fontStyle: FontStyle.normal,
@@ -1679,7 +1684,7 @@ Future<void> animatedDialog({
               Navigator.pop(context);
             },
             text: text1,
-            textStyle: TextStyle(color: mainColor),
+            textStyle: const TextStyle(color: mainColor),
             iconColor: mainColor,
           ),
           IconsButton(
@@ -1693,12 +1698,12 @@ Future<void> animatedDialog({
             },
             text: text2,
             color: mainColor,
-            textStyle: TextStyle(color: Colors.white),
+            textStyle: const TextStyle(color: Colors.white),
             iconColor: Colors.white,
           ),
         ]);
 Widget Navigation2Button() => MaterialButton(
-      color: Color(0xff009c7b),
+      color: const Color(0xff009c7b),
       minWidth: double.infinity,
       height: 52,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -1708,9 +1713,9 @@ Widget Navigation2Button() => MaterialButton(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Iconsax.repeat,
-              color: const Color(0xffffffff),
+              color: Color(0xffffffff),
             ),
             const SizedBox(
               width: 8,
@@ -1727,18 +1732,18 @@ Widget Navigation2Button() => MaterialButton(
     );
 Widget timeRemain({int hours = 0, int munets = 0}) => SlideCountdown(
       duration: Duration(hours: hours, minutes: munets),
-      textStyle: TextStyle(
-        color: const Color(0xff161616),
+      textStyle: const TextStyle(
+        color: Color(0xff161616),
         fontWeight: FontWeight.w400,
         fontFamily: "ReadexPro",
         fontStyle: FontStyle.normal,
         fontSize: 14.0,
       ),
-      separatorStyle: TextStyle(
-        color: const Color(0xff161616),
+      separatorStyle: const TextStyle(
+        color: Color(0xff161616),
       ),
-      decoration: BoxDecoration(
-        color: const Color(0xffffffff),
+      decoration: const BoxDecoration(
+        color: Color(0xffffffff),
       ),
     );
 Widget linearIndicator(

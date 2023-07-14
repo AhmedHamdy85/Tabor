@@ -20,3 +20,5 @@ String VIWEPROFILE = '/users/show/';
 
 const String googleLocationBaseUrl =
     'https://maps.googleapis.com/maps/api/place/details/output';
+
+String REGESTER = '/users/create';

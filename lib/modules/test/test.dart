@@ -82,13 +82,13 @@ class _CustomDropdownState extends State<CustomDropdown> {
                 children: <Widget>[
                   Text(
                     widget.text.toUpperCase(),
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 22,
                         fontWeight: FontWeight.w600),
                   ),
-                  Spacer(),
-                  Icon(
+                  const Spacer(),
+                  const Icon(
                     Icons.arrow_drop_down,
                     color: Colors.white,
                   ),
@@ -124,11 +124,11 @@ class DropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Align(
-          alignment: Alignment(-0.85, 0),
+          alignment: const Alignment(-0.85, 0),
           child: ClipPath(
             clipper: ArrowClipper(),
             child: Container(
@@ -155,12 +155,12 @@ class DropDown extends StatelessWidget {
                   iconData: Icons.add_circle_outline,
                   isSelected: false,
                 ),
-                DropDownItem(
+                const DropDownItem(
                   text: "View Profile",
                   iconData: Icons.person_outline,
                   isSelected: false,
                 ),
-                DropDownItem(
+                const DropDownItem(
                   text: "Settings",
                   iconData: Icons.settings,
                   isSelected: false,
@@ -226,8 +226,8 @@ class DropDownItem extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.vertical(
-          top: isFirstItem ? Radius.circular(8) : Radius.zero,
-          bottom: isLastItem ? Radius.circular(8) : Radius.zero,
+          top: isFirstItem ? const Radius.circular(8) : Radius.zero,
+          bottom: isLastItem ? const Radius.circular(8) : Radius.zero,
         ),
         color: isSelected ? Colors.red.shade900 : Colors.red.shade600,
       ),
@@ -236,10 +236,10 @@ class DropDownItem extends StatelessWidget {
         children: <Widget>[
           Text(
             text.toUpperCase(),
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
           ),
-          Spacer(),
+          const Spacer(),
           Icon(
             iconData,
             color: Colors.white,

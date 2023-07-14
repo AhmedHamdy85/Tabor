@@ -24,11 +24,12 @@ class _SearchHomeScreenState extends State<SearchHomeScreen> {
     // filterList('kl');
   }
 
+  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xfff5f5f5),
+      backgroundColor: const Color(0xfff5f5f5),
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: BlocProvider(
@@ -44,7 +45,7 @@ class _SearchHomeScreenState extends State<SearchHomeScreen> {
                       Container(
                         height: screenHight * 0.17,
                         width: double.infinity,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xffffffff),
                           boxShadow: [
                             BoxShadow(blurRadius: 4, color: Color(0xff40000000))
@@ -71,27 +72,27 @@ class _SearchHomeScreenState extends State<SearchHomeScreen> {
                                           'assets/images/vuesax_bulk_arrow_square_right.svg'),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               Container(
                                 width: screenWidth - 72,
                                 height: 40,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     color: Color(0xffbceee3),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20))),
                                 child: TextField(
                                   onChanged: (value) =>
                                       cubit.filterHomeList(value),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,
                                     color: mainColor,
                                     fontFamily: "ReadexPro",
                                     fontStyle: FontStyle.normal,
                                   ),
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     contentPadding:
                                         EdgeInsets.symmetric(horizontal: 16),
                                     suffixIcon: Icon(Iconsax.search_normal),
@@ -146,7 +147,7 @@ class _SearchHomeScreenState extends State<SearchHomeScreen> {
                                         trailing: MaterialButton(
                                             minWidth: 80,
                                             height: 24,
-                                            shape: RoundedRectangleBorder(
+                                            shape: const RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.all(
                                                     Radius.circular(8))),
                                             color: const Color(0xff009c7b),

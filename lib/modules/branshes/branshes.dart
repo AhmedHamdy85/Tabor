@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/layout/cubit/states.dart';
 import 'package:tabor/model/bankmodels/all_banks_model/all_banks_model.dart';
-import 'package:tabor/modules/Home/homeScreen.dart';
-import 'package:tabor/modules/Home/map/mapscreen.dart';
-import 'package:tabor/modules/Home/search/search.dart';
+
 import 'package:tabor/modules/branshes/search/search_branches.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
@@ -13,7 +11,7 @@ import 'package:tabor/shared/componants/iconsax_icons.dart';
 import '../Home/map/map_branches.dart';
 
 class BranshesScreen extends StatelessWidget {
-  BranshesScreen({super.key, required this.model});
+  const BranshesScreen({super.key, required this.model});
   final AllBanksModel model;
   @override
   Widget build(BuildContext context) {
@@ -46,7 +44,7 @@ class BranshesScreen extends StatelessWidget {
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       boxShadow: [
                         BoxShadow(color: Color(0xff40000000), blurRadius: 4)
                       ],
@@ -83,23 +81,23 @@ class BranshesScreen extends StatelessWidget {
                                 children: [
                                   Text('${model.name}',
                                       style: const TextStyle(
-                                          color: const Color(0xff161616),
+                                          color: Color(0xff161616),
                                           fontWeight: FontWeight.w600,
                                           fontFamily: "ReadexPro",
                                           fontStyle: FontStyle.normal,
                                           fontSize: 21.0),
                                       textAlign: TextAlign.right),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 8,
                                   ),
                                   Row(
                                     children: [
-                                      Opacity(
+                                      const Opacity(
                                         opacity: 0.5,
                                         child: Text(
                                           'فرع',
-                                          style: const TextStyle(
-                                              color: const Color(0xff161616),
+                                          style: TextStyle(
+                                              color: Color(0xff161616),
                                               fontWeight: FontWeight.w500,
                                               fontFamily: "ReadexPro",
                                               fontStyle: FontStyle.normal,
@@ -109,9 +107,9 @@ class BranshesScreen extends StatelessWidget {
                                       Opacity(
                                         opacity: 0.5,
                                         child: Text(
-                                          ' ' + '${model.branchs?.length ?? 0}',
+                                          ' ' '${model.branchs?.length ?? 0}',
                                           style: const TextStyle(
-                                              color: const Color(0xff161616),
+                                              color: Color(0xff161616),
                                               fontWeight: FontWeight.w500,
                                               fontFamily: "ReadexPro",
                                               fontStyle: FontStyle.normal,
@@ -125,7 +123,7 @@ class BranshesScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 46,
                         ),
                         Opacity(
@@ -134,7 +132,7 @@ class BranshesScreen extends StatelessWidget {
                             child: Container(
                                 width: screenWidth - 32,
                                 height: 2,
-                                color: Color(0xff161616)),
+                                color: const Color(0xff161616)),
                           ),
                         ),
                         const Padding(
@@ -160,7 +158,8 @@ class BranshesScreen extends StatelessWidget {
                                 context: context,
                                 image: 'assets/images/status.svg',
                                 bankName: '${model.name}',
-                                name: '${model.branchs![index].nameOfBranch}',
+                                branshName:
+                                    '${model.branchs![index].nameOfBranch}',
                                 destance:
                                     '${model.branchs![index].distanceBranchUser}'))
                       ],

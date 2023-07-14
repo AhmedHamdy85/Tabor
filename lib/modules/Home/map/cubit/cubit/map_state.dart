@@ -9,9 +9,7 @@ class PlaceLocationLoaded extends MapsState {
   final Place place;
 
   PlaceLocationLoaded(this.place);
-
 }
-
 
 /*class DirectionsLoaded extends MapsState {
   final PlaceDirections placeDirections;

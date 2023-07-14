@@ -6,19 +6,26 @@ import 'package:tabor/modules/Home/map/mapscreen.dart';
 import 'package:tabor/modules/queue/cubit/queue_logic.dart';
 import 'package:tabor/shared/componants/componant.dart';
 
+import '../../shared/componants/constants.dart';
+
 class ShowTecketScreen extends StatelessWidget {
-  const ShowTecketScreen({super.key, required this.branchName, required this.queueName, required this.bankName, required this.model});
-final String branchName;
- final String queueName;
+  ShowTecketScreen(
+      {super.key,
+      required this.branchName,
+      required this.queueName,
+      required this.bankName,
+      this.model});
+  final String branchName;
+  final String queueName;
   final String bankName;
- final CreateTecitModel model;
+  final CreateTecitModel? model;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
     double containrwidth = screenWidth - 64;
     return Scaffold(
-      backgroundColor: Color(0xfff5f5f5),
+      backgroundColor: const Color(0xfff5f5f5),
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: Column(
@@ -26,7 +33,7 @@ final String branchName;
             Container(
               height: screenHight * 0.17,
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xffffffff),
                 boxShadow: [
                   BoxShadow(blurRadius: 4, color: Color(0xff40000000))
@@ -48,16 +55,16 @@ final String branchName;
                     ),
                     const Spacer(),
                     CircleAvatar(
-                      backgroundColor: Color(0xffbceee3),
+                      backgroundColor: const Color(0xffbceee3),
                       child: InkWell(
                           onTap: () {
                             NavigateAndFinsh(
                                 context,
-                                Directionality(
+                                const Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: layoutScreen()));
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.close,
                             shadows: [
                               Shadow(color: Colors.black, blurRadius: 0)
@@ -90,13 +97,23 @@ final String branchName;
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Center(
-                                child: Image.asset(
-                                    'assets/images/Rectangle 1.png')),
+                              child: SizedBox(
+                                height: 100,
+                                width: 100,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Image(
+                                    image:
+                                        NetworkImage('${banksLogo[bankName]}'),
+                                  ),
+                                ),
+                              ),
+                            ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 specialtext(
-                                  text: bankName ,
+                                  text: bankName,
                                   fweight: FontWeight.w500,
                                 ),
                                 Padding(
@@ -122,7 +139,7 @@ final String branchName;
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 24,
                       ),
                       Center(
@@ -131,7 +148,8 @@ final String branchName;
                           height: 376 * 0.12,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: Color(0xff19161616))),
+                              border:
+                                  Border.all(color: const Color(0xff19161616))),
                           child: Padding(
                             padding: const EdgeInsets.only(right: 16, left: 16),
                             child: Row(
@@ -144,7 +162,7 @@ final String branchName;
                                   width: screenWidth * 0.22,
                                 ),
                                 specialtext(
-                                  text: "${model.numOfWaitings}",
+                                  text: "${model?.numOfWaitings ?? 2}",
                                   fweight: FontWeight.w500,
                                   fsize: 18,
                                 ),
@@ -153,7 +171,7 @@ final String branchName;
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 376 * 0.05,
                       ),
                       Padding(
@@ -169,19 +187,22 @@ final String branchName;
                               width: screenWidth * 0.38,
                             ),
                             timeRemain(
-                              hours: QueueCubit.get(context).parsedTime['hours']??0,
-                              munets: QueueCubit.get(context).parsedTime['minutes']??0
-                            ),
+                                hours: QueueCubit.get(context)
+                                        .parsedTime?['hours'] ??
+                                    0,
+                                munets: QueueCubit.get(context)
+                                        .parsedTime?['minutes'] ??
+                                    15),
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Center(
                         child: linearIndicator(width: containrwidth - 32),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 85,
                       ),
                       Opacity(
@@ -206,7 +227,7 @@ final String branchName;
                     onTap: () {
                       NavigateTo(
                           context,
-                          Directionality(
+                          const Directionality(
                               textDirection: TextDirection.rtl,
                               child: MapspecificLocation()));
                     },
@@ -214,9 +235,9 @@ final String branchName;
                       width: screenWidth * 0.39,
                       height: 52,
                       decoration: BoxDecoration(
-                          color: Color(0xffffffff),
+                          color: const Color(0xffffffff),
                           borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Color(0x40000000),
                               blurRadius: 4,
@@ -226,7 +247,7 @@ final String branchName;
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset('assets/images/Frame 70.png'),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                           specialtext(
@@ -239,7 +260,7 @@ final String branchName;
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16,
                   ),
                   Opacity(
@@ -255,24 +276,24 @@ final String branchName;
                             massege:
                                 'عند تكرار الغاء التذكرة سيتم حذرك من استخدام خدماتنا',
                             animation: 'question',
-                            screen: layoutScreen(),
-                            color: Color(0xffE11A1A));
+                            screen: const layoutScreen(),
+                            color: const Color(0xffE11A1A));
                       },
                       child: Container(
                         width: screenWidth * 0.39,
                         height: 52,
                         decoration: BoxDecoration(
-                          color: Color(0xff161616),
+                          color: const Color(0xff161616),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.close,
                               color: Color(0xffffffff),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 4,
                             ),
                             specialtext(
@@ -289,7 +310,7 @@ final String branchName;
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             navigationButton(
               text: "القائمة الرئسية",
               function: () {

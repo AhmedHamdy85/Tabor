@@ -18,11 +18,11 @@ void main() async {
   token = CasheHelper.getData(Key: 'token');
   id = CasheHelper.getData(Key: 'id');
   refreshToken = CasheHelper.getData(Key: 'refreshToken');
-  print('token' + token);
-  print('userid' + '$id');
-  print('refresh' + refreshToken);
+  print('token$token');
+  print('userid' '$id');
+  // print('refresh' + refreshToken);
   Widget widget;
-  if (token != null) {
+  if (token.isNotEmpty) {
     widget = const layoutScreen();
   } else {
     widget = const onBoardingScreen();
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData(
-          scaffoldBackgroundColor: Color(0xffE9EBEB),
+          scaffoldBackgroundColor: const Color(0xffE9EBEB),
           primarySwatch: Colors.green,
           fontFamily: 'ReadexPro',
         ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tabor/layout/layout_screen.dart';
-import 'package:tabor/modules/branshes/branshes.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/constants.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
@@ -18,7 +17,7 @@ class _RequirementScreenState extends State<RequirementScreen> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xfff5f5f5),
+      backgroundColor: const Color(0xfff5f5f5),
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: Column(
@@ -26,7 +25,7 @@ class _RequirementScreenState extends State<RequirementScreen> {
             Container(
               height: screenHight * 0.17,
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xffffffff),
                 boxShadow: [
                   BoxShadow(blurRadius: 4, color: Color(0xff40000000))
@@ -41,7 +40,7 @@ class _RequirementScreenState extends State<RequirementScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 4,
                     ),
                     specialtext(
@@ -59,14 +58,14 @@ class _RequirementScreenState extends State<RequirementScreen> {
                                     textDirection: TextDirection.rtl,
                                     child: layoutScreen()));
                           },
-                          child: Icon(Icons.close)),
+                          child: const Icon(Icons.close)),
                     ),
                   ],
                 ),
               ),
             ),
             Expanded(
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 child: Padding(
                   padding:
@@ -77,13 +76,13 @@ class _RequirementScreenState extends State<RequirementScreen> {
                       children: [
                         specialtext(
                             text: 'الشروط',
-                            fcolor: Color(0xff7d7d7d),
+                            fcolor: const Color(0xff7d7d7d),
                             fweight: FontWeight.w500,
                             fsize: 16),
                         Container(
                           width: double.infinity,
                           height: 60,
-                          padding: EdgeInsetsDirectional.only(start: 22),
+                          padding: const EdgeInsetsDirectional.only(start: 22),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -109,7 +108,8 @@ class _RequirementScreenState extends State<RequirementScreen> {
                           height: 24,
                         ),
                         Container(
-                          padding: EdgeInsetsDirectional.only(start: 8, top: 8),
+                          padding: const EdgeInsetsDirectional.only(
+                              start: 8, top: 8),
                           height: 72,
                           width: double.infinity,
                           decoration: const BoxDecoration(
@@ -124,7 +124,7 @@ class _RequirementScreenState extends State<RequirementScreen> {
                               richRequireText(
                                   tex1: '١. بطاقة الرقم القومي',
                                   tex2: '(السجل المدني)'),
-                              SizedBox(
+                              const SizedBox(
                                 height: 4,
                               ),
                               InkWell(
@@ -140,8 +140,8 @@ class _RequirementScreenState extends State<RequirementScreen> {
                                   width: (228 / 333) * screenWidth,
                                   alignment: AlignmentDirectional.center,
                                   decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8)),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(8)),
                                     border: Border.all(
                                       color: const Color(0xffd8d8d8),
                                     ),
@@ -154,7 +154,7 @@ class _RequirementScreenState extends State<RequirementScreen> {
                                   ),
                                   child: specialtext(
                                       text: 'فروع السجل المدني',
-                                      fcolor: Color(0xff009c7b),
+                                      fcolor: const Color(0xff009c7b),
                                       fweight: FontWeight.w500),
                                 ),
                               ),
@@ -166,8 +166,8 @@ class _RequirementScreenState extends State<RequirementScreen> {
                           height: 8,
                         ),
                         Container(
-                            padding:
-                                EdgeInsetsDirectional.only(start: 8, top: 8),
+                            padding: const EdgeInsetsDirectional.only(
+                                start: 8, top: 8),
                             height: 86,
                             width: double.infinity,
                             decoration: const BoxDecoration(
@@ -196,7 +196,7 @@ class _RequirementScreenState extends State<RequirementScreen> {
                                       width: (228 / 333) * screenWidth,
                                       alignment: AlignmentDirectional.center,
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(8)),
                                         border: Border.all(
                                           color: const Color(0xffd8d8d8),
@@ -210,7 +210,7 @@ class _RequirementScreenState extends State<RequirementScreen> {
                                       ),
                                       child: specialtext(
                                           text: 'فروع خدمة فودافون',
-                                          fcolor: Color(0xff009c7b),
+                                          fcolor: const Color(0xff009c7b),
                                           fweight: FontWeight.w500),
                                     ),
                                   ),

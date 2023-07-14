@@ -6,7 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tabor/layout/cubit/logic.dart';
 import 'package:tabor/layout/cubit/states.dart';
-import 'package:tabor/layout/layout_screen.dart';
+
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 
@@ -36,7 +36,7 @@ class _MapspecificLocationState extends State<MapspecificLocation> {
   }
 }*/
 class MapspecificLocation extends StatefulWidget {
-  MapspecificLocation({super.key});
+  const MapspecificLocation({super.key});
 
   @override
   State<MapspecificLocation> createState() => _MapspecificLocationState();
@@ -49,20 +49,21 @@ class _MapspecificLocationState extends State<MapspecificLocation> {
     _requestLocationPermission();
     getMyCurrentLocatin();
   }
+
   void _requestLocationPermission() async {
     final PermissionStatus permissionStatus =
-    await Permission.location.request();
+        await Permission.location.request();
     if (permissionStatus != PermissionStatus.granted) {
       showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: Text('Location permission'),
-          content:
-          Text('Please grant location permission to use this feature.'),
+          title: const Text('Location permission'),
+          content: const Text(
+              'Please grant location permission to use this feature.'),
           actions: <Widget>[
             ElevatedButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         ),
@@ -74,9 +75,7 @@ class _MapspecificLocationState extends State<MapspecificLocation> {
   static Position? position;
   static final CameraPosition _cameraPositionOfmyCurrentPosition =
       CameraPosition(
-          target: LatLng(position!.altitude, position!.latitude), 
-          zoom: 15
-          );
+          target: LatLng(position!.altitude, position!.latitude), zoom: 15);
   Future<void> getMyCurrentLocatin() async {
     position = await HelperClass.determinePosition().whenComplete(() {
       setState(() {});
@@ -101,11 +100,12 @@ class _MapspecificLocationState extends State<MapspecificLocation> {
         CameraUpdate.newCameraPosition(_cameraPositionOfmyCurrentPosition));
   }
 
+  @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    //double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xfff5f5f5),
+      backgroundColor: const Color(0xfff5f5f5),
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: BlocConsumer<layoutCubit, layoutStates>(
@@ -118,7 +118,7 @@ class _MapspecificLocationState extends State<MapspecificLocation> {
                       Container(
                         height: screenHight * 0.17,
                         width: double.infinity,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xffffffff),
                           boxShadow: [
                             BoxShadow(blurRadius: 4, color: Color(0xff40000000))
@@ -145,7 +145,7 @@ class _MapspecificLocationState extends State<MapspecificLocation> {
                                           'assets/images/vuesax_bulk_arrow_square_right.svg'),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
                               Padding(
@@ -155,14 +155,14 @@ class _MapspecificLocationState extends State<MapspecificLocation> {
                                     fsize: 21,
                                     fweight: FontWeight.w500),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               CircleAvatar(
-                                backgroundColor: Color(0xffbceee3),
+                                backgroundColor: const Color(0xffbceee3),
                                 child: InkWell(
                                   onTap: () {
                                     _goToMyCurrentLocation;
                                   },
-                                  child: Icon(Iconsax.gps),
+                                  child: const Icon(Iconsax.gps),
                                 ),
                               ),
                             ],
@@ -172,11 +172,12 @@ class _MapspecificLocationState extends State<MapspecificLocation> {
                       Expanded(
                         child: Stack(
                           children: [
-                            Container(
+                            SizedBox(
                               width: double.infinity,
                               child: position != null
                                   ? showMap()
-                                  : Center(child: CircularProgressIndicator()),
+                                  : const Center(
+                                      child: CircularProgressIndicator()),
                             ),
                           ],
                         ),

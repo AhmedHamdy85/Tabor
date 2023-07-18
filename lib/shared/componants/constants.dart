@@ -12,11 +12,16 @@ class Variables {
 
 const Color mainColor = Color(0xff009c7b);
 int x = 15;
-String token = '';
+String token='' ;
+String refreshToken='';
+num? id;
+/*
+  String token = '';
 String refreshToken = '';
 num? id;
+ */
 
-const googleKey = 'AIzaSyDwB2nI3G71zR6bSyIHEb5bheCMTyOkTZ4';
+const googleKey = 'AIzaSyDwB2njfhgfghdgfdgflklTyOkTZ4';
 
 Map<String, String> banksLogo = {
   'البنك الاهلى':

@@ -38,7 +38,7 @@ The app is built using the following technologies:
 
 ## 📱 Screenshots
 
-![Home Screen](https://drive.google.com/file/d/105g5nn_3fFocEf1XEIfXYOHdKuXQWFlZ/view?usp=drive_link)
+<img src = "https://drive.google.com/file/d/105g5nn_3fFocEf1XEIfXYOHdKuXQWFlZ/view" />
 ---
 
 ## 📂 Project Structure
@@ -106,18 +106,14 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
-## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
 
 ## 📞 Contact
 
 For any inquiries or feedback, please feel free to reach out:
 
 - **Author**: Ahmed Hamdy
-- **Email**: [ahmedhamdy@example.com](mailto:ahmedhamdy@example.com)
+- **Email**: [ahmedhamdy@example.com](mailto:ahmed.hamdi.ramadan@gmail.com)
 - **GitHub**: [AhmedHamdy85](https://github.com/AhmedHamdy85)
 
 ---

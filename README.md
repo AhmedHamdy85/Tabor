@@ -35,10 +35,9 @@ The app is built using the following technologies:
 
 ## 📱 Screenshots
 
-> To add screenshots, upload images to your Google Drive, make them publicly accessible, and use the direct image link:
-> ```markdown
-> ![Screenshot Name](https://drive.google.com/uc?export=view&id=YOUR_FILE_ID)
-> ```
+
+ ![Home](https://drive.google.com/file/d/105g5nn_3fFocEf1XEIfXYOHdKuXQWFlZ/view?usp=drive_link)
+
 
 ## 🚀 Getting Started
 

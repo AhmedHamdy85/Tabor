@@ -35,9 +35,37 @@ The app is built using the following technologies:
 
 ## 📱 Screenshots
 
+## 📱 Screenshots (Continued)
 
- ![Home](https://drive.google.com/file/d/105g5nn_3fFocEf1XEIfXYOHdKuXQWFlZ/view?usp=drive_link)
+## 📱 Screenshots
 
+## 📱 Screenshots
+## 📱 Screenshots
+
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center"><img src="assets/screanShots/Log%20in.png" alt="Login Screen" width="200"/><br><b>Login Screen</b></td>
+    <td align="center"><img src="assets/screanShots/home.png" alt="Home Screen" width="200"/><br><b>Home Screen</b></td>
+    <td align="center"><img src="assets/screanShots/Service.png" alt="Service Selection" width="200"/><br><b>Service Selection</b></td>
+    <td align="center"><img src="assets/screanShots/form.png" alt="Form Submission" width="200"/><br><b>Form Submission</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/screanShots/REQ.png" alt="Queue Request" width="200"/><br><b>Queue Request</b></td>
+    <td align="center"><img src="assets/screanShots/map.png" alt="Map Screen" width="200"/><br><b>Map Screen</b></td>
+    <td align="center"><img src="assets/screanShots/favorites.png" alt="Service Screen" width="200"/><br><b>Favorites Screen</b></td>
+    <td align="center"><img src="assets/screanShots/Branches.png" alt="Screen Placeholder" width="200"/><br><b>Branches Screen</b></td>
+  </tr>
+   <tr>
+    <td align="center"><img src="assets/screanShots/Settings.png" alt="Queue Request" width="200"/><br><b>Settings Screen</b></td>
+    <td align="center"><img src="assets/screanShots/Sign up.png" alt="Map Screen" width="200"/><br><b>Sign up Screen</b></td>
+    <td align="center"><img src="assets/screanShots/ReTicket.png" alt="Service Screen" width="200"/><br><b>ReTicket Screen</b></td>
+    <td align="center"><img src="assets/screanShots/form.png" alt="Screen Placeholder" width="200"/><br><b>form Screen</b></td>
+  </tr>
+</table>
+
+</div>
 
 ## 🚀 Getting Started
 

@@ -139,9 +139,7 @@ Contributions are welcome! Here's how you can help:
 
 Please make sure to update tests as appropriate and adhere to the coding standards.
 
-## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 

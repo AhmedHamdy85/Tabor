@@ -1,69 +1,53 @@
-# Tabor - Queue Reservation App
+# Tabor
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Languages](https://img.shields.io/github/languages/top/AhmedHamdy85/Tabor)](https://github.com/AhmedHamdy85/Tabor)
 [![Contributors](https://img.shields.io/github/contributors/AhmedHamdy85/Tabor)](https://github.com/AhmedHamdy85/Tabor/graphs/contributors)
+[![Last Commit](https://img.shields.io/github/last-commit/AhmedHamdy85/Tabor)](https://github.com/AhmedHamdy85/Tabor/commits/main)
 
-Tabor is a mobile app designed to streamline and simplify the process of reserving a seat in queues at banks, telecom service centers, and public services. Built with cutting-edge technologies, Tabor offers a seamless user experience, allowing users to avoid long waits and manage their time efficiently.
+## 📱 Overview
 
----
+Tabor is a mobile application designed to streamline queue management at banks, telecom service centers, and public service facilities. The app allows users to reserve a seat in a queue remotely, saving time and eliminating the need to physically wait in line.
 
 ## 🏆 Achievements
 
 - This project was developed as a **graduation project** and earned an **A+ grade**.
 
----
+## ✨ Features
 
-## 🚀 Features
-
-- **Queue Reservation**: Reserve a seat in queues at various service centers with just a few taps.
-- **Real-Time Updates**: Get real-time updates on your queue position and estimated waiting time.
-- **User-Friendly Design**: Intuitive and easy-to-navigate interface for all users.
-- **Offline Support**: SQLite integration ensures offline access to your queue history and data.
-- **Secure Data Handling**: Robust API and secure storage for protecting user data.
-
----
+- **Queue Reservation**: Book your place in a queue without being physically present
+- **Real-time Updates**: Monitor your position in the queue and estimated waiting time
+- **Service Provider Integration**: Connect with banks, telecom centers, and public service facilities
+- **Notifications**: Receive alerts when your turn is approaching
+- **User Profiles**: Manage your reservation history and preferences
+- **Multi-platform Support**: Available for both Android and iOS devices
 
 ## 🛠️ Tech Stack
 
 The app is built using the following technologies:
 
-- **Flutter**: For creating a responsive and cross-platform mobile UI.
-- **Dart**: The primary programming language for the app.
-- **SQLite**: Local database for offline data storage and management.
-- **Cubit**: State management for a predictable and maintainable app architecture.
-- **API**: Backend communication for real-time queue updates and service integration.
-
----
+- **Flutter**: Cross-platform UI framework for building beautiful, natively compiled applications
+- **Dart**: Primary programming language (94.5% of codebase)
+- **SQLite**: Local database for storing user data and queue information
+- **Cubit**: State management solution for predictable state handling
+- **RESTful API**: Backend integration for real-time queue updates and data synchronization
+- **Native Components**: Some features implemented in C++ (2.7%) and other languages for optimal performance
 
 ## 📱 Screenshots
 
-<img src = "https://drive.google.com/file/d/105g5nn_3fFocEf1XEIfXYOHdKuXQWFlZ/view" />
----
-
-## 📂 Project Structure
-
-```
-Tabor/
-├── lib/                # Flutter app code (Dart files)
-├── assets/             # App assets such as images and fonts
-├── test/               # Unit and widget tests
-├── docs/               # Documentation
-├── LICENSE             # Project license
-├── pubspec.yaml        # Flutter/Dart dependencies
-└── README.md           # Project overview and instructions
-```
-
----
+> To add screenshots, upload images to your Google Drive, make them publicly accessible, and use the direct image link:
+> ```markdown
+> ![Screenshot Name](https://drive.google.com/uc?export=view&id=YOUR_FILE_ID)
+> ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-Ensure you have the following installed:
-- [Flutter SDK](https://flutter.dev/docs/get-started/install)
-- [Dart](https://dart.dev/get-dart)
-- A mobile emulator or a physical device for testing
+- [Flutter SDK](https://flutter.dev/docs/get-started/install) (latest stable version)
+- [Dart SDK](https://dart.dev/get-dart)
+- Android Studio or VS Code with Flutter extensions
+- iOS development tools (for Mac users)
 
 ### Installation
 
@@ -83,39 +67,67 @@ Ensure you have the following installed:
    flutter run
    ```
 
----
+## 📂 Project Structure
 
-## 🧪 Running Tests
-
-To run the tests, use the following command:
-```bash
-flutter test
+```
+Tabor/
+├── lib/                # Dart source code
+│   ├── api/            # API integration
+│   ├── cubit/          # State management
+│   ├── models/         # Data models
+│   ├── screens/        # UI screens
+│   ├── services/       # Business logic
+│   ├── utils/          # Utilities and helpers
+│   └── main.dart       # Entry point
+├── assets/             # Static assets (images, fonts)
+├── ios/                # iOS-specific code
+├── android/            # Android-specific code
+├── test/               # Unit and widget tests
+├── pubspec.yaml        # Project configuration
+└── README.md           # Project documentation
 ```
 
----
+## 💡 Usage
+
+1. Register or log in to your account
+2. Browse available service providers
+3. Select the service you need
+4. Reserve your place in the queue
+5. Receive notifications about your queue status
+6. Arrive at the venue just before your turn
+
+## 🔄 How It Works
+
+The app connects users with service providers through a seamless interface:
+
+1. Service providers register their facilities and services
+2. Users can see available queues and current waiting times
+3. When a user reserves a spot, they receive a virtual ticket
+4. The system updates queue positions in real-time
+5. Users get notifications as their turn approaches
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow these steps:
+Contributions are welcome! Here's how you can help:
 
-1. Fork the project.
-2. Create a feature branch: `git checkout -b feature/YourFeature`.
-3. Commit your changes: `git commit -m "Add YourFeature"`.
-4. Push to the branch: `git push origin feature/YourFeature`.
-5. Open a pull request.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
----
+Please make sure to update tests as appropriate and adhere to the coding standards.
 
+## 📄 License
 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 
-For any inquiries or feedback, please feel free to reach out:
+Ahmed Hamdy - [@AhmedHamdy85](https://github.com/AhmedHamdy85)
 
-- **Author**: Ahmed Hamdy
-- **Email**: [ahmedhamdy@example.com](mailto:ahmed.hamdi.ramadan@gmail.com)
-- **GitHub**: [AhmedHamdy85](https://github.com/AhmedHamdy85)
+Project Link: [https://github.com/AhmedHamdy85/Tabor](https://github.com/AhmedHamdy85/Tabor)
 
 ---
 
-Thank you for checking out **Tabor**! If you find this project helpful, please ⭐️ it and share it with others.
+⭐️ If you found this project helpful, please give it a star on GitHub! ⭐️

@@ -33,13 +33,7 @@ The app is built using the following technologies:
 - **RESTful API**: Backend integration for real-time queue updates and data synchronization
 - **Native Components**: Some features implemented in C++ (2.7%) and other languages for optimal performance
 
-## 📱 Screenshots
 
-## 📱 Screenshots (Continued)
-
-## 📱 Screenshots
-
-## 📱 Screenshots
 ## 📱 Screenshots
 
 <div align="center">
